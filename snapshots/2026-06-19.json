@@ -1,0 +1,509 @@
+{
+  "updatedAt": "19-06-2026",
+  "myRank": null,
+  "myScore": null,
+  "myName": null,
+  "hasPlayedToday": false,
+  "entries": [
+    {
+      "rank": 1,
+      "name": "A. Niccodemi",
+      "score": 2227
+    },
+    {
+      "rank": 2,
+      "name": "P. Segura",
+      "score": 1860
+    },
+    {
+      "rank": 3,
+      "name": "M. Brea",
+      "score": 1796
+    },
+    {
+      "rank": 4,
+      "name": "A. Gonzalez",
+      "score": 1771
+    },
+    {
+      "rank": 5,
+      "name": "T. Elgueta",
+      "score": 1744
+    },
+    {
+      "rank": 6,
+      "name": "N. Gonzalez",
+      "score": 1741
+    },
+    {
+      "rank": 7,
+      "name": "R. Molina",
+      "score": 1704
+    },
+    {
+      "rank": 8,
+      "name": "J. Carrasco",
+      "score": 1668
+    },
+    {
+      "rank": 9,
+      "name": "R. Vera Burboa",
+      "score": 1627
+    },
+    {
+      "rank": 10,
+      "name": "A. Quiroz",
+      "score": 1592
+    },
+    {
+      "rank": 11,
+      "name": "C. Fuenzalida",
+      "score": 1572
+    },
+    {
+      "rank": 12,
+      "name": "Y. Suazo",
+      "score": 1565
+    },
+    {
+      "rank": 13,
+      "name": "C. Quiroz",
+      "score": 1555
+    },
+    {
+      "rank": 14,
+      "name": "F. González",
+      "score": 1526
+    },
+    {
+      "rank": 15,
+      "name": "E. Torres",
+      "score": 1514
+    },
+    {
+      "rank": 16,
+      "name": "R. Fernandez",
+      "score": 1497
+    },
+    {
+      "rank": 17,
+      "name": "R. Acuña Vera",
+      "score": 1460
+    },
+    {
+      "rank": 18,
+      "name": "F. Muñoz Barraza",
+      "score": 1456
+    },
+    {
+      "rank": 19,
+      "name": "C. Herrero",
+      "score": 1440
+    },
+    {
+      "rank": 20,
+      "name": "M. Suazo",
+      "score": 1429
+    },
+    {
+      "rank": 21,
+      "name": "A. Cifuentes",
+      "score": 1371
+    },
+    {
+      "rank": 22,
+      "name": "P. Carrasco",
+      "score": 1343
+    },
+    {
+      "rank": 23,
+      "name": "C. Cayo",
+      "score": 1342
+    },
+    {
+      "rank": 24,
+      "name": "S. Rivas",
+      "score": 1324
+    },
+    {
+      "rank": 25,
+      "name": "V. Acuña",
+      "score": 1320
+    },
+    {
+      "rank": 26,
+      "name": "C. Vidal",
+      "score": 1271
+    },
+    {
+      "rank": 27,
+      "name": "B. Silva",
+      "score": 1268
+    },
+    {
+      "rank": 28,
+      "name": "G. Ortega",
+      "score": 1242
+    },
+    {
+      "rank": 29,
+      "name": "J. Palma",
+      "score": 1240
+    },
+    {
+      "rank": 30,
+      "name": "S. Marinovic",
+      "score": 1239
+    },
+    {
+      "rank": 31,
+      "name": "G. Yañez",
+      "score": 1237
+    },
+    {
+      "rank": 32,
+      "name": "E. Baez",
+      "score": 1210
+    },
+    {
+      "rank": 33,
+      "name": "A. Ramos",
+      "score": 1171
+    },
+    {
+      "rank": 34,
+      "name": "O. Toro",
+      "score": 1142
+    },
+    {
+      "rank": 35,
+      "name": "A. Salazar",
+      "score": 1061
+    },
+    {
+      "rank": 36,
+      "name": "M. Rojas",
+      "score": 1050
+    },
+    {
+      "rank": 37,
+      "name": "P. Aguilar",
+      "score": 1007
+    },
+    {
+      "rank": 38,
+      "name": "N. Gajardo",
+      "score": 998
+    },
+    {
+      "rank": 39,
+      "name": "R. Del Pino",
+      "score": 990
+    },
+    {
+      "rank": 40,
+      "name": "F. Merino",
+      "score": 952
+    },
+    {
+      "rank": 41,
+      "name": "C. Ayala",
+      "score": 930
+    },
+    {
+      "rank": 42,
+      "name": "M. Danton",
+      "score": 917
+    },
+    {
+      "rank": 43,
+      "name": "A. Corvalán",
+      "score": 902
+    },
+    {
+      "rank": 44,
+      "name": "M. Fuentes",
+      "score": 900
+    },
+    {
+      "rank": 45,
+      "name": "J. Aguilar",
+      "score": 893
+    },
+    {
+      "rank": 46,
+      "name": "T. FLORES",
+      "score": 884
+    },
+    {
+      "rank": 47,
+      "name": "N. Vega",
+      "score": 878
+    },
+    {
+      "rank": 48,
+      "name": "C. Herrero",
+      "score": 875
+    },
+    {
+      "rank": 48,
+      "name": "A. MONTOYA",
+      "score": 875
+    },
+    {
+      "rank": 50,
+      "name": "F. Sandoval",
+      "score": 872
+    },
+    {
+      "rank": 51,
+      "name": "R. Silva",
+      "score": 814
+    },
+    {
+      "rank": 52,
+      "name": "E. Larrieu",
+      "score": 813
+    },
+    {
+      "rank": 53,
+      "name": "P. Sanhueza",
+      "score": 809
+    },
+    {
+      "rank": 54,
+      "name": "M. Ramirez",
+      "score": 806
+    },
+    {
+      "rank": 55,
+      "name": "E. Marin",
+      "score": 804
+    },
+    {
+      "rank": 55,
+      "name": "J. Rice",
+      "score": 804
+    },
+    {
+      "rank": 57,
+      "name": "P. Apiolaza",
+      "score": 796
+    },
+    {
+      "rank": 58,
+      "name": "B. Ayala",
+      "score": 754
+    },
+    {
+      "rank": 59,
+      "name": "M. Beraz",
+      "score": 752
+    },
+    {
+      "rank": 60,
+      "name": "D. Cisternas",
+      "score": 743
+    },
+    {
+      "rank": 61,
+      "name": "Y. Araya",
+      "score": 730
+    },
+    {
+      "rank": 62,
+      "name": "F. Morales",
+      "score": 728
+    },
+    {
+      "rank": 63,
+      "name": "M. Rosas delgado",
+      "score": 721
+    },
+    {
+      "rank": 64,
+      "name": "B. Almendares",
+      "score": 711
+    },
+    {
+      "rank": 65,
+      "name": "L. Miranda Elia",
+      "score": 709
+    },
+    {
+      "rank": 66,
+      "name": "F. Maldonado Piñeda",
+      "score": 696
+    },
+    {
+      "rank": 67,
+      "name": "M. Pavez",
+      "score": 690
+    },
+    {
+      "rank": 68,
+      "name": "F. Cordova",
+      "score": 686
+    },
+    {
+      "rank": 69,
+      "name": "B. Gutierrez",
+      "score": 666
+    },
+    {
+      "rank": 70,
+      "name": "M. Mendoza Novoa",
+      "score": 644
+    },
+    {
+      "rank": 71,
+      "name": "B. Torrealba",
+      "score": 643
+    },
+    {
+      "rank": 72,
+      "name": "L. Ochoa",
+      "score": 642
+    },
+    {
+      "rank": 73,
+      "name": "P. Rojas",
+      "score": 595
+    },
+    {
+      "rank": 74,
+      "name": "D. Cea",
+      "score": 586
+    },
+    {
+      "rank": 75,
+      "name": "D. Lopez",
+      "score": 584
+    },
+    {
+      "rank": 76,
+      "name": "C. Vargas",
+      "score": 583
+    },
+    {
+      "rank": 77,
+      "name": "J. Bascur",
+      "score": 579
+    },
+    {
+      "rank": 78,
+      "name": "I. jara figueroa",
+      "score": 576
+    },
+    {
+      "rank": 79,
+      "name": "J. Parra",
+      "score": 575
+    },
+    {
+      "rank": 80,
+      "name": "I. Garcia",
+      "score": 574
+    },
+    {
+      "rank": 81,
+      "name": "T. Estay",
+      "score": 571
+    },
+    {
+      "rank": 82,
+      "name": "M. Guzman",
+      "score": 570
+    },
+    {
+      "rank": 83,
+      "name": "C. Vega",
+      "score": 564
+    },
+    {
+      "rank": 84,
+      "name": "F. Sandoval",
+      "score": 556
+    },
+    {
+      "rank": 85,
+      "name": "J. Navarro",
+      "score": 553
+    },
+    {
+      "rank": 86,
+      "name": "G. Henríquez",
+      "score": 546
+    },
+    {
+      "rank": 86,
+      "name": "V. Velásquez",
+      "score": 546
+    },
+    {
+      "rank": 88,
+      "name": "J. Alvarez",
+      "score": 540
+    },
+    {
+      "rank": 89,
+      "name": "V. Muñoz",
+      "score": 527
+    },
+    {
+      "rank": 90,
+      "name": "O. Salas Retamal",
+      "score": 525
+    },
+    {
+      "rank": 91,
+      "name": "A. Martínez",
+      "score": 516
+    },
+    {
+      "rank": 92,
+      "name": "I. Devescovi",
+      "score": 512
+    },
+    {
+      "rank": 93,
+      "name": "T. dos",
+      "score": 510
+    },
+    {
+      "rank": 94,
+      "name": "K. Carrillo",
+      "score": 498
+    },
+    {
+      "rank": 95,
+      "name": "L. Vargas",
+      "score": 468
+    },
+    {
+      "rank": 96,
+      "name": "M. Astorga Escobar",
+      "score": 460
+    },
+    {
+      "rank": 96,
+      "name": "V. Córdova",
+      "score": 460
+    },
+    {
+      "rank": 98,
+      "name": "C. ELGUETA",
+      "score": 458
+    },
+    {
+      "rank": 99,
+      "name": "R. Martínez",
+      "score": 456
+    },
+    {
+      "rank": 100,
+      "name": "E. Muñoz",
+      "score": 454
+    }
+  ]
+}

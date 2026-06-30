@@ -1,0 +1,509 @@
+{
+  "updatedAt": "29-06-2026",
+  "myRank": null,
+  "myScore": null,
+  "myName": null,
+  "hasPlayedToday": false,
+  "entries": [
+    {
+      "rank": 1,
+      "name": "T. Elgueta",
+      "score": 8756
+    },
+    {
+      "rank": 2,
+      "name": "M. Brea",
+      "score": 8076
+    },
+    {
+      "rank": 3,
+      "name": "R. Molina",
+      "score": 8041
+    },
+    {
+      "rank": 4,
+      "name": "A. Niccodemi",
+      "score": 7925
+    },
+    {
+      "rank": 5,
+      "name": "R. Fernandez",
+      "score": 6967
+    },
+    {
+      "rank": 6,
+      "name": "A. Gonzalez",
+      "score": 6839
+    },
+    {
+      "rank": 7,
+      "name": "C. Rivas",
+      "score": 6810
+    },
+    {
+      "rank": 8,
+      "name": "P. Sanhueza",
+      "score": 6761
+    },
+    {
+      "rank": 8,
+      "name": "J. Palma",
+      "score": 6761
+    },
+    {
+      "rank": 10,
+      "name": "N. Gonzalez",
+      "score": 6590
+    },
+    {
+      "rank": 11,
+      "name": "F. Muñoz Barraza",
+      "score": 6538
+    },
+    {
+      "rank": 12,
+      "name": "F. González",
+      "score": 6529
+    },
+    {
+      "rank": 13,
+      "name": "C. Fuenzalida",
+      "score": 6281
+    },
+    {
+      "rank": 14,
+      "name": "A. Quiroz",
+      "score": 6113
+    },
+    {
+      "rank": 15,
+      "name": "R. Vera Burboa",
+      "score": 5978
+    },
+    {
+      "rank": 16,
+      "name": "P. Segura",
+      "score": 5847
+    },
+    {
+      "rank": 17,
+      "name": "C. Quiroz",
+      "score": 5746
+    },
+    {
+      "rank": 18,
+      "name": "R. Acuña Vera",
+      "score": 5561
+    },
+    {
+      "rank": 19,
+      "name": "E. Baez",
+      "score": 5490
+    },
+    {
+      "rank": 20,
+      "name": "S. Rivas",
+      "score": 5392
+    },
+    {
+      "rank": 21,
+      "name": "V. Velásquez",
+      "score": 5314
+    },
+    {
+      "rank": 22,
+      "name": "M. Suazo",
+      "score": 5118
+    },
+    {
+      "rank": 23,
+      "name": "G. Merino",
+      "score": 5041
+    },
+    {
+      "rank": 24,
+      "name": "J. Rice",
+      "score": 5031
+    },
+    {
+      "rank": 25,
+      "name": "M. Ramirez",
+      "score": 5009
+    },
+    {
+      "rank": 26,
+      "name": "V. Acuña",
+      "score": 4915
+    },
+    {
+      "rank": 27,
+      "name": "L. Ochoa",
+      "score": 4869
+    },
+    {
+      "rank": 28,
+      "name": "E. Larrieu",
+      "score": 4689
+    },
+    {
+      "rank": 29,
+      "name": "P. Apiolaza",
+      "score": 4619
+    },
+    {
+      "rank": 30,
+      "name": "J. Carrasco",
+      "score": 4604
+    },
+    {
+      "rank": 31,
+      "name": "P. Carrasco",
+      "score": 4561
+    },
+    {
+      "rank": 32,
+      "name": "E. Torres",
+      "score": 4538
+    },
+    {
+      "rank": 33,
+      "name": "G. Yañez",
+      "score": 4521
+    },
+    {
+      "rank": 34,
+      "name": "O. Nuñez",
+      "score": 4520
+    },
+    {
+      "rank": 35,
+      "name": "I. Garcia",
+      "score": 4503
+    },
+    {
+      "rank": 36,
+      "name": "Y. Suazo",
+      "score": 4477
+    },
+    {
+      "rank": 37,
+      "name": "S. Marinovic",
+      "score": 4448
+    },
+    {
+      "rank": 38,
+      "name": "F. Sandoval",
+      "score": 4275
+    },
+    {
+      "rank": 39,
+      "name": "C. Vega",
+      "score": 4272
+    },
+    {
+      "rank": 40,
+      "name": "B. Ayala",
+      "score": 4251
+    },
+    {
+      "rank": 41,
+      "name": "D. Contreras guerra",
+      "score": 4222
+    },
+    {
+      "rank": 42,
+      "name": "C. Ayala",
+      "score": 4063
+    },
+    {
+      "rank": 43,
+      "name": "F. Sandoval",
+      "score": 4060
+    },
+    {
+      "rank": 44,
+      "name": "B. Castillo",
+      "score": 4012
+    },
+    {
+      "rank": 45,
+      "name": "N. Vega",
+      "score": 3980
+    },
+    {
+      "rank": 46,
+      "name": "R. Del Pino",
+      "score": 3916
+    },
+    {
+      "rank": 47,
+      "name": "C. Herrero",
+      "score": 3905
+    },
+    {
+      "rank": 48,
+      "name": "N. Gajardo",
+      "score": 3896
+    },
+    {
+      "rank": 49,
+      "name": "F. Vega",
+      "score": 3824
+    },
+    {
+      "rank": 50,
+      "name": "L. Vargas",
+      "score": 3792
+    },
+    {
+      "rank": 51,
+      "name": "V. Córdova",
+      "score": 3707
+    },
+    {
+      "rank": 52,
+      "name": "P. Garrido ceballos",
+      "score": 3656
+    },
+    {
+      "rank": 53,
+      "name": "J. Aguilar",
+      "score": 3645
+    },
+    {
+      "rank": 54,
+      "name": "O. Pallero",
+      "score": 3541
+    },
+    {
+      "rank": 55,
+      "name": "F. Poblete",
+      "score": 3531
+    },
+    {
+      "rank": 56,
+      "name": "R. Jara",
+      "score": 3491
+    },
+    {
+      "rank": 57,
+      "name": "P. Aguilar",
+      "score": 3479
+    },
+    {
+      "rank": 58,
+      "name": "M. Aceituno",
+      "score": 3462
+    },
+    {
+      "rank": 59,
+      "name": "M. Gonzalez",
+      "score": 3416
+    },
+    {
+      "rank": 60,
+      "name": "R. Fernández",
+      "score": 3402
+    },
+    {
+      "rank": 61,
+      "name": "C. saavedra",
+      "score": 3373
+    },
+    {
+      "rank": 62,
+      "name": "A. Ramos",
+      "score": 3367
+    },
+    {
+      "rank": 63,
+      "name": "I. Devescovi",
+      "score": 3331
+    },
+    {
+      "rank": 64,
+      "name": "A. Corvalán",
+      "score": 3285
+    },
+    {
+      "rank": 65,
+      "name": "A. Cifuentes",
+      "score": 3256
+    },
+    {
+      "rank": 66,
+      "name": "D. Rodriguez",
+      "score": 3146
+    },
+    {
+      "rank": 67,
+      "name": "T. Estay",
+      "score": 3131
+    },
+    {
+      "rank": 68,
+      "name": "I. devescovi",
+      "score": 3113
+    },
+    {
+      "rank": 69,
+      "name": "E. Velásquez",
+      "score": 3095
+    },
+    {
+      "rank": 70,
+      "name": "F. Ossa",
+      "score": 3088
+    },
+    {
+      "rank": 71,
+      "name": "E. Gutierrez",
+      "score": 3067
+    },
+    {
+      "rank": 72,
+      "name": "M. Mendoza Novoa",
+      "score": 3062
+    },
+    {
+      "rank": 73,
+      "name": "K. Leiva",
+      "score": 3047
+    },
+    {
+      "rank": 74,
+      "name": "J. ELGUETA",
+      "score": 2990
+    },
+    {
+      "rank": 75,
+      "name": "D. Lagos",
+      "score": 2975
+    },
+    {
+      "rank": 76,
+      "name": "S. caceres donos",
+      "score": 2937
+    },
+    {
+      "rank": 77,
+      "name": "E. Lasseube",
+      "score": 2906
+    },
+    {
+      "rank": 78,
+      "name": "M. ALARCON ALARCON",
+      "score": 2892
+    },
+    {
+      "rank": 79,
+      "name": "R. Silva",
+      "score": 2872
+    },
+    {
+      "rank": 80,
+      "name": "M. Danton",
+      "score": 2851
+    },
+    {
+      "rank": 81,
+      "name": "S. Canales",
+      "score": 2836
+    },
+    {
+      "rank": 82,
+      "name": "F. Morales",
+      "score": 2764
+    },
+    {
+      "rank": 83,
+      "name": "A. Contreras",
+      "score": 2754
+    },
+    {
+      "rank": 84,
+      "name": "M. Pavez",
+      "score": 2743
+    },
+    {
+      "rank": 85,
+      "name": "T. FLORES",
+      "score": 2731
+    },
+    {
+      "rank": 86,
+      "name": "A. Hernandez",
+      "score": 2713
+    },
+    {
+      "rank": 87,
+      "name": "J. Veegas",
+      "score": 2708
+    },
+    {
+      "rank": 88,
+      "name": "D. Lopez",
+      "score": 2688
+    },
+    {
+      "rank": 89,
+      "name": "M. Fuentes",
+      "score": 2686
+    },
+    {
+      "rank": 90,
+      "name": "M. Beraz",
+      "score": 2684
+    },
+    {
+      "rank": 91,
+      "name": "J. Bascur",
+      "score": 2600
+    },
+    {
+      "rank": 92,
+      "name": "D. Cisternas",
+      "score": 2586
+    },
+    {
+      "rank": 93,
+      "name": "G. Henríquez",
+      "score": 2579
+    },
+    {
+      "rank": 94,
+      "name": "C. lopez",
+      "score": 2486
+    },
+    {
+      "rank": 95,
+      "name": "V. Ovalle",
+      "score": 2443
+    },
+    {
+      "rank": 96,
+      "name": "R. Cáceres Zuñiga",
+      "score": 2442
+    },
+    {
+      "rank": 97,
+      "name": "M. Astorga Escobar",
+      "score": 2440
+    },
+    {
+      "rank": 98,
+      "name": "C. Vidal",
+      "score": 2401
+    },
+    {
+      "rank": 99,
+      "name": "C. ELGUETA",
+      "score": 2361
+    },
+    {
+      "rank": 100,
+      "name": "J. moreno carrasco",
+      "score": 2316
+    }
+  ]
+}

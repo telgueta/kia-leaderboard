@@ -1,0 +1,1118 @@
+<title>Reclamo Puntaje — T. Elgueta · KIA 2026</title>
+<style>
+:root {
+  --ground: #F7F5F0;
+  --ink: #1C1C2E;
+  --dim: #918C83;
+  --faint: #C9C4BB;
+  --accent: #D94F30;
+  --teal: #1A7A6B;
+  --surf: #EDEBE4;
+  --ok: #2A8C52;
+  --purp: #7B3FA0;
+  --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; }
+
+/* ── Header ── */
+.hdr-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.eyebrow {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.date-tag { font-size: 0.6rem; color: var(--dim); font-weight: 500; }
+
+h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  margin-top: 0.35rem;
+}
+
+.sub { font-size: 0.78rem; color: var(--dim); margin-top: 0.15rem; }
+
+/* ── Impact ── */
+.impact {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.impact-card {
+  flex: 1;
+  min-width: 180px;
+  padding: 1rem 1.15rem;
+  border-radius: 8px;
+}
+
+.impact-card.current { background: var(--surf); border: 1px solid var(--faint); }
+.impact-card.corrected { background: rgba(26,122,107,0.06); border: 2px solid var(--teal); }
+
+.impact-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.35rem;
+}
+
+.impact-card.corrected .impact-label { color: var(--teal); }
+
+.impact-rank {
+  font-family: var(--mono);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.impact-card.corrected .impact-rank { color: var(--teal); }
+
+.impact-score {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dim);
+  margin-top: 0.25rem;
+}
+
+.impact-card.corrected .impact-score { color: var(--teal); }
+
+.impact-delta {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0.5rem 0.9rem;
+  background: rgba(217,79,48,0.07);
+  border-radius: 6px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.delta-num { font-family: var(--mono); font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.delta-note { font-size: 0.58rem; color: var(--accent); font-weight: 600; margin-top: 0.1rem; }
+.arrow-sep { align-self: center; font-size: 1.2rem; color: var(--faint); }
+
+/* ── Evidence Cards ── */
+.evidence { margin-top: 1.75rem; }
+
+.ev-title {
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.65rem;
+}
+
+.ev-cards { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+.ev-card {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid var(--faint);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 0.85rem 1rem;
+  background: #fff;
+}
+
+.ev-date { font-size: 0.95rem; font-weight: 800; letter-spacing: -0.02em; }
+.ev-reflect { font-size: 0.58rem; color: var(--dim); margin-top: 0.08rem; }
+
+.ev-split { display: flex; gap: 0.6rem; margin-top: 0.6rem; }
+
+.ev-box { flex: 1; padding: 0.4rem 0.5rem; border-radius: 5px; text-align: center; }
+.ev-box.reg { background: rgba(217,79,48,0.06); border: 1px solid rgba(217,79,48,0.18); }
+.ev-box.real { background: rgba(42,140,82,0.06); border: 1px solid rgba(42,140,82,0.18); }
+
+.ev-box-label { font-size: 0.48rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+.ev-box.reg .ev-box-label { color: var(--accent); }
+.ev-box.real .ev-box-label { color: var(--ok); }
+
+.ev-box-val { font-family: var(--mono); font-size: 1.05rem; font-weight: 800; margin-top: 0.1rem; }
+.ev-box.reg .ev-box-val { color: var(--accent); }
+.ev-box.real .ev-box-val { color: var(--ok); }
+
+.ev-context { margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--surf); }
+
+.ev-ctx-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.3rem;
+}
+
+.ev-pills { display: flex; flex-wrap: wrap; gap: 3px; }
+
+.ev-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 2px 6px;
+  background: var(--surf);
+  border-radius: 3px;
+  font-size: 0.52rem;
+  font-weight: 500;
+}
+
+.ev-pill .pv { font-family: var(--mono); font-weight: 700; color: var(--ok); }
+
+/* ── Multiplier Bar ── */
+.mult-bar {
+  display: flex;
+  gap: 2px;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.mult-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+
+.mult-seg small {
+  font-weight: 400;
+  font-size: 0.48rem;
+  opacity: 0.7;
+  margin-left: 0.3rem;
+  font-family: var(--sans);
+}
+
+/* ── Heatmap ── */
+.heat-sec { margin-top: 0.5rem; }
+
+.sec-title {
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0.65rem;
+  border-bottom: 2px solid var(--surf);
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.32rem 0.75rem 0.42rem;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--dim);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+
+.tab:hover { color: var(--ink); }
+.tab.on { color: var(--ink); }
+
+.tab.on::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.tab.on.kicks-tab::after { background: var(--purp); }
+
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.4rem;
+}
+
+table.grid {
+  border-collapse: separate;
+  border-spacing: 3px;
+  width: 100%;
+  min-width: 850px;
+}
+
+table.grid th {
+  font-size: 0.54rem;
+  font-weight: 500;
+  color: var(--dim);
+  padding: 0 0 0.2rem;
+  vertical-align: bottom;
+  line-height: 1.2;
+}
+
+table.grid th.dt {
+  font-family: var(--mono);
+  text-align: center;
+  width: 50px;
+}
+
+table.grid th.dt .dw {
+  display: block;
+  font-size: 0.46rem;
+  color: var(--faint);
+  font-weight: 400;
+  margin-bottom: 1px;
+}
+
+table.grid th.dt .mx {
+  display: block;
+  font-size: 0.44rem;
+  color: var(--purp);
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+table.grid th.nm { text-align: left; padding-left: 0.5rem; width: 136px; }
+
+table.grid th.tt {
+  text-align: right;
+  padding-right: 0.5rem;
+  font-weight: 700;
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+table.grid td { padding: 0; vertical-align: middle; }
+
+.nm-c {
+  text-align: left;
+  padding: 0 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  height: 32px;
+}
+
+.nm-c .rk {
+  display: inline-block;
+  width: 1.5em;
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  color: var(--dim);
+  font-weight: 400;
+}
+
+.v {
+  text-align: center;
+  width: 50px;
+  height: 32px;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  transition: transform 0.12s, box-shadow 0.12s;
+  cursor: default;
+}
+
+.v:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+  position: relative;
+}
+
+.v.nd {
+  background: repeating-linear-gradient(-45deg, transparent, transparent 3px, var(--faint) 3px, var(--faint) 4px) !important;
+  color: transparent !important;
+}
+
+.v.z { color: var(--faint) !important; font-size: 0.85rem; line-height: 32px; }
+
+.v.flag {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.v.noisy { opacity: 0.45; }
+
+@keyframes pulse {
+  0%, 100% { outline-color: var(--accent); }
+  50% { outline-color: rgba(217,79,48,0.3); }
+}
+
+.tt-c {
+  text-align: right;
+  padding: 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  height: 32px;
+}
+
+tr.me .nm-c {
+  color: var(--teal);
+  font-weight: 700;
+  border-left: 3px solid var(--teal);
+  padding-left: calc(0.5rem - 3px);
+}
+
+tr.me .tt-c { color: var(--teal); }
+
+/* Legend */
+.legend {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.leg-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding-top: 1px;
+}
+
+.grad-col { display: flex; flex-direction: column; gap: 2px; }
+.grad-row { display: flex; gap: 1px; }
+.grad-sw { width: 22px; height: 11px; border-radius: 2px; }
+
+.grad-labels { display: flex; font-family: var(--mono); font-size: 0.44rem; color: var(--dim); }
+.grad-lbl { width: 22px; text-align: center; }
+
+.leg-nd { display: flex; align-items: center; gap: 0.2rem; margin-left: 0.2rem; }
+
+.leg-nd-sw {
+  width: 22px; height: 11px; border-radius: 2px;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 3px, var(--faint) 3px, var(--faint) 4px);
+}
+
+.leg-flag { display: flex; align-items: center; gap: 0.2rem; margin-left: 0.2rem; }
+
+.leg-flag-sw {
+  width: 22px; height: 11px; border-radius: 2px;
+  background: var(--surf);
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.leg-sm { font-size: 0.5rem; color: var(--dim); }
+
+/* ── Stats ── */
+.stats-sec { margin-top: 2rem; }
+
+.stats-note {
+  font-size: 0.65rem;
+  color: var(--dim);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+table.stats {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  min-width: 700px;
+}
+
+table.stats th {
+  text-align: left;
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 0.5rem 0.35rem;
+  border-bottom: 2px solid var(--surf);
+  white-space: nowrap;
+}
+
+table.stats th.r { text-align: right; }
+table.stats th.c { text-align: center; }
+
+table.stats td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--surf);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+table.stats td.num {
+  font-family: var(--mono);
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.72rem;
+}
+
+table.stats td.ctr { text-align: center; }
+
+table.stats td .bar-bg {
+  display: inline-block;
+  width: 50px;
+  height: 6px;
+  background: var(--surf);
+  border-radius: 3px;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+}
+
+table.stats td .bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+
+table.stats td .day-tag {
+  font-size: 0.5rem;
+  color: var(--dim);
+  font-weight: 400;
+  margin-left: 0.2rem;
+}
+
+table.stats td .trend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+table.stats td .trend.up { background: rgba(42,140,82,0.1); color: var(--ok); }
+table.stats td .trend.down { background: rgba(217,79,48,0.1); color: var(--accent); }
+table.stats td .trend.flat { background: var(--surf); color: var(--dim); }
+
+table.stats tr.me td { color: var(--teal); }
+table.stats tr.me td.num { color: var(--teal); }
+table.stats tr.me td .bar-fill { background: var(--teal) !important; }
+
+table.stats tr.me-reg td { color: var(--dim); font-size: 0.62rem; }
+table.stats tr.me-reg td.num { color: var(--dim); font-size: 0.64rem; font-weight: 400; }
+table.stats tr.me-reg .nm-label { font-style: italic; }
+
+table.stats .rk-num {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--dim);
+  width: 1.5em;
+  display: inline-block;
+}
+
+/* ── Sparkline ── */
+.spark-sec { margin-top: 2rem; }
+
+.spark-lbl {
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.4rem;
+}
+
+.spark-box {
+  background: var(--surf);
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem 0.5rem 0.25rem;
+}
+
+.spark-box svg { display: block; width: 100%; height: auto; }
+
+/* ── Corrected Ranking ── */
+.rank-sec { margin-top: 2rem; }
+
+table.rank {
+  width: 100%;
+  max-width: 420px;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+table.rank th {
+  text-align: left;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 0.5rem 0.35rem;
+  border-bottom: 2px solid var(--surf);
+}
+
+table.rank th:last-child { text-align: right; }
+
+table.rank td {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--surf);
+  vertical-align: middle;
+}
+
+table.rank td:first-child {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--dim);
+  width: 2em;
+}
+
+table.rank td:last-child {
+  font-family: var(--mono);
+  font-weight: 700;
+  text-align: right;
+  font-size: 0.74rem;
+}
+
+table.rank tr.me td { color: var(--teal); font-weight: 700; }
+
+table.rank .was {
+  font-size: 0.5rem;
+  color: var(--faint);
+  font-weight: 400;
+  margin-left: 0.35rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .page { padding: 1.5rem 1rem 2rem; }
+  h1 { font-size: 1.3rem; }
+  .impact { gap: 0.6rem; }
+  .impact-rank { font-size: 1.7rem; }
+  .delta-num { font-size: 1rem; }
+  .ev-cards { flex-direction: column; }
+  .nm-c { min-width: 95px; font-size: 0.62rem; }
+  .v { width: 38px; height: 26px; font-size: 0.52rem; }
+  .v.z { line-height: 26px; font-size: 0.75rem; }
+  .tt-c { font-size: 0.64rem; }
+  table.grid { min-width: 700px; }
+}
+</style>
+
+<div class="page">
+  <header>
+    <div class="hdr-bar">
+      <p class="eyebrow">Reclamo de puntaje</p>
+      <p class="date-tag">29 junio 2026</p>
+    </div>
+    <h1>Puntos no registrados</h1>
+    <p class="sub">T. Elgueta &middot; KIA Challenge 2026 &middot; 1 jornada sin contabilizar</p>
+  </header>
+
+  <div class="impact">
+    <div class="impact-card current">
+      <p class="impact-label">Posici&oacute;n actual</p>
+      <p class="impact-rank">#1</p>
+      <p class="impact-score">8.756 pts</p>
+    </div>
+    <span class="arrow-sep">&rarr;</span>
+    <div class="impact-card corrected">
+      <p class="impact-label">Posici&oacute;n corregida</p>
+      <p class="impact-rank">#1</p>
+      <p class="impact-score">8.956 pts</p>
+    </div>
+    <div class="impact-delta">
+      <p class="delta-num">+200</p>
+      <p class="delta-note">pts no registrados</p>
+    </div>
+  </div>
+
+  <section class="evidence">
+    <p class="ev-title">Jornadas con puntaje faltante</p>
+    <div class="ev-cards">
+      <div class="ev-card">
+        <p class="ev-date">Domingo 14 junio</p>
+        <p class="ev-reflect">Reflejado en ranking del lunes 15</p>
+        <div class="ev-split">
+          <div class="ev-box reg"><p class="ev-box-label">Registrado</p><p class="ev-box-val">0</p></div>
+          <div class="ev-box real"><p class="ev-box-label">Real</p><p class="ev-box-val">+200</p></div>
+        </div>
+        <div class="ev-context">
+          <p class="ev-ctx-label">Los dem&aacute;s s&iacute; sumaron ese d&iacute;a</p>
+          <div class="ev-pills" id="pills-1"></div>
+        </div>
+      </div>
+      <div class="ev-card" style="border-left-color:var(--ok);opacity:0.65">
+        <p class="ev-date">Viernes 19 junio <span style="background:var(--ok);color:#fff;font-size:0.5rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:0.4rem;letter-spacing:0.08em;vertical-align:middle">DEVUELTO</span></p>
+        <p class="ev-reflect">498 pts asignados retroactivamente el 25 jun</p>
+        <div class="ev-split">
+          <div class="ev-box real"><p class="ev-box-label">Devuelto</p><p class="ev-box-val">+498</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multiplier bar -->
+  <div class="mult-bar" id="mult-bar"></div>
+
+  <section class="heat-sec">
+    <nav class="tabs" role="tablist">
+      <button class="tab on" role="tab" id="t-gain">Puntos</button>
+      <button class="tab" role="tab" id="t-cum">Acumulado</button>
+      <button class="tab kicks-tab" role="tab" id="t-kicks">Kicks</button>
+    </nav>
+    <div class="scroll"><table class="grid" id="grid" role="grid"></table></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-sec">
+    <p class="sec-title">Rendimiento real en kicks</p>
+    <p class="stats-note">Kicks = puntaje &divide; multiplicador semanal. M&aacute;ximo y promedio excluyen jun 15–17 (el &times;2 no se aplic&oacute; a tiempo y los puntos se redistribuyeron en d&iacute;as posteriores).</p>
+    <div class="scroll"><table class="stats" id="stats"></table></div>
+  </section>
+
+  <!-- Sparkline -->
+  <section class="spark-sec">
+    <p class="spark-lbl">Trayectoria: registrada vs. corregida</p>
+    <div class="spark-box"><svg id="spark" viewBox="0 0 660 175"></svg></div>
+  </section>
+
+  <section class="rank-sec">
+    <p class="sec-title">Ranking corregido por puntos</p>
+    <table class="rank" id="rank-tbl"></table>
+  </section>
+</div>
+
+<script>
+// __DATA_START__
+var DATES = [
+  {n:'11',w:'Ju'},{n:'12',w:'Vi'},{n:'13',w:'Sá'},{n:'14',w:'Do'},
+  {n:'15',w:'Lu'},{n:'16',w:'Ma'},{n:'17',w:'Mi'},{n:'18',w:'Ju'},
+  {n:'19',w:'Vi'},{n:'20',w:'Sá'},{n:'21',w:'Do'},{n:'22',w:'Lu'},
+  {n:'23',w:'Ma'},{n:'24',w:'Mi'},{n:'25',w:'Ju'},{n:'26',w:'Vi'},
+  {n:'27',w:'Sá'},{n:'28',w:'Do'}
+];
+
+var MULT = [1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3];
+var FLAGS = [3];
+var SKIP_MAX = [4,5,6];
+
+var P = [
+  {name:'T. Elgueta', rk:1, tot:8756, me:true,
+   cum:[78,78,216,216,410,980,1744,1744,2242,2794,3266,4040,4823,5600,6449,7259,8084,8756],
+   gain:[78,0,138,0,194,570,764,0,498,552,472,774,783,777,849,810,825,672],
+   cumCorr:[78,78,216,416,610,1180,1944,1944,2442,2994,3466,4240,5023,5800,6649,7459,8284,8956],
+   gainCorr:[78,0,138,200,194,570,764,0,498,552,472,774,783,777,849,810,825,672]},
+  {name:'M. Brea', rk:2, tot:8076, me:false,
+   cum:[187,303,422,547,682,860,1796,1796,2168,2542,3030,3753,4443,5028,5616,6375,7260,8076],
+   gain:[187,116,119,125,135,178,936,0,372,374,488,723,690,585,588,759,885,816]},
+  {name:'R. Molina', rk:3, tot:8041, me:false,
+   cum:[182,306,396,526,695,834,1704,1704,2092,2596,2992,3757,4480,5086,5890,6646,7351,8041],
+   gain:[182,124,90,130,169,139,870,0,388,504,396,765,723,606,804,756,705,690]},
+  {name:'A. Niccodemi', rk:4, tot:7925, me:false,
+   cum:[260,427,613,811,811,1420,2227,2227,2723,3193,3479,4070,4745,5315,5900,6614,7208,7925],
+   gain:[260,167,186,198,0,609,807,0,496,470,286,591,675,570,585,714,594,717]},
+  {name:'R. Fernandez', rk:5, tot:6967, me:false,
+   cum:[138,138,207,353,543,631,1497,1497,1497,1497,1497,1497,1830,5422,5422,5422,6184,6967],
+   gain:[138,0,69,146,190,88,866,0,0,0,0,0,333,3592,0,0,762,783]},
+  {name:'A. Gonzalez', rk:6, tot:6839, me:false,
+   cum:[114,263,409,571,768,1090,1771,1771,2027,2323,2699,3281,3728,4274,4970,5405,6134,6839],
+   gain:[114,149,146,162,197,322,681,0,256,296,376,582,447,546,696,435,729,705]},
+  {name:'C. Rivas', rk:7, tot:6810, me:false,
+   cum:[null,null,139,139,139,null,423,null,null,899,899,1733,2459,3633,3633,5196,5973,6810],
+   gain:[null,null,139,0,0,null,284,null,null,476,0,834,726,1174,0,1563,777,837]},
+  {name:'P. Sanhueza', rk:8, tot:6761, me:false,
+   cum:[104,104,187,269,381,539,809,809,809,809,809,null,null,4625,4625,5384,6170,6761],
+   gain:[104,0,83,82,112,158,270,0,0,0,0,null,null,3816,0,759,786,591]},
+  {name:'J. Palma', rk:8, tot:6761, me:false,
+   cum:[null,null,198,198,397,526,854,1240,1670,2112,2564,3110,3857,4274,5006,5759,6329,6761],
+   gain:[null,null,198,0,199,129,328,386,430,442,452,546,747,417,732,753,570,432]},
+  {name:'N. Gonzalez', rk:10, tot:6590, me:false,
+   cum:[211,342,491,637,809,930,1741,1741,2107,2469,2855,3551,3944,4520,4919,5465,6044,6590],
+   gain:[211,131,149,146,172,121,811,0,366,362,386,696,393,576,399,546,579,546]}
+];
+
+var MAX_CUM = 8956;
+// __DATA_END__
+
+var USER_IDX = P.findIndex(function(p){return p.me;});
+var view = 'gain';
+
+var MAX_GAIN=0,MAX_KICK=0;
+P.forEach(function(p){
+  p.gain.forEach(function(g){if(g!==null&&g>MAX_GAIN)MAX_GAIN=g;});
+});
+
+function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+
+function gainColor(v){
+  if(v===null)return null;
+  if(v===0)return'rgb(232,229,221)';
+  var mx=MAX_GAIN||1000;
+  var s=[[0,[232,229,221]],[mx*0.03,[247,224,182]],[mx*0.08,[242,190,105]],[mx*0.17,[236,142,52]],[mx*0.3,[226,88,40]],[mx*0.55,[168,48,32]],[mx,[120,20,20]]];
+  var c=Math.min(v,mx),lo=s[0],hi=s[s.length-1];
+  for(var i=0;i<s.length-1;i++){if(c>=s[i][0]&&c<=s[i+1][0]){lo=s[i];hi=s[i+1];break;}}
+  var t=(c-lo[0])/(hi[0]-lo[0]||1);
+  return'rgb('+lerp(lo[1][0],hi[1][0],t)+','+lerp(lo[1][1],hi[1][1],t)+','+lerp(lo[1][2],hi[1][2],t)+')';
+}
+
+function cumColor(v){
+  if(v===null)return null;
+  var mx=MAX_CUM||5000;
+  var s=[[0,[232,229,221]],[mx*0.18,[200,222,217]],[mx*0.38,[145,198,187]],[mx*0.58,[88,168,152]],[mx*0.78,[42,138,120]],[mx,[20,102,87]]];
+  var c=Math.min(v,mx),lo=s[0],hi=s[s.length-1];
+  for(var i=0;i<s.length-1;i++){if(c>=s[i][0]&&c<=s[i+1][0]){lo=s[i];hi=s[i+1];break;}}
+  var t=(c-lo[0])/(hi[0]-lo[0]||1);
+  return'rgb('+lerp(lo[1][0],hi[1][0],t)+','+lerp(lo[1][1],hi[1][1],t)+','+lerp(lo[1][2],hi[1][2],t)+')';
+}
+
+function kicksColor(v){
+  if(v===null)return null;
+  if(v===0)return'rgb(232,229,221)';
+  if(!MAX_KICK)P.forEach(function(p){getKicks(p.me?p.gainCorr:p.gain).forEach(function(k){if(k!==null&&k>MAX_KICK)MAX_KICK=k;});});
+  var mx=MAX_KICK||500;
+  var s=[[0,[232,229,221]],[mx*0.16,[228,218,238]],[mx*0.36,[200,168,222]],[mx*0.56,[165,115,198]],[mx*0.76,[130,65,172]],[mx,[88,28,135]]];
+  var c=Math.min(v,mx),lo=s[0],hi=s[s.length-1];
+  for(var i=0;i<s.length-1;i++){if(c>=s[i][0]&&c<=s[i+1][0]){lo=s[i];hi=s[i+1];break;}}
+  var t=(c-lo[0])/(hi[0]-lo[0]||1);
+  return'rgb('+lerp(lo[1][0],hi[1][0],t)+','+lerp(lo[1][1],hi[1][1],t)+','+lerp(lo[1][2],hi[1][2],t)+')';
+}
+
+function txtC(rgb){
+  var m=rgb.match(/\d+/g).map(Number);
+  return(0.299*m[0]+0.587*m[1]+0.114*m[2])/255>0.52?'#1C1C2E':'#F7F5F0';
+}
+
+function fmt(n){return n===null?'':n.toLocaleString('es-CL');}
+function rnd(n){return Math.round(n);}
+
+function getKicks(gains){
+  return gains.map(function(g,i){return g===null?null:rnd(g/MULT[i]);});
+}
+
+// Evidence pills
+(function(){
+  var d3=[{n:'Niccodemi',v:198},{n:'Gonzalez',v:162},{n:'Fernandez',v:146},{n:'Gonzalez',v:146},{n:'Molina',v:130},{n:'Brea',v:125},{n:'Sanhueza',v:82}];
+  function pills(d){return d.map(function(x){return'<span class="ev-pill">'+x.n+' <span class="pv">+'+x.v+'</span></span>';}).join('');}
+  document.getElementById('pills-1').innerHTML=pills(d3);
+})();
+
+// Heatmap
+function render(){
+  var tbl=document.getElementById('grid');
+  var isKicks=view==='kicks';
+  var h='<thead><tr><th class="nm"></th>';
+  DATES.forEach(function(d,i){
+    var mx=isKicks?'<span class="mx">&times;'+MULT[i]+'</span>':'';
+    h+='<th class="dt"><span class="dw">'+d.w+'</span>'+d.n+mx+'</th>';
+  });
+  h+='<th class="tt">'+(isKicks?'Kicks':'Total')+'</th></tr></thead><tbody>';
+
+  P.forEach(function(p){
+    var vals,cfn,totalVal;
+    if(view==='gain'){vals=p.gain;cfn=gainColor;}
+    else if(view==='cum'){vals=p.cum;cfn=cumColor;}
+    else{vals=getKicks(p.me?p.gainCorr:p.gain);cfn=kicksColor;}
+
+    h+='<tr'+(p.me?' class="me"':'')+'>';
+    h+='<td class="nm-c"><span class="rk">'+p.rk+'</span>'+p.name+'</td>';
+
+    var rowTotal=0;
+    vals.forEach(function(v,i){
+      var isFlag=p.me&&FLAGS.indexOf(i)!==-1&&view==='gain';
+      var isNoisy=isKicks&&SKIP_MAX.indexOf(i)!==-1;
+      if(v===null){
+        h+='<td class="v nd"></td>';
+      }else if(v===0&&view!=='cum'){
+        var bg=cfn(0);
+        var cls='v z'+(isFlag?' flag':'')+(isNoisy?' noisy':'');
+        h+='<td class="'+cls+'" style="background:'+bg+'">·</td>';
+      }else{
+        var bg=cfn(v);
+        var tc=txtC(bg);
+        var display=view==='gain'?'+'+v:(view==='cum'?fmt(v):rnd(v));
+        var cls='v'+(isNoisy?' noisy':'');
+        h+='<td class="'+cls+'" style="background:'+bg+';color:'+tc+'">'+display+'</td>';
+        if(v!==null)rowTotal+=v;
+      }
+    });
+
+    if(isKicks){
+      var kTotal=vals.reduce(function(a,b){return a+(b||0);},0);
+      h+='<td class="tt-c">'+fmt(rnd(kTotal))+'</td>';
+    }else{
+      h+='<td class="tt-c">'+fmt(p.me&&view==='cum'?P[USER_IDX].cumCorr[P[USER_IDX].cumCorr.length-1]:p.tot)+'</td>';
+    }
+    h+='</tr>';
+  });
+  h+='</tbody>';
+  tbl.innerHTML=h;
+  renderLegend();
+}
+
+function renderLegend(){
+  var el=document.getElementById('legend');
+  var h='<span class="leg-label">Intensidad</span><div class="grad-col"><div class="grad-row">';
+  function legSteps(mx,n){var s=[];for(var i=0;i<n;i++)s.push(Math.round(mx*i/(n-1)));return s;}
+  function legFmt(v){return v>=1000?(v/1000).toFixed(v%1000?1:0)+'k':v;}
+  var steps;
+  if(view==='gain'){
+    steps=legSteps(MAX_GAIN||1000,6);
+    steps.forEach(function(s){h+='<div class="grad-sw" style="background:'+gainColor(s)+'"></div>';});
+    h+='</div><div class="grad-labels">';
+    steps.forEach(function(s){h+='<span class="grad-lbl">'+legFmt(s)+'</span>';});
+  }else if(view==='cum'){
+    steps=legSteps(MAX_CUM||5000,6);
+    steps.forEach(function(s){h+='<div class="grad-sw" style="background:'+cumColor(s)+'"></div>';});
+    h+='</div><div class="grad-labels">';
+    steps.forEach(function(s){h+='<span class="grad-lbl">'+legFmt(s)+'</span>';});
+  }else{
+    if(!MAX_KICK)P.forEach(function(p){getKicks(p.me?p.gainCorr:p.gain).forEach(function(k){if(k!==null&&k>MAX_KICK)MAX_KICK=k;});});
+    steps=legSteps(MAX_KICK||500,6);
+    steps.forEach(function(s){h+='<div class="grad-sw" style="background:'+kicksColor(s)+'"></div>';});
+    h+='</div><div class="grad-labels">';
+    steps.forEach(function(s){h+='<span class="grad-lbl">'+legFmt(s)+'</span>';});
+  }
+  h+='</div></div>';
+  h+='<div class="leg-nd"><div class="leg-nd-sw"></div><span class="leg-sm">Sin datos</span></div>';
+  if(view==='gain')h+='<div class="leg-flag"><div class="leg-flag-sw"></div><span class="leg-sm">Reclamado</span></div>';
+  if(view==='kicks')h+='<div class="leg-nd"><div class="grad-sw" style="background:var(--purp);opacity:0.4;width:22px;height:11px"></div><span class="leg-sm">Dato no fiable (×2 retrasado)</span></div>';
+  el.innerHTML=h;
+}
+
+// Stats table
+function computeStats(gains){
+  var kicks=getKicks(gains);
+  var active=kicks.filter(function(k){return k!==null&&k>0;});
+  var total=kicks.reduce(function(a,b){return a+(b||0);},0);
+
+  // Max excluding distorted days (Jun 15-17, indices 4-6)
+  var cleanKicks=[];
+  kicks.forEach(function(k,i){if(k!==null&&k>0&&SKIP_MAX.indexOf(i)===-1)cleanKicks.push({v:k,i:i});});
+  var maxObj=cleanKicks.reduce(function(best,c){return c.v>best.v?c:best;},{v:0,i:-1});
+
+  var last=kicks[kicks.length-1]||0;
+
+  // Avg excluding distorted days
+  var cleanActive=kicks.filter(function(k,i){return k!==null&&k>0&&SKIP_MAX.indexOf(i)===-1;});
+  var avg=cleanActive.length?cleanActive.reduce(function(a,b){return a+b;},0)/cleanActive.length:0;
+
+  var activeDays=active.length;
+  var totalDays=kicks.filter(function(k){return k!==null;}).length;
+
+  // Trend: avg last 3 clean active vs first 3 clean active
+  var cleanIdx=[];
+  kicks.forEach(function(k,i){if(k!==null&&k>0&&SKIP_MAX.indexOf(i)===-1)cleanIdx.push(i);});
+  var trend='flat';
+  if(cleanIdx.length>=6){
+    var first3=cleanIdx.slice(0,3).reduce(function(a,i){return a+kicks[i];},0)/3;
+    var last3=cleanIdx.slice(-3).reduce(function(a,i){return a+kicks[i];},0)/3;
+    if(last3>first3*1.1)trend='up';
+    else if(last3<first3*0.9)trend='down';
+  }
+
+  return{total:rnd(total),max:rnd(maxObj.v),maxDay:maxObj.i,last:rnd(last),avg:rnd(avg),activeDays:activeDays,totalDays:totalDays,trend:trend};
+}
+
+function renderStats(){
+  var rows=P.map(function(p){
+    var gains=p.me?p.gainCorr:p.gain;
+    var s=computeStats(gains);
+    s.name=p.name; s.rk=p.rk; s.me=p.me;
+    return s;
+  });
+
+  var elReg=computeStats(P[USER_IDX].gain);
+
+  rows.sort(function(a,b){return b.total-a.total;});
+
+  var maxTotal=rows[0].total;
+  var maxMax=Math.max.apply(null,rows.map(function(r){return r.max;}));
+  var maxAvg=Math.max.apply(null,rows.map(function(r){return r.avg;}));
+
+  var tbl=document.getElementById('stats');
+  var h='<thead><tr>';
+  h+='<th>#</th><th>Jugador</th><th class="r">Total kicks</th><th class="r">M&aacute;ximo</th><th class="r">&Uacute;ltimo d&iacute;a</th><th class="r">Promedio</th><th class="c">Activos</th><th class="c">Tendencia</th>';
+  h+='</tr></thead><tbody>';
+
+  rows.forEach(function(r,i){
+    var cls=r.me?' class="me"':'';
+    var trendIcon=r.trend==='up'?'&#9650;':(r.trend==='down'?'&#9660;':'&#9644;');
+    var trendCls=r.trend;
+    var dayLabel=r.maxDay>=0?DATES[r.maxDay].n+' jun':'';
+
+    h+='<tr'+cls+'>';
+    h+='<td><span class="rk-num">'+(i+1)+'</span></td>';
+    h+='<td>'+r.name+(r.me?' &#10003;':'')+'</td>';
+    h+='<td class="num">'+fmt(r.total)+'<span class="bar-bg"><span class="bar-fill" style="width:'+rnd(r.total/maxTotal*100)+'%;background:'+(r.me?'var(--teal)':'var(--purp)')+'"></span></span></td>';
+    h+='<td class="num">'+fmt(r.max)+' <span class="day-tag">'+dayLabel+'</span></td>';
+    h+='<td class="num">'+fmt(r.last)+'</td>';
+    h+='<td class="num">'+fmt(r.avg)+'<span class="bar-bg"><span class="bar-fill" style="width:'+rnd(r.avg/maxAvg*100)+'%;background:'+(r.me?'var(--teal)':'var(--purp)')+'"></span></span></td>';
+    h+='<td class="ctr">'+r.activeDays+'/'+r.totalDays+'</td>';
+    h+='<td class="ctr"><span class="trend '+trendCls+'">'+trendIcon+'</span></td>';
+    h+='</tr>';
+
+    if(r.me){
+      h+='<tr class="me-reg">';
+      h+='<td></td>';
+      h+='<td class="nm-label">(registrado)</td>';
+      h+='<td class="num">'+fmt(elReg.total)+'</td>';
+      h+='<td class="num">'+fmt(elReg.max)+'</td>';
+      h+='<td class="num">'+fmt(elReg.last)+'</td>';
+      h+='<td class="num">'+fmt(elReg.avg)+'</td>';
+      h+='<td class="ctr">'+elReg.activeDays+'/'+elReg.totalDays+'</td>';
+      h+='<td></td>';
+      h+='</tr>';
+    }
+  });
+
+  h+='</tbody>';
+  tbl.innerHTML=h;
+}
+
+// Sparkline
+function drawSpark(){
+  var svg=document.getElementById('spark');
+  var W=660,H=175,pl=14,pr=95,pt=14,pb=24;
+  var cw=W-pl-pr,ch=H-pt-pb;
+  var nd=DATES.length-1;
+  var s='';
+
+  for(var i=0;i<=4;i++){
+    var y=pt+(ch/4)*i;
+    var val=Math.round(MAX_CUM*(1-i/4));
+    s+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-pr)+'" y2="'+y+'" stroke="#D8D4CB" stroke-width="0.5"/>';
+    s+='<text x="'+(W-pr+5)+'" y="'+(y+3)+'" fill="#918C83" font-size="7" font-family="ui-monospace,monospace">'+(val>=1000?Math.round(val/100)/10+'k':val)+'</text>';
+  }
+
+  DATES.forEach(function(d,i){
+    var x=pl+(cw/nd)*i;
+    s+='<text x="'+x+'" y="'+(H-5)+'" fill="#918C83" font-size="6.5" font-family="ui-monospace,monospace" text-anchor="middle">'+d.n+'</text>';
+  });
+
+  var refIdx=0;
+  for(var ri=0;ri<P.length;ri++){if(!P[ri].me){refIdx=ri;break;}}
+
+  P.forEach(function(p,pi){
+    if(p.me||pi===refIdx)return;
+    var pts=[];
+    p.cum.forEach(function(v,i){if(v!==null)pts.push((pl+(cw/nd)*i)+','+(pt+ch-(v/MAX_CUM)*ch));});
+    if(pts.length)s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#C9C4BB" stroke-width="1.1" opacity="0.5" stroke-linejoin="round" stroke-linecap="round"/>';
+  });
+
+  var ref=P[refIdx],rpts=[];
+  ref.cum.forEach(function(v,i){if(v!==null)rpts.push((pl+(cw/nd)*i)+','+(pt+ch-(v/MAX_CUM)*ch));});
+  s+='<polyline points="'+rpts.join(' ')+'" fill="none" stroke="#D94F30" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+
+  var user=P[USER_IDX],upts=[];
+  user.cum.forEach(function(v,i){if(v!==null)upts.push((pl+(cw/nd)*i)+','+(pt+ch-(v/MAX_CUM)*ch));});
+  s+='<polyline points="'+upts.join(' ')+'" fill="none" stroke="#1A7A6B" stroke-width="2" opacity="0.4" stroke-dasharray="4 3" stroke-linejoin="round" stroke-linecap="round"/>';
+
+  var cpts=[];
+  user.cumCorr.forEach(function(v,i){if(v!==null)cpts.push((pl+(cw/nd)*i)+','+(pt+ch-(v/MAX_CUM)*ch));});
+  s+='<polyline points="'+cpts.join(' ')+'" fill="none" stroke="#1A7A6B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+
+  var lastX=pl+(cw/nd)*nd;
+  var ry=pt+ch-(ref.tot/MAX_CUM)*ch;
+  var uy=pt+ch-(user.tot/MAX_CUM)*ch;
+  var ucy=pt+ch-(user.cumCorr[user.cumCorr.length-1]/MAX_CUM)*ch;
+  var refLabel=ref.name.split('. ').pop()||ref.name;
+
+  s+='<circle cx="'+lastX+'" cy="'+ry+'" r="3" fill="#D94F30"/>';
+  s+='<text x="'+(lastX+7)+'" y="'+(ry+3)+'" fill="#D94F30" font-size="7.5" font-weight="600" font-family="system-ui,sans-serif">'+refLabel+' '+fmt(ref.tot)+'</text>';
+  s+='<circle cx="'+lastX+'" cy="'+uy+'" r="2.5" fill="#1A7A6B" opacity="0.4"/>';
+  s+='<text x="'+(lastX+7)+'" y="'+(uy+3)+'" fill="#1A7A6B" font-size="7" font-family="system-ui,sans-serif" opacity="0.5">Registrado '+fmt(user.tot)+'</text>';
+  s+='<circle cx="'+lastX+'" cy="'+ucy+'" r="3" fill="#1A7A6B"/>';
+  s+='<text x="'+(lastX+7)+'" y="'+(ucy+3)+'" fill="#1A7A6B" font-size="7.5" font-weight="700" font-family="system-ui,sans-serif">Corregido '+fmt(user.cumCorr[user.cumCorr.length-1])+'</text>';
+
+  FLAGS.forEach(function(fi){
+    var xf=pl+(cw/nd)*fi;
+    var yOld=pt+ch-(user.cum[fi]/MAX_CUM)*ch;
+    var yNew=pt+ch-(user.cumCorr[fi]/MAX_CUM)*ch;
+    s+='<line x1="'+xf+'" y1="'+yOld+'" x2="'+xf+'" y2="'+yNew+'" stroke="#D94F30" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.6"/>';
+    s+='<circle cx="'+xf+'" cy="'+yNew+'" r="3.5" fill="#D94F30" opacity="0.7"/>';
+  });
+
+  svg.innerHTML=s;
+}
+
+// Corrected ranking
+function drawRank(){
+  var corrTot=P[USER_IDX].cumCorr[P[USER_IDX].cumCorr.length-1];
+  var corrected=P.map(function(p){return{name:p.name,tot:p.me?corrTot:p.tot,me:p.me,oldRk:p.rk};}).sort(function(a,b){return b.tot-a.tot;});
+  var tbl=document.getElementById('rank-tbl');
+  var h='<thead><tr><th>#</th><th>Jugador</th><th>Puntos</th></tr></thead><tbody>';
+  corrected.forEach(function(p,i){
+    var was=p.me?'':(p.oldRk!==i+1?'<span class="was">era #'+p.oldRk+'</span>':'');
+    h+='<tr'+(p.me?' class="me"':'')+'><td>'+(i+1)+'</td><td>'+p.name+(p.me?' ✓':'')+was+'</td><td>'+fmt(p.tot)+'</td></tr>';
+  });
+  h+='</tbody>';
+  tbl.innerHTML=h;
+}
+
+// Tab events
+['t-gain','t-cum','t-kicks'].forEach(function(id){
+  document.getElementById(id).addEventListener('click',function(){
+    var v=id==='t-gain'?'gain':(id==='t-cum'?'cum':'kicks');
+    if(view===v)return;
+    view=v;
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+    this.classList.add('on');
+    render();
+  });
+});
+
+(function(){
+  var bar=document.getElementById('mult-bar');
+  var wk={},labels={1:'Sem 1 · jun 8–14',2:'Sem 2 · jun 15–21',3:'Sem 3 · jun 22–28',4:'Sem 4 · jun 29–jul 5',5:'Sem 5 · jul 6–12',6:'Sem 6 · jul 13–19'};
+  var ops=[0.08,0.15,0.25,0.35,0.5,0.7];
+  MULT.forEach(function(m){wk[m]=(wk[m]||0)+1;});
+  var keys=Object.keys(wk).map(Number).sort(function(a,b){return a-b;});
+  var h='';
+  keys.forEach(function(m){
+    var idx=[1,2,3,4,5,10].indexOf(m);
+    var op=ops[idx]||0.7;
+    var tc=op>0.2?'#fff':'var(--purp)';
+    h+='<div class="mult-seg" style="flex:'+wk[m]+';background:rgba(123,63,160,'+op+');color:'+tc+'">&times;'+m+'<small>'+labels[idx+1]+'</small></div>';
+  });
+  bar.innerHTML=h;
+})();
+
+render();
+renderStats();
+drawSpark();
+drawRank();
+</script>

@@ -1,0 +1,6 @@
+.lb_tmp.json
+launchd.out.log
+launchd.err.log
+fetch.log
+__pycache__/
+.claude/

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # Captura del leaderboard público de "Domina tu Mundial" (KIA).
 # Datos públicos (el ranking es público según las bases). Solo lectura, sin login.
 # Guarda el snapshot crudo del día + acumula un histórico long-format en history.csv.

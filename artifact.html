@@ -615,6 +615,126 @@ table.rank .was {
   margin-left: 0.35rem;
 }
 
+/* ── KPIs ── */
+.kpi-sec { margin-top: 1.5rem; }
+
+.kpi-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.kpi-card {
+  flex: 1;
+  min-width: 165px;
+  background: var(--surf);
+  border: 1px solid var(--faint);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+}
+
+.kpi-card.good { border-color: var(--teal); background: rgba(26,122,107,0.05); }
+.kpi-card.warn { border-color: var(--accent); background: rgba(217,79,48,0.05); }
+
+.kpi-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.3rem;
+}
+
+.kpi-val {
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.kpi-card.good .kpi-val { color: var(--teal); }
+.kpi-card.warn .kpi-val { color: var(--accent); }
+
+.kpi-sub { font-size: 0.6rem; color: var(--dim); margin-top: 0.3rem; line-height: 1.45; }
+
+/* ── Resumen de la jornada ── */
+.daysum-sec {
+  margin-top: 2rem;
+  background: var(--surf);
+  border: 1px solid var(--faint);
+  border-radius: 10px;
+  padding: 1rem 1.15rem 1.1rem;
+}
+
+.daysum-head {
+  font-size: 0.62rem;
+  color: var(--dim);
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+ul.daysum { list-style: none; margin-top: 0.6rem; }
+
+ul.daysum li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  padding: 0.28rem 0;
+  border-bottom: 1px dashed rgba(201,196,187,0.5);
+}
+
+ul.daysum li:last-child { border-bottom: none; }
+
+ul.daysum .ds-ico { flex: 0 0 auto; font-size: 0.8rem; }
+
+/* ── Proyección / Amenazas ── */
+.proj-sec, .threat-sec { margin-top: 2rem; }
+
+.risk-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.risk-crit { background: var(--accent); color: #fff; }
+.risk-alto { background: rgba(217,79,48,0.15); color: #B23A20; }
+.risk-med  { background: rgba(236,142,52,0.2); color: #96560E; }
+.risk-bajo { background: rgba(42,140,82,0.12); color: var(--ok); }
+
+.anom-card {
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(217,79,48,0.06);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.anom-card b { font-weight: 700; }
+
+/* Días estimados (lote redistribuido) */
+.v.est { box-shadow: inset 0 0 0 1.5px rgba(28,28,46,0.3); font-style: italic; }
+
+.leg-est-sw {
+  width: 22px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--surf);
+  box-shadow: inset 0 0 0 1.5px rgba(28,28,46,0.35);
+}
+
+/* ── Reclamo ── */
+.claim-sec {
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 2px solid var(--faint);
+}
+
+.claim-sec .impact { margin-top: 1.1rem; }
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .page { padding: 1.5rem 1rem 2rem; }
@@ -634,54 +754,50 @@ table.rank .was {
 <div class="page">
   <header>
     <div class="hdr-bar">
-      <p class="eyebrow">Reclamo de puntaje</p>
-      <p class="date-tag">29 junio 2026</p>
+      <p class="eyebrow">Domina tu Mundial &middot; KIA 2026</p>
+      <p class="date-tag">6 julio 2026</p>
     </div>
-    <h1>Puntos no registrados</h1>
-    <p class="sub">T. Elgueta &middot; KIA Challenge 2026 &middot; 1 jornada sin contabilizar</p>
+    <h1>Centro de control &mdash; T. Elgueta</h1>
+    <p class="sub" id="hdr-sub">Monitoreo diario del top 10 &middot; proyecciones al 19 de julio &middot; reclamo de puntaje</p>
   </header>
 
-  <div class="impact">
-    <div class="impact-card current">
-      <p class="impact-label">Posici&oacute;n actual</p>
-      <p class="impact-rank">#1</p>
-      <p class="impact-score">8.756 pts</p>
-    </div>
-    <span class="arrow-sep">&rarr;</span>
-    <div class="impact-card corrected">
-      <p class="impact-label">Posici&oacute;n corregida</p>
-      <p class="impact-rank">#1</p>
-      <p class="impact-score">8.956 pts</p>
-    </div>
-    <div class="impact-delta">
-      <p class="delta-num">+200</p>
-      <p class="delta-note">pts no registrados</p>
-    </div>
-  </div>
+  <!-- KPIs -->
+  <section class="kpi-sec">
+    <div class="kpi-row" id="kpi-row"></div>
+  </section>
 
-  <section class="evidence">
-    <p class="ev-title">Jornadas con puntaje faltante</p>
-    <div class="ev-cards">
-      <div class="ev-card">
-        <p class="ev-date">Domingo 14 junio</p>
-        <p class="ev-reflect">Reflejado en ranking del lunes 15</p>
-        <div class="ev-split">
-          <div class="ev-box reg"><p class="ev-box-label">Registrado</p><p class="ev-box-val">0</p></div>
-          <div class="ev-box real"><p class="ev-box-label">Real</p><p class="ev-box-val">+200</p></div>
-        </div>
-        <div class="ev-context">
-          <p class="ev-ctx-label">Los dem&aacute;s s&iacute; sumaron ese d&iacute;a</p>
-          <div class="ev-pills" id="pills-1"></div>
-        </div>
-      </div>
-      <div class="ev-card" style="border-left-color:var(--ok);opacity:0.65">
-        <p class="ev-date">Viernes 19 junio <span style="background:var(--ok);color:#fff;font-size:0.5rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:0.4rem;letter-spacing:0.08em;vertical-align:middle">DEVUELTO</span></p>
-        <p class="ev-reflect">498 pts asignados retroactivamente el 25 jun</p>
-        <div class="ev-split">
-          <div class="ev-box real"><p class="ev-box-label">Devuelto</p><p class="ev-box-val">+498</p></div>
-        </div>
-      </div>
-    </div>
+  <!-- Resumen de la jornada -->
+  <section class="daysum-sec">
+    <p class="sec-title">Resumen de la jornada</p>
+    <!-- DAYSUM_START -->
+  <p class="daysum-head">Actividad del 5 de julio (multiplicador &times;4)</p>
+  <ul class="daysum">
+    <li><span class="ds-ico">⚽</span><span>T&uacute;: <b>284 kicks</b> (+1.136 pts) (+3% vs tu promedio 7d de 277)</span></li>
+    <li><span class="ds-ico">🛡</span><span>Colch&oacute;n vs R. Fernandez: <b>1.404 pts</b> (+76 ayer) &mdash; equivale a 13.4 kicks/d&iacute;a de margen</span></li>
+    <li><span class="ds-ico">🔥</span><span>J. Carrasco hizo <b>269 kicks</b>, +36% sobre su norma de 198</span></li>
+    <li><span class="ds-ico">🔥</span><span>P. Sanhueza hizo <b>260 kicks</b>, +32% sobre su norma de 197</span></li>
+    <li><span class="ds-ico">🔥</span><span>Y. Suazo hizo <b>263 kicks</b>, +29% sobre su norma de 204</span></li>
+    <li><span class="ds-ico">📈</span><span>Jornada caliente: otros 1 rivales tambi&eacute;n sobre su norma (+18% o m&aacute;s)</span></li>
+    <li><span class="ds-ico">↕️</span><span>C. Rivas &#9650; #5 &rarr; #3</span></li>
+    <li><span class="ds-ico">↕️</span><span>M. Brea &#9660; #3 &rarr; #5</span></li>
+    <li><span class="ds-ico">🆕</span><span><b>F. madrid</b> entr&oacute; al top 10 (era #11 ayer)</span></li>
+  </ul>
+  <!-- DAYSUM_END -->
+  </section>
+
+  <!-- Proyección -->
+  <section class="proj-sec">
+    <p class="sec-title">Proyecci&oacute;n de carrera al 19 de julio</p>
+    <p class="stats-note" id="proj-note"></p>
+    <div class="spark-box"><svg id="proj" viewBox="0 0 660 235"></svg></div>
+  </section>
+
+  <!-- Amenazas -->
+  <section class="threat-sec">
+    <p class="sec-title">An&aacute;lisis de amenazas</p>
+    <p class="stats-note">Ritmo en kicks/d&iacute;a. <b>Limpio</b> = mediana de d&iacute;as recientes con dato real (excluye lotes estimados). <b>Necesita</b> = kicks/d&iacute;a que ese jugador debe promediar para alcanzarte al 19 jul si t&uacute; mantienes tu ritmo 7d.</p>
+    <div class="scroll"><table class="stats" id="threat"></table></div>
+    <div id="anom-notes"></div>
   </section>
 
   <!-- Multiplier bar -->
@@ -700,8 +816,56 @@ table.rank .was {
   <!-- Stats -->
   <section class="stats-sec">
     <p class="sec-title">Rendimiento real en kicks</p>
-    <p class="stats-note">Kicks = puntaje &divide; multiplicador semanal. M&aacute;ximo y promedio excluyen jun 15–17 (el &times;2 no se aplic&oacute; a tiempo y los puntos se redistribuyeron en d&iacute;as posteriores).</p>
+    <p class="stats-note">Kicks = puntaje &divide; multiplicador semanal. El m&aacute;ximo excluye jun 15–17 (&times;2 retrasado) y los d&iacute;as estimados por lote, para reflejar solo rendimiento real observado.</p>
     <div class="scroll"><table class="stats" id="stats"></table></div>
+  </section>
+
+  <!-- Reclamo -->
+  <section class="claim-sec">
+    <p class="sec-title">Reclamo de puntaje &middot; T. Elgueta</p>
+
+    <div class="impact">
+      <div class="impact-card current">
+        <p class="impact-label">Posici&oacute;n actual</p>
+        <p class="impact-rank">#1</p>
+        <p class="impact-score">16.748 pts</p>
+      </div>
+      <span class="arrow-sep">&rarr;</span>
+      <div class="impact-card corrected">
+        <p class="impact-label">Posici&oacute;n corregida</p>
+        <p class="impact-rank">#1</p>
+        <p class="impact-score">16.948 pts</p>
+      </div>
+      <div class="impact-delta">
+        <p class="delta-num">+200</p>
+        <p class="delta-note">pts no registrados</p>
+      </div>
+    </div>
+
+    <section class="evidence">
+      <p class="ev-title">Jornadas con puntaje faltante</p>
+      <div class="ev-cards">
+        <div class="ev-card">
+          <p class="ev-date">Domingo 14 junio</p>
+          <p class="ev-reflect">Reflejado en ranking del lunes 15</p>
+          <div class="ev-split">
+            <div class="ev-box reg"><p class="ev-box-label">Registrado</p><p class="ev-box-val">0</p></div>
+            <div class="ev-box real"><p class="ev-box-label">Real</p><p class="ev-box-val">+200</p></div>
+          </div>
+          <div class="ev-context">
+            <p class="ev-ctx-label">Los dem&aacute;s s&iacute; sumaron ese d&iacute;a</p>
+            <div class="ev-pills" id="pills-1"></div>
+          </div>
+        </div>
+        <div class="ev-card" style="border-left-color:var(--ok);opacity:0.65">
+          <p class="ev-date">Viernes 19 junio <span style="background:var(--ok);color:#fff;font-size:0.5rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:0.4rem;letter-spacing:0.08em;vertical-align:middle">DEVUELTO</span></p>
+          <p class="ev-reflect">498 pts asignados retroactivamente el 25 jun</p>
+          <div class="ev-split">
+            <div class="ev-box real"><p class="ev-box-label">Devuelto</p><p class="ev-box-val">+498</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
 
   <!-- Sparkline -->
@@ -723,49 +887,67 @@ var DATES = [
   {n:'15',w:'Lu'},{n:'16',w:'Ma'},{n:'17',w:'Mi'},{n:'18',w:'Ju'},
   {n:'19',w:'Vi'},{n:'20',w:'Sá'},{n:'21',w:'Do'},{n:'22',w:'Lu'},
   {n:'23',w:'Ma'},{n:'24',w:'Mi'},{n:'25',w:'Ju'},{n:'26',w:'Vi'},
-  {n:'27',w:'Sá'},{n:'28',w:'Do'}
+  {n:'27',w:'Sá'},{n:'28',w:'Do'},{n:'29',w:'Lu'},{n:'30',w:'Ma'},
+  {n:'1',w:'Mi'},{n:'2',w:'Ju'},{n:'3',w:'Vi'},{n:'4',w:'Sá'},
+  {n:'5',w:'Do'}
 ];
 
-var MULT = [1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3];
+var MULT = [1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4,4,4];
 var FLAGS = [3];
 var SKIP_MAX = [4,5,6];
-
-var P = [
-  {name:'T. Elgueta', rk:1, tot:8756, me:true,
-   cum:[78,78,216,216,410,980,1744,1744,2242,2794,3266,4040,4823,5600,6449,7259,8084,8756],
-   gain:[78,0,138,0,194,570,764,0,498,552,472,774,783,777,849,810,825,672],
-   cumCorr:[78,78,216,416,610,1180,1944,1944,2442,2994,3466,4240,5023,5800,6649,7459,8284,8956],
-   gainCorr:[78,0,138,200,194,570,764,0,498,552,472,774,783,777,849,810,825,672]},
-  {name:'M. Brea', rk:2, tot:8076, me:false,
-   cum:[187,303,422,547,682,860,1796,1796,2168,2542,3030,3753,4443,5028,5616,6375,7260,8076],
-   gain:[187,116,119,125,135,178,936,0,372,374,488,723,690,585,588,759,885,816]},
-  {name:'R. Molina', rk:3, tot:8041, me:false,
-   cum:[182,306,396,526,695,834,1704,1704,2092,2596,2992,3757,4480,5086,5890,6646,7351,8041],
-   gain:[182,124,90,130,169,139,870,0,388,504,396,765,723,606,804,756,705,690]},
-  {name:'A. Niccodemi', rk:4, tot:7925, me:false,
-   cum:[260,427,613,811,811,1420,2227,2227,2723,3193,3479,4070,4745,5315,5900,6614,7208,7925],
-   gain:[260,167,186,198,0,609,807,0,496,470,286,591,675,570,585,714,594,717]},
-  {name:'R. Fernandez', rk:5, tot:6967, me:false,
-   cum:[138,138,207,353,543,631,1497,1497,1497,1497,1497,1497,1830,5422,5422,5422,6184,6967],
-   gain:[138,0,69,146,190,88,866,0,0,0,0,0,333,3592,0,0,762,783]},
-  {name:'A. Gonzalez', rk:6, tot:6839, me:false,
-   cum:[114,263,409,571,768,1090,1771,1771,2027,2323,2699,3281,3728,4274,4970,5405,6134,6839],
-   gain:[114,149,146,162,197,322,681,0,256,296,376,582,447,546,696,435,729,705]},
-  {name:'C. Rivas', rk:7, tot:6810, me:false,
-   cum:[null,null,139,139,139,null,423,null,null,899,899,1733,2459,3633,3633,5196,5973,6810],
-   gain:[null,null,139,0,0,null,284,null,null,476,0,834,726,1174,0,1563,777,837]},
-  {name:'P. Sanhueza', rk:8, tot:6761, me:false,
-   cum:[104,104,187,269,381,539,809,809,809,809,809,null,null,4625,4625,5384,6170,6761],
-   gain:[104,0,83,82,112,158,270,0,0,0,0,null,null,3816,0,759,786,591]},
-  {name:'J. Palma', rk:8, tot:6761, me:false,
-   cum:[null,null,198,198,397,526,854,1240,1670,2112,2564,3110,3857,4274,5006,5759,6329,6761],
-   gain:[null,null,198,0,199,129,328,386,430,442,452,546,747,417,732,753,570,432]},
-  {name:'N. Gonzalez', rk:10, tot:6590, me:false,
-   cum:[211,342,491,637,809,930,1741,1741,2107,2469,2855,3551,3944,4520,4919,5465,6044,6590],
-   gain:[211,131,149,146,172,121,811,0,366,362,386,696,393,576,399,546,579,546]}
+var REM = [
+  {n:'6',w:'Lu',m:5},{n:'7',w:'Ma',m:5},{n:'8',w:'Mi',m:5},{n:'9',w:'Ju',m:5},
+  {n:'10',w:'Vi',m:5},{n:'11',w:'Sá',m:5},{n:'12',w:'Do',m:5},{n:'13',w:'Lu',m:10},
+  {n:'14',w:'Ma',m:10},{n:'15',w:'Mi',m:10},{n:'16',w:'Ju',m:10},{n:'17',w:'Vi',m:10},
+  {n:'18',w:'Sá',m:10},{n:'19',w:'Do',m:10}
 ];
 
-var MAX_CUM = 8956;
+var P = [
+  {name:'T. Elgueta', rk:1, tot:16748, me:true,
+   cum:[78,78,216,216,410,980,1744,1744,2242,2794,3266,4040,4823,5600,6449,7259,8084,8756,9844,10982,12120,13256,14432,15612,16748],
+   gain:[78,0,138,0,194,570,764,0,498,552,472,774,783,777,849,810,825,672,1088,1138,1138,1136,1176,1180,1136],
+   cumCorr:[78,78,216,416,610,1180,1944,1944,2442,2994,3466,4240,5023,5800,6649,7459,8284,8956,10044,11182,12320,13456,14632,15812,16948],
+   gainCorr:[78,0,138,200,194,570,764,0,498,552,472,774,783,777,849,810,825,672,1088,1138,1138,1136,1176,1180,1136],
+   est:[19,20]},
+  {name:'R. Fernandez', rk:2, tot:15344, me:false,
+   cum:[138,172,207,353,543,631,783,979,1219,1504,1832,2392,3018,3710,4468,5293,6184,6967,7967,9585,11224,12264,13312,14284,15344],
+   gain:[138,34,35,146,190,88,152,196,240,285,328,560,626,692,758,825,891,783,1000,1618,1639,1040,1048,972,1060],
+   est:[1,2,6,7,8,9,10,11,12,13,14,15,16,19,20]},
+  {name:'C. Rivas', rk:3, tot:14966, me:false,
+   cum:[null,null,139,207,352,506,670,842,1025,1216,1417,1733,2459,3633,4468,5196,5973,6810,7910,9017,10123,11230,12330,13666,14966],
+   gain:[null,null,139,68,145,154,164,172,183,191,201,316,726,1174,835,728,777,837,1100,1107,1106,1107,1100,1336,1300],
+   est:[3,4,5,6,7,8,9,10,11,14,15,19,20,21]},
+  {name:'R. Molina', rk:4, tot:14949, me:false,
+   cum:[182,306,396,526,695,834,1134,1554,2092,2596,2992,3757,4480,5086,5890,6646,7351,8041,9025,10041,11105,11901,12861,13873,14949],
+   gain:[182,124,90,130,169,139,300,420,538,504,396,765,723,606,804,756,705,690,984,1016,1064,796,960,1012,1076],
+   est:[6,7,8]},
+  {name:'M. Brea', rk:5, tot:14932, me:false,
+   cum:[187,303,422,547,682,860,1219,1655,2168,2542,3030,3753,4443,5028,5616,6375,7260,8076,9140,9952,10984,11996,12952,13884,14932],
+   gain:[187,116,119,125,135,178,359,436,513,374,488,723,690,585,588,759,885,816,1064,812,1032,1012,956,932,1048],
+   est:[6,7,8]},
+  {name:'F. madrid', rk:6, tot:14769, me:false,
+   cum:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,8665,10229,11801,13249,14769],
+   gain:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,8665,1564,1572,1448,1520],
+   est:[]},
+  {name:'P. Sanhueza', rk:7, tot:14652, me:false,
+   cum:[104,147,187,269,381,539,809,1097,1410,1747,2110,2690,3308,3963,4655,5384,6170,6761,7749,9152,10568,11584,12568,13612,14652],
+   gain:[104,43,40,82,112,158,270,288,313,337,363,580,618,655,692,729,786,591,988,1403,1416,1016,984,1044,1040],
+   est:[1,2,7,8,9,10,11,12,13,14,15,19,20]},
+  {name:'M. Suazo', rk:8, tot:14376, me:false,
+   cum:[114,186,261,391,698,1000,1429,1628,1811,2145,2523,3351,3960,4524,5118,5809,6530,7284,8330,9418,10548,11604,12660,13656,14376],
+   gain:[114,72,75,130,307,302,429,199,183,334,378,828,609,564,594,691,721,754,1046,1088,1130,1056,1056,996,720],
+   est:[1,2,7,8,15,16,17,18,19,20]},
+  {name:'J. Carrasco', rk:9, tot:14336, me:false,
+   cum:[373,458,518,632,772,1150,1668,1881,2076,2468,2864,3434,4007,4604,5254,5917,6592,7280,8215,9167,10136,11060,12184,13260,14336],
+   gain:[373,85,60,114,140,378,518,213,195,392,396,570,573,597,650,663,675,688,935,952,969,924,1124,1076,1076],
+   est:[1,2,7,8,14,15,16,17,18,19,20]},
+  {name:'Y. Suazo', rk:10, tot:14333, me:false,
+   cum:[283,380,466,661,796,1113,1565,1770,1965,2349,2725,3421,3865,4477,5138,5819,6520,7242,8232,9249,10293,11317,12305,13281,14333],
+   gain:[283,97,86,195,135,317,452,205,195,384,376,696,444,612,661,681,701,722,990,1017,1044,1024,988,976,1052],
+   est:[1,2,7,8,14,15,16,17,18,19,20]}
+];
+
+var MAX_CUM = 16948;
 // __DATA_END__
 
 var USER_IDX = P.findIndex(function(p){return p.me;});
@@ -825,7 +1007,7 @@ function getKicks(gains){
 
 // Evidence pills
 (function(){
-  var d3=[{n:'Niccodemi',v:198},{n:'Gonzalez',v:162},{n:'Fernandez',v:146},{n:'Gonzalez',v:146},{n:'Molina',v:130},{n:'Brea',v:125},{n:'Sanhueza',v:82}];
+  var d3=[{n:'Suazo',v:195},{n:'Fernandez',v:146},{n:'Molina',v:130},{n:'Suazo',v:130},{n:'Brea',v:125},{n:'Carrasco',v:114},{n:'Sanhueza',v:82},{n:'Rivas',v:68}];
   function pills(d){return d.map(function(x){return'<span class="ev-pill">'+x.n+' <span class="pv">+'+x.v+'</span></span>';}).join('');}
   document.getElementById('pills-1').innerHTML=pills(d3);
 })();
@@ -854,18 +1036,20 @@ function render(){
     vals.forEach(function(v,i){
       var isFlag=p.me&&FLAGS.indexOf(i)!==-1&&view==='gain';
       var isNoisy=isKicks&&SKIP_MAX.indexOf(i)!==-1;
+      var isEst=view!=='cum'&&p.est&&p.est.indexOf(i)!==-1;
+      var tip=isEst?' title="Estimado: la app reportó este período en lote; valor interpolado desde días contiguos"':'';
       if(v===null){
         h+='<td class="v nd"></td>';
       }else if(v===0&&view!=='cum'){
         var bg=cfn(0);
-        var cls='v z'+(isFlag?' flag':'')+(isNoisy?' noisy':'');
-        h+='<td class="'+cls+'" style="background:'+bg+'">·</td>';
+        var cls='v z'+(isFlag?' flag':'')+(isNoisy?' noisy':'')+(isEst?' est':'');
+        h+='<td class="'+cls+'" style="background:'+bg+'"'+tip+'>·</td>';
       }else{
         var bg=cfn(v);
         var tc=txtC(bg);
-        var display=view==='gain'?'+'+v:(view==='cum'?fmt(v):rnd(v));
-        var cls='v'+(isNoisy?' noisy':'');
-        h+='<td class="'+cls+'" style="background:'+bg+';color:'+tc+'">'+display+'</td>';
+        var display=view==='gain'?(v>=0?'+':'')+v:(view==='cum'?fmt(v):rnd(v));
+        var cls='v'+(isNoisy?' noisy':'')+(isEst?' est':'');
+        h+='<td class="'+cls+'" style="background:'+bg+';color:'+tc+'"'+tip+'>'+display+'</td>';
         if(v!==null)rowTotal+=v;
       }
     });
@@ -908,20 +1092,22 @@ function renderLegend(){
   }
   h+='</div></div>';
   h+='<div class="leg-nd"><div class="leg-nd-sw"></div><span class="leg-sm">Sin datos</span></div>';
+  if(view!=='cum')h+='<div class="leg-nd"><div class="leg-est-sw"></div><span class="leg-sm">Estimado (reportado en lote)</span></div>';
   if(view==='gain')h+='<div class="leg-flag"><div class="leg-flag-sw"></div><span class="leg-sm">Reclamado</span></div>';
   if(view==='kicks')h+='<div class="leg-nd"><div class="grad-sw" style="background:var(--purp);opacity:0.4;width:22px;height:11px"></div><span class="leg-sm">Dato no fiable (×2 retrasado)</span></div>';
   el.innerHTML=h;
 }
 
 // Stats table
-function computeStats(gains){
+function computeStats(gains,est){
+  est=est||[];
   var kicks=getKicks(gains);
   var active=kicks.filter(function(k){return k!==null&&k>0;});
   var total=kicks.reduce(function(a,b){return a+(b||0);},0);
 
-  // Max excluding distorted days (Jun 15-17, indices 4-6)
+  // Max excluding distorted days (Jun 15-17) and estimated batch days
   var cleanKicks=[];
-  kicks.forEach(function(k,i){if(k!==null&&k>0&&SKIP_MAX.indexOf(i)===-1)cleanKicks.push({v:k,i:i});});
+  kicks.forEach(function(k,i){if(k!==null&&k>0&&SKIP_MAX.indexOf(i)===-1&&est.indexOf(i)===-1)cleanKicks.push({v:k,i:i});});
   var maxObj=cleanKicks.reduce(function(best,c){return c.v>best.v?c:best;},{v:0,i:-1});
 
   var last=kicks[kicks.length-1]||0;
@@ -950,12 +1136,12 @@ function computeStats(gains){
 function renderStats(){
   var rows=P.map(function(p){
     var gains=p.me?p.gainCorr:p.gain;
-    var s=computeStats(gains);
+    var s=computeStats(gains,p.est);
     s.name=p.name; s.rk=p.rk; s.me=p.me;
     return s;
   });
 
-  var elReg=computeStats(P[USER_IDX].gain);
+  var elReg=computeStats(P[USER_IDX].gain,P[USER_IDX].est);
 
   rows.sort(function(a,b){return b.total-a.total;});
 
@@ -972,7 +1158,7 @@ function renderStats(){
     var cls=r.me?' class="me"':'';
     var trendIcon=r.trend==='up'?'&#9650;':(r.trend==='down'?'&#9660;':'&#9644;');
     var trendCls=r.trend;
-    var dayLabel=r.maxDay>=0?DATES[r.maxDay].n+' jun':'';
+    var dayLabel=r.maxDay>=0?DATES[r.maxDay].n+(r.maxDay>=20?' jul':' jun'):'';
 
     h+='<tr'+cls+'>';
     h+='<td><span class="rk-num">'+(i+1)+'</span></td>';
@@ -1111,8 +1297,231 @@ function drawRank(){
   bar.innerHTML=h;
 })();
 
+// ── Analítica de carrera ──
+var W_REM=REM.reduce(function(a,r){return a+r.m;},0);
+var N_REM=REM.length;
+
+function kicksOf(p){return getKicks(p.gain);} // registrado (lo que ve el ranking oficial)
+
+function tailAvg(p,n){
+  var k=kicksOf(p),v=[];
+  for(var i=k.length-1;i>=0&&v.length<n;i--){if(k[i]!==null)v.push(k[i]);}
+  if(!v.length)return 0;
+  return v.reduce(function(a,b){return a+b;},0)/v.length;
+}
+
+function cleanRate(p){ // mediana de días con dato real dentro de los últimos 10 días
+  var k=kicksOf(p),v=[],start=Math.max(0,k.length-10);
+  for(var i=k.length-1;i>=start;i--){
+    if(k[i]!==null&&k[i]>0&&(!p.est||p.est.indexOf(i)===-1))v.push(k[i]);
+  }
+  if(v.length<2)return tailAvg(p,7);
+  v.sort(function(a,b){return a-b;});
+  return v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2;
+}
+
+function projFinal(p,rate){return p.tot+rate*W_REM;}
+
+var ME_P=P[USER_IDX];
+var MY_R7=tailAvg(ME_P,7);
+var MY_CLEAN=cleanRate(ME_P);
+
+function threatData(){
+  return P.filter(function(p){return!p.me;}).map(function(p){
+    var r7=tailAvg(p,7),r3=tailAvg(p,3),rc=cleanRate(p);
+    var gap=ME_P.tot-p.tot;
+    var needed=MY_R7+gap/W_REM;
+    var projHot=projFinal(p,r7),projClean=projFinal(p,rc);
+    var myProj=projFinal(ME_P,MY_R7);
+    var mom=r7>0?r3/r7:1;
+    var risk,riskCls;
+    if(needed<=rc){risk='CRÍTICO';riskCls='crit';}
+    else if(needed<=rc*1.1||needed<=r7){risk='ALTO';riskCls='alto';}
+    else if(needed<=rc*1.3){risk='MEDIO';riskCls='med';}
+    else{risk='BAJO';riskCls='bajo';}
+    return{p:p,r7:r7,r3:r3,rc:rc,gap:gap,needed:needed,projHot:projHot,
+           projClean:projClean,gapProj:myProj-projClean,mom:mom,risk:risk,riskCls:riskCls};
+  }).sort(function(a,b){return b.projClean-a.projClean;});
+}
+
+function renderKPIs(){
+  var t=threatData();
+  var top=t.reduce(function(best,x){return x.p.tot>best.p.tot?x:best;},t[0]);
+  var worst=t[0]; // mayor proyección
+  var myProj=projFinal(ME_P,MY_R7);
+  var margin=(top.gap/W_REM);
+  var h='';
+  h+='<div class="kpi-card'+(top.gap>0?' good':' warn')+'">'
+    +'<p class="kpi-label">Ventaja hoy</p>'
+    +'<p class="kpi-val">+'+fmt(top.gap)+'</p>'
+    +'<p class="kpi-sub">pts sobre '+top.p.name+' &middot; colch&oacute;n de solo <b>'+margin.toFixed(1)+' kicks/d&iacute;a</b> en lo que queda</p></div>';
+  h+='<div class="kpi-card">'
+    +'<p class="kpi-label">Restante</p>'
+    +'<p class="kpi-val">'+N_REM+' d&iacute;as</p>'
+    +'<p class="kpi-sub">peso &times;'+W_REM+': cada kick/d&iacute;a sostenido = '+W_REM+' pts al final &middot; la semana &times;10 decide todo</p></div>';
+  h+='<div class="kpi-card">'
+    +'<p class="kpi-label">Mi ritmo 7d</p>'
+    +'<p class="kpi-val">'+rnd(MY_R7)+' k/d</p>'
+    +'<p class="kpi-sub">limpio: '+rnd(MY_CLEAN)+' &middot; perseguidor m&aacute;s r&aacute;pido: '+worst.p.name+' ('+rnd(worst.rc)+' limpio)</p></div>';
+  var gapProj=myProj-worst.projClean;
+  h+='<div class="kpi-card'+(gapProj>0?' good':' warn')+'">'
+    +'<p class="kpi-label">Proyecci&oacute;n 19 jul</p>'
+    +'<p class="kpi-val">'+(gapProj>0?'+':'')+fmt(rnd(gapProj))+'</p>'
+    +'<p class="kpi-sub">vs '+worst.p.name+' a ritmo limpio &middot; si mantiene su r&aacute;faga 7d: '+(myProj-worst.projHot>0?'+':'')+fmt(rnd(myProj-worst.projHot))+'</p></div>';
+  document.getElementById('kpi-row').innerHTML=h;
+  document.getElementById('hdr-sub').innerHTML='Monitoreo top 10 &middot; quedan <b>'+N_REM+' d&iacute;as</b> (peso &times;'+W_REM+') &middot; semana &times;10 del 13 al 19 jul';
+}
+
+function renderThreats(){
+  var t=threatData();
+  var h='<thead><tr><th>#</th><th>Jugador</th><th class="r">Pts hoy</th><th class="r">Brecha</th>'
+    +'<th class="r">7d</th><th class="r">Limpio</th><th class="c">Mom.</th>'
+    +'<th class="r">Proy. 19 jul</th><th class="r">Brecha proy.</th><th class="r">Necesita</th><th class="c">Riesgo</th></tr></thead><tbody>';
+  var myProj=projFinal(ME_P,MY_R7);
+  h+='<tr class="me"><td></td><td>'+ME_P.name+' &#10003;</td><td class="num">'+fmt(ME_P.tot)+'</td><td class="num">&mdash;</td>'
+    +'<td class="num">'+rnd(MY_R7)+'</td><td class="num">'+rnd(MY_CLEAN)+'</td><td class="ctr"></td>'
+    +'<td class="num">'+fmt(rnd(myProj))+'</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="ctr"></td></tr>';
+  t.forEach(function(x,i){
+    var momIcon=x.mom>1.08?'<span class="trend up">&#9650;</span>':(x.mom<0.92?'<span class="trend down">&#9660;</span>':'<span class="trend flat">&#9644;</span>');
+    h+='<tr><td><span class="rk-num">'+(i+1)+'</span></td><td>'+x.p.name+'</td>'
+      +'<td class="num">'+fmt(x.p.tot)+'</td>'
+      +'<td class="num">-'+fmt(x.gap)+'</td>'
+      +'<td class="num">'+rnd(x.r7)+'</td>'
+      +'<td class="num">'+rnd(x.rc)+'</td>'
+      +'<td class="ctr">'+momIcon+'</td>'
+      +'<td class="num">'+fmt(rnd(x.projClean))+'</td>'
+      +'<td class="num">'+(x.gapProj>=0?'+':'')+fmt(rnd(x.gapProj))+'</td>'
+      +'<td class="num">'+rnd(x.needed)+'</td>'
+      +'<td class="ctr"><span class="risk-pill risk-'+x.riskCls+'">'+x.risk+'</span></td></tr>';
+  });
+  h+='</tbody>';
+  document.getElementById('threat').innerHTML=h;
+
+  // Anomalías: rachas estimadas recientes muy por sobre la mediana del jugador
+  var notes='';
+  P.forEach(function(p){
+    if(p.me||!p.est||!p.est.length)return;
+    var k=getKicks(p.gain);
+    var lastIdx=k.length-1;
+    if(p.est.indexOf(lastIdx)===-1&&p.est.indexOf(lastIdx-1)===-1)return;
+    var run=[];
+    for(var i=lastIdx;i>=0;i--){
+      if(p.est.indexOf(i)!==-1)run.unshift(i);
+      else if(run.length)break;
+    }
+    if(!run.length)return;
+    var pts=0,kk=0;
+    run.forEach(function(i){pts+=p.gain[i]||0;kk+=k[i]||0;});
+    var rateEst=kk/run.length,med=cleanRate(p);
+    if(rateEst>1.35*med){
+      notes+='<div class="anom-card">&#9888;&#65039; <b>'+p.name+'</b>: recibi&oacute; <b>+'+fmt(pts)+' pts en lote</b> cubriendo sus &uacute;ltimos '+run.length+' d&iacute;as '
+        +'(~'+rnd(rateEst)+' kicks/d&iacute;a impl&iacute;citos vs su mediana de '+rnd(med)+'). '
+        +'Patr&oacute;n inconsistente con su historial &mdash; posible ajuste del sistema o actividad an&oacute;mala. Vigilar.</div>';
+    }
+  });
+  document.getElementById('anom-notes').innerHTML=notes;
+}
+
+function drawProj(){
+  var svg=document.getElementById('proj');
+  var W=660,H=235,pl=14,pr=112,pt=16,pb=24;
+  var cw=W-pl-pr,ch=H-pt-pb;
+  var nh=DATES.length,total=nh+N_REM,nd=total-1;
+  function X(i){return pl+(cw/nd)*i;}
+
+  var t=threatData();
+  var myProj=projFinal(ME_P,MY_R7);
+  var maxY=myProj;
+  t.forEach(function(x){if(x.projHot>maxY)maxY=x.projHot;});
+  maxY*=1.04;
+  function Y(v){return pt+ch-(v/maxY)*ch;}
+
+  var s='';
+
+  // bandas de multiplicador restante
+  var bi=nh-1;
+  var bands=[];
+  REM.forEach(function(r,i){
+    var gi=nh+i;
+    if(!bands.length||bands[bands.length-1].m!==r.m)bands.push({m:r.m,from:gi,to:gi});
+    else bands[bands.length-1].to=gi;
+  });
+  bands.forEach(function(b){
+    var op=b.m>=10?0.09:(b.m>=5?0.05:0.025);
+    s+='<rect x="'+X(b.from-0.5)+'" y="'+pt+'" width="'+(X(b.to)-X(b.from-0.5)+(cw/nd)*0.5)+'" height="'+ch+'" fill="#7B3FA0" opacity="'+op+'"/>';
+    s+='<text x="'+X((b.from+b.to)/2)+'" y="'+(pt+9)+'" fill="#7B3FA0" font-size="7.5" font-weight="700" text-anchor="middle" font-family="ui-monospace,monospace" opacity="0.75">&times;'+b.m+'</text>';
+  });
+
+  // grilla
+  for(var gi2=0;gi2<=4;gi2++){
+    var gy=pt+(ch/4)*gi2;
+    var gv=Math.round(maxY*(1-gi2/4));
+    s+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(W-pr)+'" y2="'+gy+'" stroke="#D8D4CB" stroke-width="0.5"/>';
+    s+='<text x="'+(W-pr+5)+'" y="'+(gy+3)+'" fill="#918C83" font-size="7" font-family="ui-monospace,monospace">'+(gv>=1000?Math.round(gv/1000)+'k':gv)+'</text>';
+  }
+
+  // eje X: cada 4 días
+  for(var xi=0;xi<total;xi+=4){
+    var lbl=xi<nh?DATES[xi].n:REM[xi-nh].n;
+    s+='<text x="'+X(xi)+'" y="'+(H-5)+'" fill="#918C83" font-size="6.5" font-family="ui-monospace,monospace" text-anchor="middle">'+lbl+'</text>';
+  }
+
+  // línea HOY
+  s+='<line x1="'+X(nh-1)+'" y1="'+pt+'" x2="'+X(nh-1)+'" y2="'+(pt+ch)+'" stroke="#1C1C2E" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>';
+  s+='<text x="'+X(nh-1)+'" y="'+(pt+ch+9)+'" fill="#1C1C2E" font-size="6.5" font-weight="700" text-anchor="middle" font-family="ui-monospace,monospace" opacity="0.6">HOY</text>';
+
+  // rivales: histórico + proyección a ritmo limpio
+  var labels=[];
+  t.slice(0,4).forEach(function(x,ti){
+    var p=x.p,col=ti===0?'#D94F30':'#C9C4BB';
+    var wdt=ti===0?1.8:1.1,op=ti===0?1:0.65;
+    var pts2=[];
+    p.cum.forEach(function(v,i){if(v!==null)pts2.push(X(i)+','+Y(v));});
+    s+='<polyline points="'+pts2.join(' ')+'" fill="none" stroke="'+col+'" stroke-width="'+wdt+'" opacity="'+op+'" stroke-linejoin="round"/>';
+    var run=p.tot,ppts=[X(nh-1)+','+Y(run)];
+    REM.forEach(function(r,i){run+=x.rc*r.m;ppts.push(X(nh+i)+','+Y(run));});
+    s+='<polyline points="'+ppts.join(' ')+'" fill="none" stroke="'+col+'" stroke-width="'+wdt+'" opacity="'+(op*0.8)+'" stroke-dasharray="4 3" stroke-linejoin="round"/>';
+    labels.push({y:Y(run),col:col,txt:p.name.split('. ').pop()+' '+fmt(rnd(run)),w:ti===0?700:400,op:ti===0?1:0.7});
+    if(ti===0&&x.r7>x.rc*1.15){ // ráfaga del rival principal
+      var run2=p.tot,hpts=[X(nh-1)+','+Y(run2)];
+      REM.forEach(function(r,i){run2+=x.r7*r.m;hpts.push(X(nh+i)+','+Y(run2));});
+      s+='<polyline points="'+hpts.join(' ')+'" fill="none" stroke="'+col+'" stroke-width="1" opacity="0.45" stroke-dasharray="1.5 2.5" stroke-linejoin="round"/>';
+      labels.push({y:Y(run2),col:col,txt:'&#8599; r&aacute;faga '+fmt(rnd(run2)),w:400,op:0.55,size:6.5});
+    }
+  });
+
+  // yo: histórico + proyección
+  var upts=[];
+  ME_P.cum.forEach(function(v,i){if(v!==null)upts.push(X(i)+','+Y(v));});
+  s+='<polyline points="'+upts.join(' ')+'" fill="none" stroke="#1A7A6B" stroke-width="2.4" stroke-linejoin="round"/>';
+  var mrun=ME_P.tot,mpts=[X(nh-1)+','+Y(mrun)];
+  REM.forEach(function(r,i){mrun+=MY_R7*r.m;mpts.push(X(nh+i)+','+Y(mrun));});
+  s+='<polyline points="'+mpts.join(' ')+'" fill="none" stroke="#1A7A6B" stroke-width="2.4" opacity="0.85" stroke-dasharray="5 3" stroke-linejoin="round"/>';
+  labels.push({y:Y(mrun),col:'#1A7A6B',txt:'T&uacute; '+fmt(rnd(mrun)),w:800,op:1});
+
+  // etiquetas sin solaparse
+  labels.sort(function(a,b){return a.y-b.y;});
+  for(var li=1;li<labels.length;li++){
+    if(labels[li].y-labels[li-1].y<10)labels[li].y=labels[li-1].y+10;
+  }
+  labels.forEach(function(l){
+    s+='<text x="'+(W-pr+5)+'" y="'+(l.y+3)+'" fill="'+l.col+'" font-size="'+(l.size||7.5)+'" font-weight="'+l.w+'" opacity="'+l.op+'" font-family="system-ui,sans-serif">'+l.txt+'</text>';
+  });
+
+  svg.innerHTML=s;
+
+  var t0=t[0];
+  document.getElementById('proj-note').innerHTML=
+    'L&iacute;nea punteada = proyecci&oacute;n a <b>ritmo limpio</b> (mediana de d&iacute;as reales). '
+    +'Para '+t0.p.name+' se muestra adem&aacute;s su r&aacute;faga 7d si la mantiene. '
+    +'Bandas moradas = multiplicador restante (&times;4 &rarr; &times;5 &rarr; &times;10).';
+}
+
 render();
 renderStats();
 drawSpark();
 drawRank();
+renderKPIs();
+renderThreats();
+drawProj();
 </script>

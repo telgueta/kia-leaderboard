@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KIA - Domina tu mundial</title>
+    <link rel="icon" href="assets/favicon.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TJHHX3XZ9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4TJHHX3XZ9');
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite,sports_soccer,trophy" />
+  <script type="module" crossorigin src="assets/index-Cwvmho8Z.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index-BLHXZ3ck.css">
+</head>
+<body class="kia-root">
+
+    <!-- ── Welcome screen ──────────────────────────────────────── -->
+    <div id="welcome-screen">
+        <div id="welcome-column">
+            <img class="welcome-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="welcome-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <div id="welcome-character"></div>
+
+            <div class="welcome-buttons">
+                <button id="btn-welcome-play"     class="menu-btn">Jugar</button>
+                <button id="btn-welcome-register" class="menu-btn">Registrarse</button>
+            </div>
+            <p class="welcome-version">v1.53</p>
+        </div>
+    </div>
+
+    <!-- ── Login screen ─────────────────────────────────────────── -->
+    <div id="login-screen" class="hidden">
+        <div id="login-column">
+            <img class="login-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="login-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <p class="login-subtitle">Favor ingresa los datos a continuación<br>para ingresar al juego</p>
+
+            <div class="login-fields">
+                <input id="input-rut" class="login-input" type="text"     placeholder="RUT (ej: 12.345.678-9)" autocomplete="off">
+                <input id="input-pin" class="login-input" type="password" placeholder="PIN"                    autocomplete="off">
+            </div>
+            <p id="login-error" class="register-error-msg"></p>
+
+            <div id="login-character"></div>
+
+            <div class="login-actions">
+                <button id="btn-login-play" class="menu-btn">Jugar</button>
+                <button id="btn-login-back" class="menu-btn">Volver</button>
+                <button id="btn-contacto-login" class="menu-btn contacto-link-btn">¿Problemas con tu cuenta?</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Register screen ──────────────────────────────────────── -->
+    <div id="register-screen" class="hidden">
+        <div id="register-column">
+            <img class="register-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="register-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <p class="register-subtitle">Favor ingresa los datos a continuación<br>para registrar tu cuenta</p>
+
+            <div class="register-fields">
+                <input id="input-nombre"   class="login-input" type="text"  placeholder="Nombre"             autocomplete="off">
+                <input id="input-apellido" class="login-input" type="text"  placeholder="Apellido"            autocomplete="off">
+                <input id="input-correo"   class="login-input" type="email" placeholder="Correo Electrónico"  autocomplete="off">
+                <input id="input-telefono" class="login-input" type="tel"   placeholder="Teléfono Contacto"   autocomplete="off">
+                <input id="input-reg-rut"  class="login-input" type="text"  placeholder="RUT (ej: 12.345.678-9)" autocomplete="off">
+            </div>
+            <p id="register-error" class="register-error-msg"></p>
+
+            <div id="register-character"></div>
+
+            <p class="register-legal-note">
+                Todos los campos son obligatorios y necesarios para participar
+                válidamente en esta campaña.
+            </p>
+
+            <div class="register-actions">
+                <button id="btn-bases"     class="menu-btn">Registrar</button>
+                <button id="btn-register-back" class="menu-btn">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PIN screen ─────────────────────────────────────────────── -->
+    <div id="pin-screen" class="hidden">
+        <img class="pin-char-thumbs" src="assets/charThumbs.png" alt="">
+
+        <div id="pin-column">
+            <img class="pin-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="pin-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <p class="pin-subtitle">
+                Toma nota de tu PIN, es necesario para poder<br>ingresar y jugar diariamente.
+            </p>
+            <p class="pin-note">(Te recomendamos hacer una captura de pantalla)</p>
+
+            <div id="pin-character"></div>
+
+            <p class="pin-label">PIN:</p>
+            <p class="pin-code" id="pin-code-display">—</p>
+
+            <div class="pin-actions">
+                <button id="btn-pin-continuar" class="menu-btn">Continuar</button>
+                <p class="pin-hold-hint">Deja pulsado para continuar</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Bases popup ───────────────────────────────────────────── -->
+    <div id="bases-popup" class="hidden">
+        <div class="bases-backdrop"></div>
+        <div class="bases-modal">
+            <div class="bases-scroll">
+                <h2 class="bases-title">Bases Legales del Concurso</h2>
+                <p class="bases-subtitle"><strong>"Domina tu Mundial"</strong><br>KIA CHILE SpA</p>
+                <div class="bases-text">
+                    <h3>1. Organizador</h3>
+                    <p>Kia Chile SpA, rol único tributario N° 79.567.420-9, domiciliada en Av. Las Condes N° 11.774, comuna de Vitacura (en adelante, el "Organizador") ha creado el concurso "Domina tu Mundial" (en adelante, el "Concurso") como parte de su campaña de marketing digital para la Mundial de Fútbol FIFA 2026™ (en adelante, el "Mundial").</p>
+
+                    <h3>2. Antecedentes y descripción general</h3>
+                    <p>"Domina tu Mundial" es un juego web de habilidad desarrollado por Kia, en el que cada Concursante debe mantener una rueda, estilizada como pelota de fútbol, en el aire durante el mayor tiempo posible mediante toques en la pantalla (clics o taps, dependiendo si se juega desde computador o desde dispositivos móviles).</p>
+                    <p>El juego "Domina tu Mundial" se accede desde el sitio web de Kia (www.kia.cl) o del Concurso (www.dominatumundialkia.cl). El juego es compatible con dispositivos móviles y de escritorio.</p>
+                    <p>El juego dará un intento por día a cada Concursante durante toda la vigencia del Concurso.</p>
+                    <p>El objetivo del juego es acumular la mayor cantidad de puntos posibles en cada intento diario, hasta el final del Concurso.</p>
+                    <p>El Concurso finalizará el domingo 19 de julio de 2026, fecha del final del Mundial.</p>
+
+                    <h3>3. Concursantes</h3>
+                    <p>Podrán participar del presente Concurso, aquellas personas naturales que cumplan con todos y cada uno de los siguientes requisitos (en adelante, el o los "Concursantes"):</p>
+                    <ol>
+                        <li>Ser mayor de 18 años;</li>
+                        <li>Inscribirse en el sitio web del Concurso, ingresando sus datos personales;</li>
+                        <li>Los Concursantes deben aceptar los términos y condiciones, como también la política de privacidad, ambas contenidas en el sitio web;</li>
+                        <li>Los Concursantes solo pueden tener una única cuenta con sus datos personales, y;</li>
+                        <li>Participar en el juego de la web una vez iniciada la sesión.</li>
+                    </ol>
+
+                    <h3>4. Vigencia del Concurso</h3>
+                    <p>La vigencia del Concurso está vinculado al calendario del Mundial, comenzando el lunes 08 de junio de 2026, y finalizando el domingo 19 de julio de 2026. El día lunes 20 de julio de 2026 se dará un ranking preliminar. La publicación del Ganador se realizará el martes 28 de julio de 2026.</p>
+                    <p>Los ganadores del Concurso serán publicados el miércoles 29 de julio de 2026.</p>
+
+                    <h3>5. Dinámica del Concurso</h3>
+                    <p>Una vez que el Concursante se registra en el sitio web al efecto, recibirá un código PIN, el cual será generado una única vez, por lo que cada Concursante debe tenerlo guardado para acceder a su cuenta durante toda la vigencia del Concurso. El código PIN es de uso personal, por tanto, no deberá compartirse con terceros.</p>
+                    <p>El juego incluye un modo práctica que permite a los Concursantes a familiarizarse con el juego sin hacer valer su intento diario. Para ello se requiere haber iniciado sesión. Los resultados no suman puntuación semanal. El juego incluye un modo competitivo, el cual será el mecanismo por el cual se registrarán los puntajes obtenidos por cada Concursante, y se registrarán a un ranking para competir por el premio del Concurso.</p>
+                    <p>El modo competitivo está estructurado en rondas progresivas, y cada ronda tiene un umbral de puntos que debe alcanzarse para avanzar. Cada golpe exitoso a la rueda (<em>kick</em>) equivale a un punto base.</p>
+                    <p>El puntaje base aumentará progresivamente por cada semana de vigencia del Concurso.</p>
+                    <p>La puntuación por semana se define de la siguiente manera:</p>
+                    <ol>
+                        <li>La primera Semana del Concurso (08-jun al 14-jun): cada <em>kick</em> dará 1 punto.</li>
+                        <li>La segunda Semana del Concurso (15-jun al 21-jun): cada <em>kick</em> dará 2 puntos.</li>
+                        <li>La tercera Semana del Concurso (22-jun al 28-jun): cada <em>kick</em> dará 3 puntos.</li>
+                        <li>La cuarta Semana del Concurso (29-jun al 05-jul): cada <em>kick</em> dará 4 puntos.</li>
+                        <li>La quinta Semana del Concurso (06-jul al 12-jul): cada <em>kick</em> dará 5 puntos.</li>
+                        <li>La sexta Semana del Concurso (13-jul al 19-jul): cada <em>kick</em> dará 10 puntos.</li>
+                    </ol>
+                    <p>Las puntuaciones semanales serán comunicados en el juego antes de cada partida.</p>
+
+                    <h3>6. Intentos diarios</h3>
+                    <p>Cada Concursante tiene un (<strong>1</strong>) intento en el modo competitivo por cada día de vigencia del Concurso.</p>
+                    <p>El servidor registra el inicio oficial de la partida aproximadamente 10 segundos después de que el juego está estable y activo. Esto se hace para evitar problemas que con un mal estado de conectividad pueda fallar la carga del juego.</p>
+                    <p>Una vez registrado el inicio, el intento diario queda consumido.</p>
+                    <p>El intento se pierde aunque el Concursante cierre el navegador, pierda la conexión o no complete la partida. Es decir, si el Concursante después de 10 segundos de iniciada la partida, pierde la conexión, cierra o refresca el navegador, pierde la oportunidad de juego del día.</p>
+                    <p>En caso imputable del Concursante, si la partida inicia pero no se envía correctamente el resultado, el puntaje del intento diario quedará en 0 y no se restablece el intento, lo cual afectará su ranking semanal.</p>
+                    <p>En caso de que exista un fallo técnico en la página web del Concurso que sea imputable al Organizador, adoptará una medida correctiva para que los Concursantes puedan utilizar su intento diario sin ser afectados por la falla, en caso de no haberla consumido con anterioridad.</p>
+                    <p>Esta regla previene el abuso por reintentos múltiples hasta obtener un puntaje conveniente.</p>
+
+                    <h3>7. Ranking (Leaderboard) y determinación de ganadores</h3>
+                    <p>El ranking refleja el puntaje total acumulado por cada Concursante, el ranking es público. Los puntajes diarios se van acumulando a lo largo del Concurso. Algunos identificadores como nombres serán truncados para evitar una identificación directa de la persona, vía terceros. El ranking se actualiza diariamente una vez ejecutados procesos automáticos y verificaciones manuales de telemetría. Los puntajes de partidas rechazadas o anuladas no aparecen en el ranking.</p>
+                    <p>El Organizador se reserva el derecho de congelar o ajustar el leaderboard durante la revisión de incidencias.</p>
+                    <p>El primer puesto del ranking al final del Concurso resultará ganador del premio.</p>
+                    <p>En caso de que existan Concursantes con igual puntaje acumulado al cierre del concurso, se realizará una instancia presencial de final para definir el ganador.</p>
+
+                    <h3>8. Sistema Anti-Trampa, Moderación y Sanciones</h3>
+                    <p>El sistema está diseñado para elevar el costo de hacer trampa y facilitar la detección, aunque no hay manera de garantizar prevención perfecta. El sistema soporta revisión de la telemetría almacenada mediante validaciones automáticas y revisión manual por parte del equipo de moderación para inspeccionar patrones sospechosos.</p>
+                    <p>El Organizador se reserva el derecho de poder determinar si algún Concursante pudo haber intervenido en el cliente del juego para obtener ventaja.</p>
+                    <p>Las partidas declaradas como inválidas no suman puntajes y la cuenta queda en observación. Los puntajes diarios que sean calificados como sospechosos serán invalidados y quedan sujetos a revisión manual.</p>
+                    <p>El Organizador puede anular el puntaje del día afectado, bloquear la cuenta de forma temporal o permanente, incluyendo la descalificación del Concursante en el Concurso.</p>
+                    <p>Las cuentas que tengan alertas recurrentes de potencial fraude serán suspendidas o no consideradas para los sorteos de premios.</p>
+                    <p>En caso de una detección de intento de fraude automatizado, se procederá a tomar las medidas técnicas necesarias para proteger el desarrollo del Concurso.</p>
+
+                    <h3>9. Premio del Concurso</h3>
+                    <p>El Concursante que resulte ganador del presente Concurso, recibirá como premio la entrega de un automóvil de la marca Kia, modelo Sportage, año 2026, color blanco, versión 2.0 MT, código 2522.</p>
+
+                    <h3>10. Autorización de Uso de Imagen y Datos Personales</h3>
+                    <p>Los Concursantes al aceptar las bases legales del presente Concurso, consienten y autorizan que el Organizador haga uso gratuito de su imagen, nombre y voz para fines promocionales y publicitarios relacionados únicamente con el presente Concurso, conforme a la normativa vigente de protección de datos, así como a Ley 19.628 sobre Protección de la Vida Privada y respectivas normas que modifiquen a ésta.</p>
+                    <p>Los Concursantes autorizan al Organizador el tratamiento de sus datos personales, únicamente para los fines del presente Concurso, los cuales serán eliminados una vez haya sido finalizado el Concurso.</p>
+
+                    <h3>11. Exclusiones del Concurso</h3>
+                    <p>Para efectos del presente Concurso, no podrán ser considerados Concursantes, las siguientes personas:</p>
+                    <ol>
+                        <li>Aquellas personas que sean trabajadores del Organizador, o de sus filiales o agencias asociadas.</li>
+                        <li>Familiares directos de los anteriores hasta cuarto grado de consanguinidad.</li>
+                        <li>Aquellas personas que sean patrocinadas para el Organizador, o que sean auspiciadores de éste.</li>
+                    </ol>
+
+                    <h3>12. Aceptación de las Bases Legales del Concurso</h3>
+                    <p>La participación en el Concurso se entenderá como la aceptación íntegra de todo lo dispuesto en las presentes bases. En caso de fuerza mayor o caso fortuito, el Organizador se reserva el derecho de modificar, interpretar o cancelar el presente Concurso, informándolo oportunamente por todos los medios que disponga para estos efectos.</p>
+                    <p><strong>Razón Social del Organizador:</strong> Kia Chile SpA<br>
+                    <strong>Rol único tributario del Organizador:</strong> 79.567.420-9<br>
+                    <strong>Domicilio:</strong> Av. Las Condes N° 11.774, comuna de Vitacura, ciudad de Santiago.<br>
+                    <strong>Ministro de Fe:</strong> Sebastián Miranda, Gerente de Marketing Indumotora, Rut 16.636.228-8.</p>
+                </div>
+                <button id="btn-bases-accept" class="menu-btn bases-accept-btn">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Contacto / Soporte popup ────────────────────────────── -->
+    <div id="contacto-popup" class="hidden">
+        <div class="bases-backdrop"></div>
+        <div class="bases-modal">
+            <div class="bases-scroll">
+                <h2 class="bases-title">Contacto y Soporte</h2>
+                <p class="bases-subtitle">Completa el formulario y te contactaremos<br>a la brevedad.</p>
+
+                <div class="contacto-fields">
+                    <input id="input-ct-nombre"   class="login-input" type="text"  placeholder="Nombre"                     autocomplete="off">
+                    <input id="input-ct-apellido" class="login-input" type="text"  placeholder="Apellido"                    autocomplete="off">
+                    <input id="input-ct-correo"   class="login-input" type="email" placeholder="Correo Electrónico"          autocomplete="off">
+                    <input id="input-ct-telefono" class="login-input" type="tel"   placeholder="Teléfono Contacto"           autocomplete="off">
+                    <input id="input-ct-rut"      class="login-input" type="text"  placeholder="RUT (ej: 12.345.678-9)"      autocomplete="off">
+                    <textarea id="input-ct-mensaje" class="login-input contacto-textarea" placeholder="Describe tu problema o consulta..." rows="4"></textarea>
+                </div>
+
+                <p id="contacto-error"   class="register-error-msg"></p>
+                <p id="contacto-success" class="contacto-success-msg hidden">Mensaje enviado. Te contactaremos pronto.</p>
+
+                <div class="contacto-actions">
+                    <button id="btn-contacto-enviar" class="menu-btn bases-accept-btn">Enviar</button>
+                    <button id="btn-contacto-cerrar" class="menu-btn bases-accept-btn">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Menu screen ─────────────────────────────────────────── -->
+    <div id="menu-screen" class="hidden">
+        <div id="menu-column">
+            <img class="menu-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="menu-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <p class="menu-subtitle">
+                Puedes competir solo una vez por día en desafío diario.
+                Pero puedes utilizar el modo práctica o consultar el tablero de posiciones.
+            </p>
+
+            <button id="btn-daily" class="menu-btn">
+                <span class="material-symbols-outlined btn-trophy" aria-hidden="true">trophy</span>
+                Desafío diario
+                <span class="material-symbols-outlined btn-trophy" aria-hidden="true">trophy</span>
+            </button>
+            <p id="daily-error" class="register-error-msg" style="color:#e44; text-align:center;"></p>
+
+            <div class="menu-spacer"></div>
+
+            <button id="btn-practice"    class="menu-btn">Práctica</button>
+            <button id="btn-leaderboard" class="menu-btn">Leaderboard</button>
+            <button id="btn-contacto-menu" class="menu-btn contacto-link-btn">¿Problemas? Contáctanos</button>
+        </div>
+    </div>
+
+    <!-- ── Leaderboard screen ──────────────────────────────────── -->
+    <div id="leaderboard-screen" class="hidden">
+        <div id="leaderboard-column">
+            <img class="lb-logo-kia"  src="assets/LogoKiaMundial.png" alt="KIA patrocinador oficial">
+            <img class="lb-logo-game" src="assets/LogoGame.png"       alt="Domina tu Mundial">
+
+            <p class="lb-date" id="lb-date-text">Leaderboard actualizado: —</p>
+
+            <div class="lb-my-position">
+                <div class="lb-my-block">
+                    <span class="lb-my-label" id="lb-rank-label">Tu posición</span>
+                    <span class="lb-my-value" id="lb-my-rank-value">#—</span>
+                </div>
+                <div class="lb-my-divider"></div>
+                <div class="lb-my-block">
+                    <span class="lb-my-label">Total acumulado</span>
+                    <span class="lb-my-value" id="lb-my-score-value">—</span>
+                </div>
+            </div>
+
+            <p class="lb-rank-estimated-note hidden" id="lb-rank-estimated-note">Se actualiza a posición actual junto con el leaderboard</p>
+
+            <div class="lb-list-wrapper">
+                <ul class="lb-list" id="lb-list"></ul>
+                <div class="lb-list-fade" aria-hidden="true"></div>
+            </div>
+
+            <button id="btn-lb-back" class="menu-btn">Volver</button>
+        </div>
+    </div>
+
+    <!-- ── Screen transition overlay ──────────────────────────── -->
+    <div id="transition-overlay">
+        <img class="tr-logo-kia"  src="assets/LogoKiaMundial.png" alt="">
+        <img class="tr-logo-game" src="assets/LogoGame.png"       alt="">
+    </div>
+
+    <!-- ── Game canvas (hidden until a mode is selected) ───────── -->
+    <div id="game-container" class="hidden"></div>
+
+</body>
+</html>

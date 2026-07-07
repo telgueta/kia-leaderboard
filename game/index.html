@@ -387,10 +387,7 @@
     window.__kiaCustom={round:p.round,score:p.score,gravBonus:p.gravBonus,lives:sel.vidas,ramp:sel.rampa};
     document.getElementById("kcfg").classList.add("hidden");
     document.getElementById("kcfg-reopen").classList.add("show");
-    var tries=0,iv=setInterval(function(){
-      if(window.__startKia){clearInterval(iv);window.__startKia();}
-      else if(++tries>40){clearInterval(iv);alert("El juego aún carga, intenta de nuevo en un momento.");document.getElementById("kcfg").classList.remove("hidden");}
-    },100);
+    var tries=0,iv=setInterval(function(){tries++;if(window.__startKia){clearInterval(iv);window.__startKia();return;}var bd=document.getElementById("btn-daily");if(tries>30&&bd){clearInterval(iv);bd.click();return;}if(tries>300){clearInterval(iv);var r=document.getElementById("kcfg-reopen");if(r){r.title="Si no arranca, recarga con F5";}}},100);
   });
   document.getElementById("kcfg-reopen").addEventListener("click",function(){location.reload();});
 })();

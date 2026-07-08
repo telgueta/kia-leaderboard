@@ -358,7 +358,7 @@
       <div><p class="kcrep-h">Progreso por corrida</p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
     </div>
     <div class="kcrep-foot">
-      <button id="kcrep-again">&#8635; Otra corrida</button>
+      <button id="kcrep-dl" class="kcrep-btn2">&#11015; Descargar datos</button><button id="kcrep-cp" class="kcrep-btn2">&#10697; Copiar</button><button id="kcrep-again">&#8635; Otra corrida</button>
     </div>
   </div>
 </div>
@@ -408,7 +408,7 @@
   .kcrep-h span{text-transform:none;letter-spacing:0;color:rgba(234,242,233,.38);font-weight:400}
   #kcrep canvas{width:100%;height:auto;display:block;background:rgba(0,0,0,.2);border-radius:8px}
   .kcrep-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  .kcrep-foot{margin-top:.3rem}
+  .kcrep-foot{margin-top:.3rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}#kcrep-again{margin-top:0;flex:1 1 100%}.kcrep-btn2{flex:1 1 auto;background:transparent;color:#EAF2E9;border:1px solid rgba(234,242,233,.3);border-radius:8px;padding:.6rem .5rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}.kcrep-btn2:hover{border-color:#F5B841;color:#FFDF9E}
 </style>
 
 <script>
@@ -454,7 +454,7 @@
   $("kcfg-reopen").addEventListener("click",function(){location.reload();});
   $("kcrep-again").addEventListener("click",function(){location.reload();});
   $("kcrep-close").addEventListener("click",function(){$("kcrep").classList.add("hidden");});
-  $("kcfg-report").addEventListener("click",function(){window.__kiaShowReport();});
+  $("kcfg-report").addEventListener("click",function(){window.__kiaShowReport();});function kcfb(text,cb){var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");}catch(e){}ta.remove();cb&&cb();}$("kcrep-dl").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var blob=new Blob([data],{type:"application/json"});var url=URL.createObjectURL(blob);var d=new Date(),p=function(n){return(n<10?"0":"")+n;};var name="kia-telemetria-"+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+"-"+p(d.getHours())+p(d.getMinutes())+".json";var a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1000);var b=$("kcrep-dl");b.textContent="↓ "+name;setTimeout(function(){b.innerHTML="⬇ Descargar datos";},2500);});$("kcrep-cp").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var b=$("kcrep-cp");var done=function(){b.textContent="¡Copiado!";setTimeout(function(){b.innerHTML="⥉ Copiar";},1500);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(data).then(done,function(){kcfb(data,done);});}else kcfb(data,done);});
 
   // ── Análisis ──
   function readRuns(){try{return JSON.parse(localStorage.getItem("kia_runs")||"[]");}catch(e){return[];}}

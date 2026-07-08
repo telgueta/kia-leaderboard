@@ -312,7 +312,7 @@
   <div class="kcfg-box">
     <p class="kcfg-eyebrow">Práctica personalizada</p>
     <h2 class="kcfg-title">¿Desde dónde quieres jugar?</h2>
-    <p class="kcfg-note">Es el juego real (modo competitivo), pero arranca donde elijas. No usa tu intento diario ni envía puntaje.</p>
+    <p class="kcfg-note">Es el juego real (modo competitivo), pero arranca donde elijas. No usa tu intento diario ni envía puntaje. Al terminar verás tu reporte.</p>
     <p class="kcfg-lab">Etapa de inicio</p>
     <div class="kcfg-group" id="kcfg-etapa">
       <button data-p="completo">Completo (R1)</button>
@@ -340,12 +340,35 @@
   </div>
 </div>
 <button id="kcfg-reopen" title="Cambiar práctica">&#9881;</button>
+<button id="kcfg-report" title="Ver reporte">&#128202;</button>
+
+<div id="kcrep" class="hidden">
+  <div class="kcrep-box">
+    <button id="kcrep-close" title="Cerrar">&#10005;</button>
+    <p class="kcfg-eyebrow">Reporte de entrenamiento</p>
+    <h2 class="kcfg-title" id="kcrep-title">Última corrida</h2>
+    <div class="kcrep-stats" id="kcrep-stats"></div>
+    <div id="kcrep-verdicts"></div>
+    <p class="kcrep-h">Altura de tus patadas <span>(izquierda = arriba/bueno · derecha = bajo/tarde)</span></p>
+    <canvas id="kcrep-h1" width="620" height="150"></canvas>
+    <p class="kcrep-h">Cadencia: t&uacute; (barras) vs. lo que exige el juego (l&iacute;nea)</p>
+    <canvas id="kcrep-h2" width="620" height="150"></canvas>
+    <div class="kcrep-cols">
+      <div><p class="kcrep-h">D&oacute;nde pierdes balones</p><canvas id="kcrep-h3" width="300" height="130"></canvas></div>
+      <div><p class="kcrep-h">Progreso por corrida</p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
+    </div>
+    <div class="kcrep-foot">
+      <button id="kcrep-again">&#8635; Otra corrida</button>
+    </div>
+  </div>
+</div>
+
 <style>
   #kcfg{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:5vw;
     background:radial-gradient(120% 80% at 50% -10%,rgba(245,184,65,.14),transparent 60%),linear-gradient(180deg,#0A1622,#0A2C21);
     font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#EAF2E9}
-  #kcfg.hidden{display:none}
-  .kcfg-box{max-width:440px;width:100%;background:rgba(12,33,45,.9);border:1px solid rgba(234,242,233,.15);
+  #kcfg.hidden,#kcrep.hidden{display:none}
+  .kcfg-box{max-width:440px;width:100%;background:rgba(12,33,45,.92);border:1px solid rgba(234,242,233,.15);
     border-radius:16px;padding:1.6rem 1.5rem;box-shadow:0 24px 70px rgba(0,0,0,.5)}
   .kcfg-eyebrow{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:#F5B841;font-weight:700}
   .kcfg-title{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:.35rem 0 .3rem;line-height:1.1}
@@ -357,41 +380,184 @@
     border-radius:8px;padding:.5rem .6rem;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
   .kcfg-group button:hover{border-color:rgba(234,242,233,.45)}
   .kcfg-group button.on{border-color:#F5B841;background:rgba(245,184,65,.14);color:#FFDF9E}
-  #kcfg-play{margin-top:1.3rem;width:100%;background:#E4002B;color:#fff;border:none;border-radius:9px;
+  #kcfg-play,#kcrep-again{margin-top:1.3rem;width:100%;background:#E4002B;color:#fff;border:none;border-radius:9px;
     padding:.8rem;font-size:.92rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;
     box-shadow:0 8px 22px rgba(228,0,43,.35);font-family:inherit;transition:.12s}
-  #kcfg-play:hover{transform:translateY(-1px)}
-  #kcfg-reopen{position:fixed;top:10px;right:10px;z-index:99998;width:40px;height:40px;border-radius:50%;
-    background:rgba(12,33,45,.85);color:#F5B841;border:1px solid rgba(245,184,65,.4);font-size:1.1rem;cursor:pointer;display:none}
-  #kcfg-reopen.show{display:block}
+  #kcfg-play:hover,#kcrep-again:hover{transform:translateY(-1px)}
+  #kcfg-reopen,#kcfg-report{position:fixed;top:10px;z-index:99998;width:40px;height:40px;border-radius:50%;
+    background:rgba(12,33,45,.85);color:#F5B841;border:1px solid rgba(245,184,65,.4);font-size:1.05rem;cursor:pointer;display:none}
+  #kcfg-reopen{right:10px} #kcfg-report{right:58px}
+  #kcfg-reopen.show,#kcfg-report.show{display:block}
+
+  #kcrep{position:fixed;inset:0;z-index:100000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;
+    padding:2.5vw;background:rgba(6,15,12,.93);font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#EAF2E9}
+  .kcrep-box{position:relative;max-width:680px;width:100%;background:rgba(12,33,45,.95);border:1px solid rgba(234,242,233,.15);
+    border-radius:16px;padding:1.5rem 1.5rem 1.3rem;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+  #kcrep-close{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(234,242,233,.6);font-size:1.1rem;cursor:pointer}
+  .kcrep-stats{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0 1rem}
+  .kcrep-stat{flex:1 1 90px;background:rgba(234,242,233,.05);border:1px solid rgba(234,242,233,.1);border-radius:9px;padding:.55rem .6rem}
+  .kcrep-stat b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:1.25rem;font-weight:800;color:#FFDF9E;line-height:1}
+  .kcrep-stat span{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(234,242,233,.5);font-weight:700}
+  #kcrep-verdicts{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+  .kcrep-v{font-size:.8rem;line-height:1.45;padding:.5rem .7rem;border-radius:8px;border-left:3px solid}
+  .kcrep-v.sev3{background:rgba(228,0,43,.09);border-color:#E4002B}
+  .kcrep-v.sev2{background:rgba(245,184,65,.09);border-color:#F5B841}
+  .kcrep-v.sev1{background:rgba(234,242,233,.05);border-color:rgba(234,242,233,.3)}
+  .kcrep-v.good{background:rgba(95,224,168,.08);border-color:#5FE0A8}
+  .kcrep-h{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(234,242,233,.55);font-weight:700;margin:.9rem 0 .35rem}
+  .kcrep-h span{text-transform:none;letter-spacing:0;color:rgba(234,242,233,.38);font-weight:400}
+  #kcrep canvas{width:100%;height:auto;display:block;background:rgba(0,0,0,.2);border-radius:8px}
+  .kcrep-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .kcrep-foot{margin-top:.3rem}
 </style>
+
 <script>
 (function(){
+  // ── Telemetría ──
+  window.__kiaTel=(function(){
+    var run=null,t0=0;
+    function now(){return Math.round(performance.now()-t0);}
+    return {
+      start:function(cfg){t0=performance.now();run={cfg:cfg||{},kicks:[],drops:[],clicks:0,ts:Date.now()};},
+      click:function(){if(run)run.clicks++;},
+      kick:function(x,y,g){if(run)run.kicks.push([now(),Math.round(x),Math.round(y),Math.round(g)]);},
+      drop:function(x,y){if(run)run.drops.push([now(),Math.round(x),Math.round(y)]);},
+      end:function(score,gEnd){
+        if(!run)return;
+        run.score=score;run.gEnd=Math.round(gEnd||0);run.dur=now();
+        try{var a=JSON.parse(localStorage.getItem("kia_runs")||"[]");a.push(run);if(a.length>60)a=a.slice(-60);localStorage.setItem("kia_runs",JSON.stringify(a));}catch(e){}
+        window.__kiaLast=run;run=null;
+        if(window.__kiaShowReport)setTimeout(window.__kiaShowReport,500);
+      }
+    };
+  })();
+
+  var $=function(id){return document.getElementById(id);};
+
+  // ── Panel de configuración ──
   var PRESETS={completo:{round:1,score:0,gravBonus:0},r3:{round:3,score:50,gravBonus:0},
     r4:{round:4,score:90,gravBonus:0},r5:{round:5,score:200,gravBonus:0},
     r5d:{round:5,score:200,gravBonus:800},r5b:{round:5,score:200,gravBonus:1600}};
   var sel={etapa:"r5",vidas:5,rampa:40};
-  function wire(id,attr,cast,key){
-    var g=document.getElementById(id);
-    g.addEventListener("click",function(e){
-      var b=e.target.closest("button"); if(!b)return;
-      [].forEach.call(g.children,function(x){x.classList.remove("on")});
-      b.classList.add("on"); sel[key]=cast(b.getAttribute(attr));
-    });
-  }
-  wire("kcfg-etapa","data-p",String,"etapa");
-  wire("kcfg-vidas","data-v",Number,"vidas");
-  wire("kcfg-rampa","data-r",Number,"rampa");
-  document.getElementById("kcfg-play").addEventListener("click",function(){
+  function wire(id,attr,cast,key){var g=$(id);g.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(g.children,function(x){x.classList.remove("on");});b.classList.add("on");sel[key]=cast(b.getAttribute(attr));});}
+  wire("kcfg-etapa","data-p",String,"etapa");wire("kcfg-vidas","data-v",Number,"vidas");wire("kcfg-rampa","data-r",Number,"rampa");
+  $("kcfg-play").addEventListener("click",function(){
     var p=PRESETS[sel.etapa]||PRESETS.r5;
     window.__kiaCustom={round:p.round,score:p.score,gravBonus:p.gravBonus,lives:sel.vidas,ramp:sel.rampa};
-    document.getElementById("kcfg").classList.add("hidden");
-    document.getElementById("kcfg-reopen").classList.add("show");
-    var tries=0,iv=setInterval(function(){tries++;if(window.__startKia){clearInterval(iv);window.__startKia();return;}var bd=document.getElementById("btn-daily");if(tries>30&&bd){clearInterval(iv);bd.click();return;}if(tries>300){clearInterval(iv);var r=document.getElementById("kcfg-reopen");if(r){r.title="Si no arranca, recarga con F5";}}},100);
+    $("kcfg").classList.add("hidden");$("kcfg-reopen").classList.add("show");$("kcfg-report").classList.add("show");
+    var tries=0,iv=setInterval(function(){tries++;
+      if(window.__startKia){clearInterval(iv);window.__startKia();return;}
+      var bd=$("btn-daily");if(tries>30&&bd){clearInterval(iv);bd.click();return;}
+      if(tries>300)clearInterval(iv);
+    },100);
   });
-  document.getElementById("kcfg-reopen").addEventListener("click",function(){location.reload();});
+  $("kcfg-reopen").addEventListener("click",function(){location.reload();});
+  $("kcrep-again").addEventListener("click",function(){location.reload();});
+  $("kcrep-close").addEventListener("click",function(){$("kcrep").classList.add("hidden");});
+  $("kcfg-report").addEventListener("click",function(){window.__kiaShowReport();});
+
+  // ── Análisis ──
+  function readRuns(){try{return JSON.parse(localStorage.getItem("kia_runs")||"[]");}catch(e){return[];}}
+  function analyze(run){
+    var kicks=run.kicks||[],drops=run.drops||[];
+    var ys=kicks.map(function(k){return k[2];});
+    var meanY=ys.length?Math.round(ys.reduce(function(a,b){return a+b;},0)/ys.length):0;
+    var highPct=ys.length?ys.filter(function(y){return y<480;}).length/ys.length:0;
+    var clicks=run.clicks||kicks.length;
+    var missPct=clicks?(clicks-kicks.length)/clicks:0;
+    var dur=run.dur||1,secs=Math.max(1,Math.ceil(dur/1000));
+    var your=new Array(secs).fill(0),reqS=new Array(secs).fill(0),reqN=new Array(secs).fill(0);
+    kicks.forEach(function(k){var s=Math.floor(k[0]/1000);if(s>=0&&s<secs){your[s]++;reqS[s]+=5*k[3]/2320;reqN[s]++;}});
+    var req=reqS.map(function(v,i){return reqN[i]?v/reqN[i]:0;});
+    var peak=your.length?Math.max.apply(null,your):0;
+    var L=0,C=0,R=0;drops.forEach(function(d){if(d[1]<240)L++;else if(d[1]>480)R++;else C++;});
+    return{n:kicks.length,runKicks:run.score-((run.cfg&&run.cfg.score)||0),meanY:meanY,highPct:highPct,
+      missPct:missPct,clicks:clicks,your:your,req:req,peak:peak,L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,ys:ys};
+  }
+  function verdicts(a){
+    var v=[];
+    if(a.meanY>640)v.push([3,"Pateas MUY bajo &mdash; altura promedio "+a.meanY+"px. M&aacute;talos apenas cruzan la l&iacute;nea (~300). Es tu problema #1: arcos cortos = te ahogas."]);
+    else if(a.meanY>540)v.push([2,"Pateas algo bajo (prom "+a.meanY+"px). P&eacute;gales m&aacute;s arriba para alargar los arcos."]);
+    else v.push([0,"Buena altura de patada (prom "+a.meanY+"px): mantienes arcos largos. &#9989;"]);
+    if(a.missPct>0.25)v.push([3,Math.round(a.missPct*100)+"% de tus clicks no pegan a nada &mdash; est&aacute;s clickeando al vac&iacute;o. Cada click debe ir a un bal&oacute;n."]);
+    else if(a.missPct>0.12)v.push([1,Math.round(a.missPct*100)+"% de clicks perdidos. Afina la punter&iacute;a."]);
+    var tail=a.req.slice(-4).filter(function(x){return x>0;});
+    var reqEnd=tail.length?tail.reduce(function(x,y){return x+y;},0)/tail.length:0;
+    if(reqEnd>a.peak+0.5)v.push([2,"Al morir, el juego ped&iacute;a ~"+reqEnd.toFixed(1)+" clicks/s y tu tope fue "+a.peak+"/s. Te falta cadencia &mdash; prueba butterfly (dos dedos)."]);
+    if(a.drops>1){var mx=Math.max(a.L,a.C,a.R);
+      if(mx===a.L&&a.L>a.R)v.push([1,"Pierdes m&aacute;s balones por la IZQUIERDA ("+a.L+"). Cubre ese lado."]);
+      else if(mx===a.R&&a.R>a.L)v.push([1,"Pierdes m&aacute;s por la DERECHA ("+a.R+"). Cubre ese lado."]);}
+    v.sort(function(x,y){return y[0]-x[0];});
+    return v;
+  }
+
+  // ── Charts ──
+  function cv(id){var c=$(id),x=c.getContext("2d");x.clearRect(0,0,c.width,c.height);return[c,x];}
+  function histHeights(a){
+    var r=cv("kcrep-h1"),c=r[0],x=r[1],W=c.width,Hh=c.height,pb=18;
+    var bins=8,lo=300,hi=1030,bw=(hi-lo)/bins,cnt=new Array(bins).fill(0);
+    a.ys.forEach(function(y){var i=Math.min(bins-1,Math.max(0,Math.floor((y-lo)/bw)));cnt[i]++;});
+    var mx=Math.max.apply(null,cnt.concat([1]));
+    var gap=4,cw=(W-(bins+1)*gap)/bins;
+    for(var i=0;i<bins;i++){
+      var h=(cnt[i]/mx)*(Hh-pb-8),bx=gap+i*(cw+gap),by=Hh-pb-h;
+      x.fillStyle=i<2?"#5FE0A8":(i>=5?"#FF5A47":"rgba(245,184,65,.75)");
+      x.fillRect(bx,by,cw,h);
+    }
+    x.fillStyle="rgba(234,242,233,.45)";x.font="9px ui-monospace,monospace";x.textAlign="center";
+    x.fillText("arriba (300)",gap+cw/2+cw,Hh-5);x.fillText("suelo (1030)",W-gap-cw,Hh-5);
+  }
+  function cadence(a){
+    var r=cv("kcrep-h2"),c=r[0],x=r[1],W=c.width,Hh=c.height,pb=18,pl=6;
+    var n=a.your.length,mx=Math.max(a.peak,Math.max.apply(null,a.req.concat([1])))*1.15;
+    var bw=(W-pl*2)/Math.max(n,1);
+    for(var i=0;i<n;i++){
+      var h=(a.your[i]/mx)*(Hh-pb-6),bx=pl+i*bw,by=Hh-pb-h;
+      var behind=a.req[i]>0&&a.your[i]<a.req[i];
+      x.fillStyle=behind?"rgba(255,90,71,.6)":"rgba(245,184,65,.7)";
+      x.fillRect(bx+1,by,Math.max(1,bw-2),h);
+    }
+    // línea requerida
+    x.strokeStyle="#5FE0A8";x.lineWidth=2;x.beginPath();var started=false;
+    for(var j=0;j<n;j++){if(a.req[j]<=0)continue;var px=pl+j*bw+bw/2,py=Hh-pb-(a.req[j]/mx)*(Hh-pb-6);if(!started){x.moveTo(px,py);started=true;}else x.lineTo(px,py);}
+    x.stroke();
+    x.fillStyle="rgba(234,242,233,.45)";x.font="9px ui-monospace,monospace";x.textAlign="left";
+    x.fillText("0s",pl,Hh-5);x.textAlign="right";x.fillText(n+"s",W-pl,Hh-5);
+  }
+  function dropsChart(a){
+    var r=cv("kcrep-h3"),c=r[0],x=r[1],W=c.width,Hh=c.height,pb=20;
+    var vals=[a.L,a.C,a.R],labs=["Izq","Centro","Der"],mx=Math.max.apply(null,vals.concat([1]));
+    var gap=18,cw=(W-4*gap)/3;
+    for(var i=0;i<3;i++){var h=(vals[i]/mx)*(Hh-pb-10),bx=gap+i*(cw+gap),by=Hh-pb-h;
+      x.fillStyle="rgba(255,90,71,.7)";x.fillRect(bx,by,cw,h);
+      x.fillStyle="#EAF2E9";x.font="bold 13px ui-monospace,monospace";x.textAlign="center";x.fillText(vals[i],bx+cw/2,by-4);
+      x.fillStyle="rgba(234,242,233,.5)";x.font="9px system-ui";x.fillText(labs[i],bx+cw/2,Hh-6);}
+  }
+  function trendChart(runs){
+    var r=cv("kcrep-h4"),c=r[0],x=r[1],W=c.width,Hh=c.height,pb=14,pl=6;
+    var sc=runs.slice(-20).map(function(rr){return rr.score||0;});
+    if(!sc.length)return;var mx=Math.max.apply(null,sc)*1.1,best=Math.max.apply(null,sc);
+    var bw=(W-pl*2)/sc.length;
+    for(var i=0;i<sc.length;i++){var h=(sc[i]/mx)*(Hh-pb-6),bx=pl+i*bw,by=Hh-pb-h;
+      x.fillStyle=sc[i]===best?"#5FE0A8":"rgba(245,184,65,.6)";x.fillRect(bx+1,by,Math.max(1,bw-2),h);}
+    x.fillStyle="rgba(234,242,233,.5)";x.font="9px ui-monospace,monospace";x.textAlign="right";x.fillText("mejor "+best,W-pl,10);
+  }
+
+  window.__kiaShowReport=function(){
+    var runs=readRuns(),last=window.__kiaLast||runs[runs.length-1];
+    if(!last){return;}
+    var a=analyze(last);
+    $("kcrep-title").innerHTML=a.score+" puntos &middot; "+a.runKicks+" kicks en la corrida";
+    var reqEnd=(function(){var t=a.req.slice(-4).filter(function(x){return x>0;});return t.length?(t.reduce(function(p,q){return p+q;},0)/t.length):0;})();
+    var stats=[["Puntaje",a.score],["Sobrevivió",(a.dur/1000).toFixed(1)+"s"],["Cadencia máx",a.peak+"/s"],
+      ["Altura prom",a.meanY+"px"],["Clicks al vacío",Math.round(a.missPct*100)+"%"],["Grav. final",a.gEnd? (2350+a.gEnd):"-"]];
+    $("kcrep-stats").innerHTML=stats.map(function(s){return '<div class="kcrep-stat"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';}).join("");
+    var vs=verdicts(a);
+    $("kcrep-verdicts").innerHTML=vs.slice(0,4).map(function(v){var cls=v[0]>=3?"sev3":v[0]===2?"sev2":v[0]<=0?"good":"sev1";return '<div class="kcrep-v '+cls+'">'+v[1]+'</div>';}).join("");
+    histHeights(a);cadence(a);dropsChart(a);trendChart(runs);
+    $("kcrep").classList.remove("hidden");
+  };
 })();
 </script>
-
 </body>
 </html>

@@ -550,7 +550,9 @@
     var a=analyze(last);
     $("kcrep-title").innerHTML=a.score+" puntos &middot; "+a.runKicks+" kicks en la corrida";
     var reqEnd=(function(){var t=a.req.slice(-4).filter(function(x){return x>0;});return t.length?(t.reduce(function(p,q){return p+q;},0)/t.length):0;})();
-    var stats=[["Puntaje",a.score],["Sobrevivió",(a.dur/1000).toFixed(1)+"s"],["Cadencia máx",a.peak+"/s"],
+    var same=runs.filter(function(r){var c=r.cfg||{},d=last.cfg||{};return c.round===d.round&&c.score===d.score&&(c.gravBonus||0)===(d.gravBonus||0);});
+    var avgK=same.length?Math.round(same.reduce(function(p,r){return p+((r.kicks&&r.kicks.length)||Math.max(0,(r.score||0)-((r.cfg&&r.cfg.score)||0)));},0)/same.length):0;
+    var stats=[["Puntaje",a.score],["Kicks prom ("+same.length+")",avgK],["Sobrevivió",(a.dur/1000).toFixed(1)+"s"],["Cadencia máx",a.peak+"/s"],
       ["Altura prom",a.meanY+"px"],["Clicks al vacío",Math.round(a.missPct*100)+"%"],["Grav. final",a.gEnd? (2350+a.gEnd):"-"]];
     $("kcrep-stats").innerHTML=stats.map(function(s){return '<div class="kcrep-stat"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';}).join("");
     var vs=verdicts(a);

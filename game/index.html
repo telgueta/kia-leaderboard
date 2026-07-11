@@ -14,7 +14,7 @@
       gtag('config', 'G-4TJHHX3XZ9');
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite,sports_soccer,trophy" />
-  <script type="module" crossorigin src="assets/index-Cwvmho8Z.js?v=4"></script>
+  <script type="module" crossorigin src="assets/index-Cwvmho8Z.js?v=5"></script>
   <link rel="stylesheet" crossorigin href="assets/index-BLHXZ3ck.css">
 </head>
 <body class="kia-root">
@@ -348,15 +348,15 @@
     <button id="kcrep-close" title="Cerrar">&#10005;</button>
     <p class="kcfg-eyebrow">Reporte de entrenamiento</p>
     <h2 class="kcfg-title" id="kcrep-title">Última corrida</h2>
-    <div class="kcrep-stats" id="kcrep-stats"></div>
+    <div id="kcrep-stats"></div>
     <div id="kcrep-verdicts"></div>
+    <p class="kcrep-h">Cadencia: t&uacute; (barras) vs. lo que exige el juego (l&iacute;nea) <span>&middot; <b style="color:#FF5A47">&#10005;</b> = vida perdida</span></p>
+    <canvas id="kcrep-h2" width="620" height="150"></canvas>
     <p class="kcrep-h">Altura de tus patadas <span>(izquierda = arriba/bueno · derecha = bajo/tarde)</span></p>
     <canvas id="kcrep-h1" width="620" height="150"></canvas>
-    <p class="kcrep-h">Cadencia: t&uacute; (barras) vs. lo que exige el juego (l&iacute;nea)</p>
-    <canvas id="kcrep-h2" width="620" height="150"></canvas>
     <div class="kcrep-cols">
       <div><p class="kcrep-h">D&oacute;nde pierdes balones</p><canvas id="kcrep-h3" width="300" height="130"></canvas></div>
-      <div><p class="kcrep-h">Progreso por corrida</p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
+      <div><p class="kcrep-h">Progreso del preset <span>(&uacute;lt. 20 &middot; l&iacute;nea = prom. m&oacute;vil)</span></p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
     </div>
     <div class="kcrep-foot">
       <button id="kcrep-dl" class="kcrep-btn2">&#11015; Descargar datos</button><button id="kcrep-cp" class="kcrep-btn2">&#10697; Copiar</button><button id="kcrep-again">&#8635; Otra corrida</button>
@@ -399,6 +399,12 @@
   .kcrep-stat{flex:1 1 90px;background:rgba(234,242,233,.05);border:1px solid rgba(234,242,233,.1);border-radius:9px;padding:.55rem .6rem}
   .kcrep-stat b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:1.25rem;font-weight:800;color:#FFDF9E;line-height:1}
   .kcrep-stat span{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(234,242,233,.5);font-weight:700}
+  .kcrep-stat i{display:block;font-style:normal;font-size:.58rem;margin-top:.2rem;color:rgba(234,242,233,.45)}
+  .kcrep-stat i.up{color:#5FE0A8}.kcrep-stat i.dn{color:#FF5A47}
+  .kcrep-pb{display:inline-block;background:rgba(245,184,65,.15);border:1px solid #F5B841;color:#FFDF9E;
+    font-size:.62rem;font-weight:800;letter-spacing:.08em;padding:.18rem .55rem;border-radius:999px;
+    vertical-align:middle;text-transform:uppercase;margin-left:.4rem}
+  .kcrep-note{font-size:.75rem;color:rgba(234,242,233,.5);margin:.2rem 0 .4rem}
   #kcrep-verdicts{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
   .kcrep-v{font-size:.8rem;line-height:1.45;padding:.5rem .7rem;border-radius:8px;border-left:3px solid}
   .kcrep-v.sev3{background:rgba(228,0,43,.09);border-color:#E4002B}
@@ -452,42 +458,99 @@
       if(tries>300)clearInterval(iv);
     },100);
   });
-  $("kcfg-reopen").addEventListener("click",function(){location.reload();});
-  $("kcrep-again").addEventListener("click",function(){location.reload();});
+  window.__kiaAgain=function(){location.reload();};
+  $("kcfg-reopen").addEventListener("click",function(){window.__kiaAgain();});
+  $("kcrep-again").addEventListener("click",function(){window.__kiaAgain();});
   $("kcrep-close").addEventListener("click",function(){$("kcrep").classList.add("hidden");});
   $("kcfg-report").addEventListener("click",function(){window.__kiaShowReport();});var _cb=$("kcfg-coach");function _updCoach(){_cb.classList.toggle("coachon",!!window.__kiaCoach);}window.__kiaCoach=(localStorage.getItem("kia_coach")!=="0");_updCoach();_cb.addEventListener("click",function(){window.__kiaCoach=!window.__kiaCoach;localStorage.setItem("kia_coach",window.__kiaCoach?"1":"0");_updCoach();});function kcfb(text,cb){var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");}catch(e){}ta.remove();cb&&cb();}$("kcrep-dl").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var blob=new Blob([data],{type:"application/json"});var url=URL.createObjectURL(blob);var d=new Date(),p=function(n){return(n<10?"0":"")+n;};var name="kia-telemetria-"+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+"-"+p(d.getHours())+p(d.getMinutes())+".json";var a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1000);var b=$("kcrep-dl");b.textContent="↓ "+name;setTimeout(function(){b.innerHTML="⬇ Descargar datos";},2500);});$("kcrep-cp").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var b=$("kcrep-cp");var done=function(){b.textContent="¡Copiado!";setTimeout(function(){b.innerHTML="⥉ Copiar";},1500);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(data).then(done,function(){kcfb(data,done);});}else kcfb(data,done);});
 
   // ── Análisis ──
   function readRuns(){try{return JSON.parse(localStorage.getItem("kia_runs")||"[]");}catch(e){return[];}}
+  function mean(a){return a.length?a.reduce(function(x,y){return x+y;},0)/a.length:0;}
+  function kt(k){return typeof k==="number"?[k,0,0,0]:k;}
   function analyze(run){
-    var kicks=run.kicks||[],drops=run.drops||[];
-    var ys=kicks.map(function(k){return k[2];});
-    var meanY=ys.length?Math.round(ys.reduce(function(a,b){return a+b;},0)/ys.length):0;
-    var highPct=ys.length?ys.filter(function(y){return y<480;}).length/ys.length:0;
-    var clicks=run.clicks||kicks.length;
-    var missPct=clicks?(clicks-kicks.length)/clicks:0;
-    var dur=run.dur||1,secs=Math.max(1,Math.ceil(dur/1000));
+    var kicks=(run.kicks||[]).map(kt),drops=run.drops||[];
+    var n=kicks.length,dur=run.dur||1;
+    var ts=kicks.map(function(k){return k[0];});
+    var ys=kicks.map(function(k){return k[2];}).filter(function(y){return y>0;});
+    var meanY=ys.length?Math.round(mean(ys)):0;
+    var clicks=run.clicks||n;
+    var missPct=clicks?(clicks-n)/clicks:0;
+    var secs=Math.max(1,Math.ceil(dur/1000));
     var your=new Array(secs).fill(0),reqS=new Array(secs).fill(0),reqN=new Array(secs).fill(0);
-    kicks.forEach(function(k){var s=Math.floor(k[0]/1000);if(s>=0&&s<secs){your[s]++;reqS[s]+=5*k[3]/2320;reqN[s]++;}});
+    kicks.forEach(function(k){var s=Math.floor(k[0]/1000);if(s>=0&&s<secs){your[s]++;if(k[3]>0){reqS[s]+=5*k[3]/2320;reqN[s]++;}}});
     var req=reqS.map(function(v,i){return reqN[i]?v/reqN[i]:0;});
     var peak=your.length?Math.max.apply(null,your):0;
+    var peak3=0;
+    for(var i=0,j=0;i<n;i++){while(ts[i]-ts[j]>3000)j++;if(i-j+1>peak3)peak3=i-j+1;}
+    peak3=peak3/3;
+    var cad=n/(dur/1000);
+    var maxGap=0;for(var g=1;g<n;g++)if(ts[g]-ts[g-1]>maxGap)maxGap=ts[g]-ts[g-1];
+    var d1=drops.length?drops[0][0]:dur;
+    var kicksB4=0;for(var q=0;q<n;q++)if(ts[q]<d1)kicksB4++;
+    var cascade=drops.length?dur-d1:0;
+    var restab=0;
+    for(var b=0;b<drops.length;b++){
+      var t0=drops[b][0],t1=b+1<drops.length?drops[b+1][0]:dur,c=0;
+      for(var w=0;w<n;w++)if(ts[w]>t0&&ts[w]<=t1)c++;
+      if(c>=20)restab++;
+    }
     var L=0,C=0,R=0;drops.forEach(function(d){if(d[1]<240)L++;else if(d[1]>480)R++;else C++;});
-    return{n:kicks.length,runKicks:run.score-((run.cfg&&run.cfg.score)||0),meanY:meanY,highPct:highPct,
-      missPct:missPct,clicks:clicks,your:your,req:req,peak:peak,L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,ys:ys};
+    return{n:n,runKicks:run.score-((run.cfg&&run.cfg.score)||0),meanY:meanY,
+      missPct:missPct,clicks:clicks,your:your,req:req,peak:peak,peak3:peak3,cad:cad,
+      maxGap:maxGap,d1:d1,kicksB4:kicksB4,cascade:cascade,restab:restab,
+      L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,
+      dropsT:drops.map(function(d){return d[0];}),ys:ys};
   }
-  function verdicts(a){
-    var v=[];
-    if(a.meanY>640)v.push([3,"Pateas MUY bajo &mdash; altura promedio "+a.meanY+"px. M&aacute;talos apenas cruzan la l&iacute;nea (~300). Es tu problema #1: arcos cortos = te ahogas."]);
+  function cfgKey(c){c=c||{};return[c.round||1,c.score||0,c.gravBonus||0,c.ramp||40,c.lives||5].join("/");}
+  function compare(runs,last){
+    var key=cfgKey(last.cfg);
+    var same=runs.filter(function(r){return cfgKey(r.cfg)===key;});
+    if(!same.length)same=[last];
+    var sc=same.map(function(r){return r.score||0;});
+    var best=Math.max.apply(null,sc);
+    var l5=sc.slice(-5);
+    var rank=1+sc.filter(function(s){return s>(last.score||0);}).length;
+    var day=new Date(last.ts||0).toDateString();
+    var tsc=same.filter(function(r){return new Date(r.ts||0).toDateString()===day;})
+                .map(function(r){return r.score||0;});
+    var top=null;
+    if(same.length>=8){
+      var srt=same.slice().sort(function(a,b){return(b.score||0)-(a.score||0);});
+      var tq=srt.slice(0,Math.max(3,Math.ceil(same.length*.25))).map(analyze);
+      top={d1:mean(tq.map(function(a){return a.d1;}))/1000,
+           cad:mean(tq.map(function(a){return a.cad;})),
+           gap:mean(tq.map(function(a){return a.maxGap;}))/1000};
+    }
+    return{n:same.length,same:same,best:best,avg:Math.round(mean(sc)),l5:Math.round(mean(l5)),
+      rank:rank,isPB:rank===1&&same.length>1,todayN:tsc.length,todayAvg:Math.round(mean(tsc)),
+      todayScores:tsc,top:top};
+  }
+  function verdicts(a,cmp){
+    var v=[],d1s=a.d1/1000;
+    if(a.drops===0&&a.n>30)v.push([0,"Corrida sin ca&iacute;das. &#127942;"]);
+    else if(d1s<10)v.push([3,"Apertura de solo "+d1s.toFixed(0)+"s antes de la 1&ordf; ca&iacute;da. El muro real est&aacute; en ~30s y cada segundo de apertura vale ~4.5 kicks: prioridad #1, cero ca&iacute;das antes de 15s."]);
+    else if(d1s<15)v.push([2,"Apertura de "+d1s.toFixed(0)+"s. Tus r&eacute;cords aguantan 25-30s con los 5 balones &mdash; sube el piso a 15s+."]);
+    else if(d1s>=25)v.push([0,"Apertura de &eacute;lite: "+d1s.toFixed(1)+"s &mdash; tocaste el muro (~30s), ah&iacute; se construyen los r&eacute;cords. &#9989;"]);
+    if(a.drops>=3&&a.restab===0)v.push([2,"Tras la 1&ordf; ca&iacute;da el resto cay&oacute; en cascada ("+(a.cascade/1000).toFixed(0)+"s) sin frenarla. Tus mejores corridas la frenan 2-3 veces: tras cada ca&iacute;da, re-estabiliza con un bloque de 20+ kicks."]);
+    else if(a.restab>=2)v.push([0,"Frenaste la cascada "+a.restab+" veces (bloques de 20+ kicks tras una ca&iacute;da). Forma de r&eacute;cord. &#9989;"]);
+    if(a.maxGap>=2000)v.push([2,"Freeze de "+(a.maxGap/1000).toFixed(1)+"s sin patear. Las corridas malas siempre tienen una pausa de ~2s; las buenas no pasan de ~1.2s."]);
+    else if(a.maxGap>0&&a.maxGap<=1300&&a.n>50)v.push([0,"Cero freezes: pausa m&aacute;xima "+(a.maxGap/1000).toFixed(1)+"s. Continuidad de r&eacute;cord. &#9989;"]);
+    if(cmp&&cmp.top&&a.cad<cmp.top.cad*.88)v.push([2,"Tempo: fuiste a "+a.cad.toFixed(1)+" kicks/s y tus top-25% de este preset van a "+cmp.top.cad.toFixed(1)+". Lo que separa tus mejores corridas es tempo y continuidad, no punter&iacute;a."]);
+    if(a.meanY>640)v.push([3,"Pateas MUY bajo &mdash; altura promedio "+a.meanY+"px. M&aacute;talos apenas cruzan la l&iacute;nea (~300): arcos cortos = te ahogas."]);
     else if(a.meanY>540)v.push([2,"Pateas algo bajo (prom "+a.meanY+"px). P&eacute;gales m&aacute;s arriba para alargar los arcos."]);
-    else v.push([0,"Buena altura de patada (prom "+a.meanY+"px): mantienes arcos largos. &#9989;"]);
-    if(a.missPct>0.25)v.push([3,Math.round(a.missPct*100)+"% de tus clicks no pegan a nada &mdash; est&aacute;s clickeando al vac&iacute;o. Cada click debe ir a un bal&oacute;n."]);
-    else if(a.missPct>0.12)v.push([1,Math.round(a.missPct*100)+"% de clicks perdidos. Afina la punter&iacute;a."]);
+    if(a.missPct>0.35)v.push([2,Math.round(a.missPct*100)+"% de tus clicks no pegan a nada. Ojo: la punter&iacute;a fina no es la palanca (tus mejores corridas fallan igual), pero sobre 35% ya es ruido."]);
     var tail=a.req.slice(-4).filter(function(x){return x>0;});
-    var reqEnd=tail.length?tail.reduce(function(x,y){return x+y;},0)/tail.length:0;
+    var reqEnd=tail.length?mean(tail):0;
     if(reqEnd>a.peak+0.5)v.push([2,"Al morir, el juego ped&iacute;a ~"+reqEnd.toFixed(1)+" clicks/s y tu tope fue "+a.peak+"/s. Te falta cadencia &mdash; prueba butterfly (dos dedos)."]);
     if(a.drops>1){var mx=Math.max(a.L,a.C,a.R);
       if(mx===a.L&&a.L>a.R)v.push([1,"Pierdes m&aacute;s balones por la IZQUIERDA ("+a.L+"). Cubre ese lado."]);
       else if(mx===a.R&&a.R>a.L)v.push([1,"Pierdes m&aacute;s por la DERECHA ("+a.R+"). Cubre ese lado."]);}
+    if(cmp&&cmp.todayN>=6){
+      var t=cmp.todayScores,f=mean(t.slice(0,3)),l=mean(t.slice(-3));
+      if(l<f*.85)v.push([1,"Llevas "+cmp.todayN+" corridas hoy y las &uacute;ltimas rinden "+Math.round((1-l/f)*100)+"% bajo las primeras. La fatiga es real: pausa de 5 min y vuelve fresco."]);
+      else if(t.length>=2&&t[t.length-1]>=Math.max.apply(null,t.slice(0,-1)))v.push([0,"Vienes EN RACHA hoy: tus r&eacute;cords salen encadenados &mdash; juega la siguiente ya. &#128293;"]);
+    }
     v.sort(function(x,y){return y[0]-x[0];});
     return v;
   }
@@ -522,6 +585,14 @@
     x.strokeStyle="#5FE0A8";x.lineWidth=2;x.beginPath();var started=false;
     for(var j=0;j<n;j++){if(a.req[j]<=0)continue;var px=pl+j*bw+bw/2,py=Hh-pb-(a.req[j]/mx)*(Hh-pb-6);if(!started){x.moveTo(px,py);started=true;}else x.lineTo(px,py);}
     x.stroke();
+    // vidas perdidas
+    a.dropsT.forEach(function(t){
+      var dx=Math.min(W-pl,pl+(t/1000)*bw);
+      x.strokeStyle="rgba(255,90,71,.8)";x.lineWidth=1;x.setLineDash([3,3]);
+      x.beginPath();x.moveTo(dx,12);x.lineTo(dx,Hh-pb);x.stroke();x.setLineDash([]);
+      x.fillStyle="#FF5A47";x.font="bold 10px ui-monospace,monospace";x.textAlign="center";
+      x.fillText("✕",dx,10);
+    });
     x.fillStyle="rgba(234,242,233,.45)";x.font="9px ui-monospace,monospace";x.textAlign="left";
     x.fillText("0s",pl,Hh-5);x.textAlign="right";x.fillText(n+"s",W-pl,Hh-5);
   }
@@ -534,30 +605,56 @@
       x.fillStyle="#EAF2E9";x.font="bold 13px ui-monospace,monospace";x.textAlign="center";x.fillText(vals[i],bx+cw/2,by-4);
       x.fillStyle="rgba(234,242,233,.5)";x.font="9px system-ui";x.fillText(labs[i],bx+cw/2,Hh-6);}
   }
-  function trendChart(runs){
+  function trendChart(same,last){
     var r=cv("kcrep-h4"),c=r[0],x=r[1],W=c.width,Hh=c.height,pb=14,pl=6;
-    var sc=runs.slice(-20).map(function(rr){return rr.score||0;});
-    if(!sc.length)return;var mx=Math.max.apply(null,sc)*1.1,best=Math.max.apply(null,sc);
-    var bw=(W-pl*2)/sc.length;
+    var rs=same.slice(-20),sc=rs.map(function(rr){return rr.score||0;});
+    if(!sc.length)return;
+    var best=Math.max.apply(null,sc),mx=(best||1)*1.1,bw=(W-pl*2)/sc.length;
+    var cur=-1;for(var k=rs.length-1;k>=0;k--)if(rs[k].ts===last.ts){cur=k;break;}
     for(var i=0;i<sc.length;i++){var h=(sc[i]/mx)*(Hh-pb-6),bx=pl+i*bw,by=Hh-pb-h;
-      x.fillStyle=sc[i]===best?"#5FE0A8":"rgba(245,184,65,.6)";x.fillRect(bx+1,by,Math.max(1,bw-2),h);}
+      x.fillStyle=sc[i]===best?"#5FE0A8":"rgba(245,184,65,.6)";x.fillRect(bx+1,by,Math.max(1,bw-2),h);
+      if(i===cur){x.strokeStyle="#EAF2E9";x.lineWidth=1.5;x.strokeRect(bx+1.5,by+.5,Math.max(1,bw-3),Math.max(1,h-1));}}
+    if(sc.length>=5){
+      x.strokeStyle="rgba(234,242,233,.7)";x.lineWidth=1.5;x.beginPath();
+      for(var j=0;j<sc.length;j++){var w0=Math.max(0,j-4),m=0;
+        for(var q=w0;q<=j;q++)m+=sc[q];m/=j-w0+1;
+        var px=pl+j*bw+bw/2,py=Hh-pb-(m/mx)*(Hh-pb-6);
+        j?x.lineTo(px,py):x.moveTo(px,py);}
+      x.stroke();}
     x.fillStyle="rgba(234,242,233,.5)";x.font="9px ui-monospace,monospace";x.textAlign="right";x.fillText("mejor "+best,W-pl,10);
   }
 
   window.__kiaShowReport=function(){
     var runs=readRuns(),last=window.__kiaLast||runs[runs.length-1];
     if(!last){return;}
-    var a=analyze(last);
-    $("kcrep-title").innerHTML=a.score+" puntos &middot; "+a.runKicks+" kicks en la corrida";
-    var reqEnd=(function(){var t=a.req.slice(-4).filter(function(x){return x>0;});return t.length?(t.reduce(function(p,q){return p+q;},0)/t.length):0;})();
-    var same=runs.filter(function(r){var c=r.cfg||{},d=last.cfg||{};return c.round===d.round&&c.score===d.score&&(c.gravBonus||0)===(d.gravBonus||0);});
-    var avgS=same.length?Math.round(same.reduce(function(p,r){return p+(r.score||0);},0)/same.length):0;
-    var stats=[["Puntaje",a.score],["Puntaje prom ("+same.length+")",avgS],["Sobrevivió",(a.dur/1000).toFixed(1)+"s"],["Cadencia máx",a.peak+"/s"],
-      ["Altura prom",a.meanY+"px"],["Clicks al vacío",Math.round(a.missPct*100)+"%"],["Grav. final",a.gEnd? (2350+a.gEnd):"-"]];
-    $("kcrep-stats").innerHTML=stats.map(function(s){return '<div class="kcrep-stat"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';}).join("");
-    var vs=verdicts(a);
-    $("kcrep-verdicts").innerHTML=vs.slice(0,4).map(function(v){var cls=v[0]>=3?"sev3":v[0]===2?"sev2":v[0]<=0?"good":"sev1";return '<div class="kcrep-v '+cls+'">'+v[1]+'</div>';}).join("");
-    histHeights(a);cadence(a);dropsChart(a);trendChart(runs);
+    var a=analyze(last),cmp=compare(runs,last);
+    $("kcrep-title").innerHTML=a.score+" puntos &middot; "+a.runKicks+" kicks"
+      +(cmp.isPB?'<span class="kcrep-pb">&#127942; r&eacute;cord del preset</span>':"");
+    function tile(v,l,sub,cls){return '<div class="kcrep-stat"><b>'+v+'</b><span>'+l+'</span>'+(sub?'<i class="'+(cls||"")+'">'+sub+'</i>':"")+'</div>';}
+    var dAvg=a.score-cmp.avg;
+    var s1=[
+      tile(a.score,"Puntaje",cmp.n>1?(dAvg>=0?"+":"")+dAvg+" vs prom":"",dAvg>=0?"up":"dn"),
+      tile((a.dur/1000).toFixed(1)+"s","Sobrevivi&oacute;"),
+      tile((a.d1/1000).toFixed(1)+"s","Apertura (1&ordf; vida)",a.kicksB4+" kicks"),
+      tile(a.cad.toFixed(1)+"/s","Cadencia","pico 3s: "+a.peak3.toFixed(1)),
+      tile((a.maxGap/1000).toFixed(1)+"s","Pausa m&aacute;x",a.maxGap>=2000?"freeze":"","dn"),
+      tile(Math.round(a.missPct*100)+"%","Clicks al vac&iacute;o"),
+      tile(a.restab+"/"+Math.max(0,a.drops-1),"Cascadas frenadas"),
+      tile(a.gEnd?2350+a.gEnd:"-","Grav. final")
+    ].join("");
+    var s2=cmp.n>1?[
+      tile("#"+cmp.rank+" de "+cmp.n,"Esta corrida",cmp.rank<=Math.ceil(cmp.n*.25)?"top 25%":"","up"),
+      tile(cmp.best,"Mejor"),
+      tile(cmp.avg,"Promedio"),
+      tile(cmp.l5,"Prom &uacute;lt. 5",cmp.l5>=cmp.avg?"&#9650; sobre tu prom":"&#9660; bajo tu prom",cmp.l5>=cmp.avg?"up":"dn"),
+      tile(cmp.todayN,"Corridas hoy",cmp.todayN?"prom "+cmp.todayAvg:"")
+    ].join(""):'<p class="kcrep-note">Primera corrida de este preset &mdash; juega otra para ver comparativas.</p>';
+    $("kcrep-stats").innerHTML='<p class="kcrep-h">Esta corrida</p><div class="kcrep-stats">'+s1+'</div>'
+      +'<p class="kcrep-h">Historial del preset ('+cmp.n+' corridas)</p>'
+      +(cmp.n>1?'<div class="kcrep-stats">'+s2+'</div>':s2);
+    var vs=verdicts(a,cmp);
+    $("kcrep-verdicts").innerHTML=vs.slice(0,5).map(function(v){var cls=v[0]>=3?"sev3":v[0]===2?"sev2":v[0]<=0?"good":"sev1";return '<div class="kcrep-v '+cls+'">'+v[1]+'</div>';}).join("");
+    cadence(a);histHeights(a);dropsChart(a);trendChart(cmp.same,last);
     $("kcrep").classList.remove("hidden");
   };
 })();

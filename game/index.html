@@ -532,9 +532,9 @@
   function verdicts(a,cmp){
     var v=[],d1s=a.d1/1000;
     if(a.drops===0&&a.n>30)v.push([0,"Corrida sin ca&iacute;das. &#127942;"]);
-    else if(d1s<10)v.push([3,"Apertura de solo "+d1s.toFixed(0)+"s antes de la 1&ordf; ca&iacute;da. El muro real est&aacute; en ~30s y cada segundo de apertura vale ~4.5 kicks: prioridad #1, cero ca&iacute;das antes de 15s."]);
-    else if(d1s<15)v.push([2,"Apertura de "+d1s.toFixed(0)+"s. Tus r&eacute;cords aguantan 25-30s con los 5 balones &mdash; sube el piso a 15s+."]);
-    else if(d1s>=25)v.push([0,"Apertura de &eacute;lite: "+d1s.toFixed(1)+"s &mdash; tocaste el muro (~30s), ah&iacute; se construyen los r&eacute;cords. &#9989;"]);
+    else if(a.kicksB4<60)v.push([3,"Apertura de solo "+a.kicksB4+" kicks antes de la 1&ordf; ca&iacute;da ("+d1s.toFixed(0)+"s). Tus r&eacute;cords abren con 130-150: prioridad #1, ninguna ca&iacute;da antes de los ~90 kicks."]);
+    else if(a.kicksB4<90)v.push([2,"Apertura de "+a.kicksB4+" kicks ("+d1s.toFixed(0)+"s). Tus r&eacute;cords abren con 130-150 &mdash; s&uacute;bele el piso."]);
+    else if(a.kicksB4>=140)v.push([0,"Apertura de &eacute;lite: "+a.kicksB4+" kicks ("+d1s.toFixed(1)+"s) &mdash; territorio de r&eacute;cord. &#9989;"]);
     if(a.drops>=3&&a.restab===0)v.push([2,"Tras la 1&ordf; ca&iacute;da el resto cay&oacute; en cascada ("+(a.cascade/1000).toFixed(0)+"s) sin frenarla. Tus mejores corridas la frenan 2-3 veces: tras cada ca&iacute;da, re-estabiliza con un bloque de 20+ kicks."]);
     else if(a.restab>=2)v.push([0,"Frenaste la cascada "+a.restab+" veces (bloques de 20+ kicks tras una ca&iacute;da). Forma de r&eacute;cord. &#9989;"]);
     if(a.maxGap>=2000)v.push([2,"Freeze de "+(a.maxGap/1000).toFixed(1)+"s sin patear. Las corridas malas siempre tienen una pausa de ~2s; las buenas no pasan de ~1.2s."]);
@@ -638,7 +638,7 @@
     var s1=[
       tile(a.score,"Puntaje",cmp.n>1?(dAvg>=0?"+":"")+dAvg+" vs prom":"",dAvg>=0?"up":"dn"),
       tile((a.dur/1000).toFixed(1)+"s","Sobrevivi&oacute;"),
-      tile((a.d1/1000).toFixed(1)+"s","Apertura (1&ordf; vida)",a.kicksB4+" kicks"),
+      tile(a.kicksB4,"Apertura &middot; kicks",'en '+(a.d1/1000).toFixed(1)+"s"),
       tile(a.cad.toFixed(1)+"/s","Cadencia","pico 3s: "+a.peak3.toFixed(1)),
       tile((a.maxGap/1000).toFixed(1)+"s","Pausa m&aacute;x",a.maxGap>=2000?"freeze":"","dn"),
       tile(Math.round(a.missPct*100)+"%","Clicks al vac&iacute;o"),

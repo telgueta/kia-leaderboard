@@ -318,7 +318,7 @@
       <button data-p="completo">Completo (R1)</button>
       <button data-p="r3">Ronda 3</button>
       <button data-p="r4">Ronda 4</button>
-      <button data-p="r5_150" class="on">Ronda 5 · 150</button><button data-p="r5">Ronda 5 · 200</button>
+      <button data-p="r5_150">Ronda 5 · 150</button><button data-p="r5" class="on">Ronda 5 · 200</button>
       <button data-p="r5d">Ronda 5 dura</button>
       <button data-p="r5b">Ronda 5 brutal</button>
     </div>
@@ -445,7 +445,7 @@
   var PRESETS={completo:{round:1,score:0,gravBonus:0},r3:{round:3,score:50,gravBonus:0},
     r4:{round:4,score:90,gravBonus:0},r5_150:{round:5,score:150,gravBonus:0},r5:{round:5,score:200,gravBonus:0},
     r5d:{round:5,score:200,gravBonus:800},r5b:{round:5,score:200,gravBonus:1600}};
-  var sel={etapa:"r5_150",vidas:5,rampa:40};
+  var sel={etapa:"r5",vidas:5,rampa:40};
   function wire(id,attr,cast,key){var g=$(id);g.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(g.children,function(x){x.classList.remove("on");});b.classList.add("on");sel[key]=cast(b.getAttribute(attr));});}
   wire("kcfg-etapa","data-p",String,"etapa");wire("kcfg-vidas","data-v",Number,"vidas");wire("kcfg-rampa","data-r",Number,"rampa");
   $("kcfg-play").addEventListener("click",function(){

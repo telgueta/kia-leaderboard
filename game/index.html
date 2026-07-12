@@ -356,7 +356,7 @@
     <canvas id="kcrep-h1" width="620" height="150"></canvas>
     <div class="kcrep-cols">
       <div><p class="kcrep-h">D&oacute;nde pierdes balones</p><canvas id="kcrep-h3" width="300" height="130"></canvas></div>
-      <div><p class="kcrep-h">Progreso del preset <span>(&uacute;lt. 20 &middot; l&iacute;nea = prom. m&oacute;vil)</span></p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
+      <div><p class="kcrep-h">Progreso en kicks <span>(&uacute;lt. 20 &middot; l&iacute;nea = prom. m&oacute;vil)</span></p><canvas id="kcrep-h4" width="300" height="130"></canvas></div>
     </div>
     <div class="kcrep-foot">
       <button id="kcrep-dl" class="kcrep-btn2">&#11015; Descargar datos</button><button id="kcrep-cp" class="kcrep-btn2">&#10697; Copiar</button><button id="kcrep-again">&#8635; Otra corrida</button>
@@ -502,30 +502,30 @@
       L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,
       dropsT:drops.map(function(d){return d[0];}),ys:ys};
   }
-  // presets con misma física (round/gravBonus/rampa/vidas) se comparan juntos:
-  // el score inicial es solo un offset del marcador, lo comparable son los kicks
+  // presets con misma física (round/gravBonus/rampa/vidas) se comparan juntos.
+  // TODO comparativo va en KICKS (invariante): el score inicial es solo un offset del marcador.
   function cfgKey(c){c=c||{};return[c.round||1,c.gravBonus||0,c.ramp||40,c.lives||5].join("/");}
   function compare(runs,last){
-    var key=cfgKey(last.cfg),base=(last.cfg&&last.cfg.score)||0;
-    var eq=function(r){return base+(r.score||0)-((r.cfg&&r.cfg.score)||0);};
+    var key=cfgKey(last.cfg);
+    var kk=function(r){return(r.score||0)-((r.cfg&&r.cfg.score)||0);};
     var same=runs.filter(function(r){return cfgKey(r.cfg)===key;});
     if(!same.length)same=[last];
-    var sc=same.map(eq);
+    var sc=same.map(kk);
     var best=Math.max.apply(null,sc);
     var l5=sc.slice(-5);
-    var rank=1+sc.filter(function(s){return s>eq(last);}).length;
+    var rank=1+sc.filter(function(s){return s>kk(last);}).length;
     var day=new Date(last.ts||0).toDateString();
-    var tsc=same.filter(function(r){return new Date(r.ts||0).toDateString()===day;}).map(eq);
+    var tsc=same.filter(function(r){return new Date(r.ts||0).toDateString()===day;}).map(kk);
     var top=null;
     if(same.length>=8){
-      var srt=same.slice().sort(function(a,b){return eq(b)-eq(a);});
+      var srt=same.slice().sort(function(a,b){return kk(b)-kk(a);});
       var tq=srt.slice(0,Math.max(3,Math.ceil(same.length*.25))).map(analyze);
       top={d1:mean(tq.map(function(a){return a.d1;}))/1000,
            cad:mean(tq.map(function(a){return a.cad;})),
            gap:mean(tq.map(function(a){return a.maxGap;}))/1000};
     }
-    var sameEq=same.map(function(r){return{ts:r.ts,score:eq(r)};});
-    return{n:same.length,same:same,sameEq:sameEq,best:best,avg:Math.round(mean(sc)),l5:Math.round(mean(l5)),
+    var sameK=same.map(function(r){return{ts:r.ts,score:kk(r)};});
+    return{n:same.length,same:same,sameK:sameK,best:best,avg:Math.round(mean(sc)),l5:Math.round(mean(l5)),
       rank:rank,isPB:rank===1&&same.length>1,todayN:tsc.length,todayAvg:Math.round(mean(tsc)),
       todayScores:tsc,top:top};
   }
@@ -634,9 +634,9 @@
     $("kcrep-title").innerHTML=a.score+" puntos &middot; "+a.runKicks+" kicks"
       +(cmp.isPB?'<span class="kcrep-pb">&#127942; r&eacute;cord del preset</span>':"");
     function tile(v,l,sub,cls){return '<div class="kcrep-stat"><b>'+v+'</b><span>'+l+'</span>'+(sub?'<i class="'+(cls||"")+'">'+sub+'</i>':"")+'</div>';}
-    var dAvg=a.score-cmp.avg;
+    var dAvg=a.runKicks-cmp.avg;
     var s1=[
-      tile(a.score,"Puntaje",cmp.n>1?(dAvg>=0?"+":"")+dAvg+" vs prom":"",dAvg>=0?"up":"dn"),
+      tile(a.score,"Puntaje",cmp.n>1?(dAvg>=0?"+":"")+dAvg+" kicks vs prom":"",dAvg>=0?"up":"dn"),
       tile((a.dur/1000).toFixed(1)+"s","Sobrevivi&oacute;"),
       tile((a.d1/1000).toFixed(1)+"s","Apertura (1&ordf; vida)",a.kicksB4+" kicks"),
       tile(a.cad.toFixed(1)+"/s","Cadencia","pico 3s: "+a.peak3.toFixed(1)),
@@ -645,19 +645,20 @@
       tile(a.restab+"/"+Math.max(0,a.drops-1),"Cascadas frenadas"),
       tile(a.gEnd?2350+a.gEnd:"-","Grav. final")
     ].join("");
+    var base=(last.cfg&&last.cfg.score)||0;
     var s2=cmp.n>1?[
       tile("#"+cmp.rank+" de "+cmp.n,"Esta corrida",cmp.rank<=Math.ceil(cmp.n*.25)?"top 25%":"","up"),
-      tile(cmp.best,"Mejor"),
-      tile(cmp.avg,"Promedio"),
-      tile(cmp.l5,"Prom &uacute;lt. 5",cmp.l5>=cmp.avg?"&#9650; sobre tu prom":"&#9660; bajo tu prom",cmp.l5>=cmp.avg?"up":"dn"),
-      tile(cmp.todayN,"Corridas hoy",cmp.todayN?"prom "+cmp.todayAvg:"")
+      tile(cmp.best,"Mejor &middot; kicks","= "+(base+cmp.best)+" pts aqu&iacute;"),
+      tile(cmp.avg,"Promedio &middot; kicks"),
+      tile(cmp.l5,"&Uacute;lt. 5 &middot; kicks",cmp.l5>=cmp.avg?"&#9650; sobre tu prom":"&#9660; bajo tu prom",cmp.l5>=cmp.avg?"up":"dn"),
+      tile(cmp.todayN,"Corridas hoy",cmp.todayN?"prom "+cmp.todayAvg+" kicks":"")
     ].join(""):'<p class="kcrep-note">Primera corrida de este preset &mdash; juega otra para ver comparativas.</p>';
     $("kcrep-stats").innerHTML='<p class="kcrep-h">Esta corrida</p><div class="kcrep-stats">'+s1+'</div>'
-      +'<p class="kcrep-h">Historial comparable ('+cmp.n+' corridas &middot; escala del preset actual)</p>'
+      +'<p class="kcrep-h">Historial comparable ('+cmp.n+' corridas &middot; en kicks sobrevividos)</p>'
       +(cmp.n>1?'<div class="kcrep-stats">'+s2+'</div>':s2);
     var vs=verdicts(a,cmp);
     $("kcrep-verdicts").innerHTML=vs.slice(0,5).map(function(v){var cls=v[0]>=3?"sev3":v[0]===2?"sev2":v[0]<=0?"good":"sev1";return '<div class="kcrep-v '+cls+'">'+v[1]+'</div>';}).join("");
-    cadence(a);histHeights(a);dropsChart(a);trendChart(cmp.sameEq,{ts:last.ts});
+    cadence(a);histHeights(a);dropsChart(a);trendChart(cmp.sameK,{ts:last.ts});
     $("kcrep").classList.remove("hidden");
   };
 })();

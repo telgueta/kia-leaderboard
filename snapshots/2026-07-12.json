@@ -1,0 +1,509 @@
+{
+  "updatedAt": "12-07-2026",
+  "myRank": null,
+  "myScore": null,
+  "myName": null,
+  "hasPlayedToday": false,
+  "entries": [
+    {
+      "rank": 1,
+      "name": "T. Elgueta",
+      "score": 26373
+    },
+    {
+      "rank": 2,
+      "name": "C. Rivas",
+      "score": 25896
+    },
+    {
+      "rank": 3,
+      "name": "R. Fernandez",
+      "score": 23459
+    },
+    {
+      "rank": 4,
+      "name": "N. Gajardo",
+      "score": 23338
+    },
+    {
+      "rank": 5,
+      "name": "E. Torres",
+      "score": 23237
+    },
+    {
+      "rank": 6,
+      "name": "P. Sanhueza",
+      "score": 22627
+    },
+    {
+      "rank": 7,
+      "name": "R. Molina",
+      "score": 22289
+    },
+    {
+      "rank": 8,
+      "name": "G. Henríquez",
+      "score": 21147
+    },
+    {
+      "rank": 9,
+      "name": "A. Madrid",
+      "score": 20864
+    },
+    {
+      "rank": 10,
+      "name": "M. Brea",
+      "score": 20737
+    },
+    {
+      "rank": 11,
+      "name": "P. Segura",
+      "score": 20432
+    },
+    {
+      "rank": 12,
+      "name": "M. Suazo",
+      "score": 20176
+    },
+    {
+      "rank": 13,
+      "name": "C. Vidal",
+      "score": 20173
+    },
+    {
+      "rank": 14,
+      "name": "J. Carrasco",
+      "score": 20141
+    },
+    {
+      "rank": 15,
+      "name": "Y. Suazo",
+      "score": 20078
+    },
+    {
+      "rank": 16,
+      "name": "A. Niccodemi",
+      "score": 19961
+    },
+    {
+      "rank": 17,
+      "name": "P. Carrasco",
+      "score": 19729
+    },
+    {
+      "rank": 18,
+      "name": "N. Gonzalez",
+      "score": 19427
+    },
+    {
+      "rank": 19,
+      "name": "F. González",
+      "score": 18927
+    },
+    {
+      "rank": 20,
+      "name": "P. Núñez",
+      "score": 18867
+    },
+    {
+      "rank": 21,
+      "name": "F. Ossa",
+      "score": 18610
+    },
+    {
+      "rank": 22,
+      "name": "C. Fuenzalida",
+      "score": 18586
+    },
+    {
+      "rank": 23,
+      "name": "F. Muñoz Barraza",
+      "score": 18529
+    },
+    {
+      "rank": 24,
+      "name": "F. madrid",
+      "score": 18479
+    },
+    {
+      "rank": 25,
+      "name": "A. Gonzalez",
+      "score": 18388
+    },
+    {
+      "rank": 26,
+      "name": "M. Fuentes",
+      "score": 17449
+    },
+    {
+      "rank": 27,
+      "name": "N. Lasseube",
+      "score": 17408
+    },
+    {
+      "rank": 28,
+      "name": "M. Pulgar",
+      "score": 17343
+    },
+    {
+      "rank": 29,
+      "name": "D. Rodriguez",
+      "score": 17029
+    },
+    {
+      "rank": 30,
+      "name": "E. Lasseube",
+      "score": 16919
+    },
+    {
+      "rank": 31,
+      "name": "J. Gonzalez",
+      "score": 16724
+    },
+    {
+      "rank": 32,
+      "name": "S. Rivas",
+      "score": 16514
+    },
+    {
+      "rank": 33,
+      "name": "S. Ohmke",
+      "score": 15414
+    },
+    {
+      "rank": 34,
+      "name": "J. cabrera",
+      "score": 15347
+    },
+    {
+      "rank": 35,
+      "name": "F. Morales",
+      "score": 15083
+    },
+    {
+      "rank": 36,
+      "name": "P. Vasquez",
+      "score": 14509
+    },
+    {
+      "rank": 37,
+      "name": "F. Segura",
+      "score": 14417
+    },
+    {
+      "rank": 38,
+      "name": "O. fernandez",
+      "score": 14290
+    },
+    {
+      "rank": 39,
+      "name": "V. donoso",
+      "score": 14203
+    },
+    {
+      "rank": 40,
+      "name": "B. Castillo",
+      "score": 14087
+    },
+    {
+      "rank": 41,
+      "name": "E. Larrieu",
+      "score": 13844
+    },
+    {
+      "rank": 42,
+      "name": "C. González",
+      "score": 13488
+    },
+    {
+      "rank": 43,
+      "name": "G. Merino",
+      "score": 13372
+    },
+    {
+      "rank": 44,
+      "name": "I. Garcia",
+      "score": 13346
+    },
+    {
+      "rank": 45,
+      "name": "M. Aceituno",
+      "score": 13236
+    },
+    {
+      "rank": 46,
+      "name": "M. ALARCON ALARCON",
+      "score": 13189
+    },
+    {
+      "rank": 47,
+      "name": "P. Apiolaza",
+      "score": 13116
+    },
+    {
+      "rank": 48,
+      "name": "F. gonzalez",
+      "score": 12790
+    },
+    {
+      "rank": 49,
+      "name": "N. Martinez",
+      "score": 12670
+    },
+    {
+      "rank": 50,
+      "name": "V. González",
+      "score": 12510
+    },
+    {
+      "rank": 51,
+      "name": "P. Garrido ceballos",
+      "score": 12446
+    },
+    {
+      "rank": 52,
+      "name": "D. Madrid",
+      "score": 11451
+    },
+    {
+      "rank": 53,
+      "name": "J. Palma",
+      "score": 11373
+    },
+    {
+      "rank": 54,
+      "name": "R. Del Pino",
+      "score": 11344
+    },
+    {
+      "rank": 55,
+      "name": "F. Vega",
+      "score": 11319
+    },
+    {
+      "rank": 56,
+      "name": "D. guajardo",
+      "score": 11288
+    },
+    {
+      "rank": 57,
+      "name": "F. Sandoval",
+      "score": 11177
+    },
+    {
+      "rank": 58,
+      "name": "K. Leiva",
+      "score": 11165
+    },
+    {
+      "rank": 59,
+      "name": "C. Quiroz",
+      "score": 10629
+    },
+    {
+      "rank": 60,
+      "name": "R. Vera Burboa",
+      "score": 10557
+    },
+    {
+      "rank": 61,
+      "name": "J. gonzalez",
+      "score": 10474
+    },
+    {
+      "rank": 62,
+      "name": "M. Gonzalez",
+      "score": 10384
+    },
+    {
+      "rank": 63,
+      "name": "A. Quiroz",
+      "score": 10325
+    },
+    {
+      "rank": 64,
+      "name": "F. Poblete",
+      "score": 10211
+    },
+    {
+      "rank": 65,
+      "name": "R. Acuña Vera",
+      "score": 10163
+    },
+    {
+      "rank": 66,
+      "name": "J. madrid",
+      "score": 10155
+    },
+    {
+      "rank": 67,
+      "name": "M. Mendoza Novoa",
+      "score": 10087
+    },
+    {
+      "rank": 68,
+      "name": "O. Pallero",
+      "score": 9781
+    },
+    {
+      "rank": 69,
+      "name": "S. caceres donos",
+      "score": 9764
+    },
+    {
+      "rank": 70,
+      "name": "R. Silva",
+      "score": 9716
+    },
+    {
+      "rank": 71,
+      "name": "M. Pavez",
+      "score": 9634
+    },
+    {
+      "rank": 72,
+      "name": "R. Fernández",
+      "score": 9502
+    },
+    {
+      "rank": 73,
+      "name": "D. Lagos",
+      "score": 9416
+    },
+    {
+      "rank": 74,
+      "name": "C. Veas",
+      "score": 9179
+    },
+    {
+      "rank": 75,
+      "name": "J. moreno carrasco",
+      "score": 9173
+    },
+    {
+      "rank": 76,
+      "name": "V. Acuña",
+      "score": 8751
+    },
+    {
+      "rank": 77,
+      "name": "E. Gutierrez",
+      "score": 8429
+    },
+    {
+      "rank": 78,
+      "name": "F. Sandoval",
+      "score": 8403
+    },
+    {
+      "rank": 79,
+      "name": "F. Morales",
+      "score": 8357
+    },
+    {
+      "rank": 80,
+      "name": "D. Contreras guerra",
+      "score": 8313
+    },
+    {
+      "rank": 81,
+      "name": "H. Espinoza",
+      "score": 8301
+    },
+    {
+      "rank": 82,
+      "name": "B. Diaz",
+      "score": 8296
+    },
+    {
+      "rank": 83,
+      "name": "C. saavedra",
+      "score": 8223
+    },
+    {
+      "rank": 84,
+      "name": "I. devescovi",
+      "score": 7857
+    },
+    {
+      "rank": 85,
+      "name": "C. gonzalez",
+      "score": 7771
+    },
+    {
+      "rank": 86,
+      "name": "C. Veas",
+      "score": 7605
+    },
+    {
+      "rank": 87,
+      "name": "A. González",
+      "score": 7554
+    },
+    {
+      "rank": 88,
+      "name": "M. Beraz",
+      "score": 7529
+    },
+    {
+      "rank": 89,
+      "name": "O. Nuñez",
+      "score": 7520
+    },
+    {
+      "rank": 90,
+      "name": "S. Marinovic",
+      "score": 7400
+    },
+    {
+      "rank": 90,
+      "name": "C. Carrasco",
+      "score": 7400
+    },
+    {
+      "rank": 92,
+      "name": "Á. Moreno huenuman",
+      "score": 7389
+    },
+    {
+      "rank": 93,
+      "name": "L. Ochoa",
+      "score": 7285
+    },
+    {
+      "rank": 94,
+      "name": "K. Quintul",
+      "score": 7131
+    },
+    {
+      "rank": 95,
+      "name": "P. Yañez",
+      "score": 7109
+    },
+    {
+      "rank": 96,
+      "name": "V. Velásquez",
+      "score": 7066
+    },
+    {
+      "rank": 97,
+      "name": "E. Baez",
+      "score": 6998
+    },
+    {
+      "rank": 98,
+      "name": "M. Ramirez",
+      "score": 6869
+    },
+    {
+      "rank": 99,
+      "name": "M. Danton",
+      "score": 6615
+    },
+    {
+      "rank": 100,
+      "name": "N. Quintul",
+      "score": 6603
+    }
+  ]
+}

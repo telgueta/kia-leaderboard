@@ -502,27 +502,30 @@
       L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,
       dropsT:drops.map(function(d){return d[0];}),ys:ys};
   }
-  function cfgKey(c){c=c||{};return[c.round||1,c.score||0,c.gravBonus||0,c.ramp||40,c.lives||5].join("/");}
+  // presets con misma física (round/gravBonus/rampa/vidas) se comparan juntos:
+  // el score inicial es solo un offset del marcador, lo comparable son los kicks
+  function cfgKey(c){c=c||{};return[c.round||1,c.gravBonus||0,c.ramp||40,c.lives||5].join("/");}
   function compare(runs,last){
-    var key=cfgKey(last.cfg);
+    var key=cfgKey(last.cfg),base=(last.cfg&&last.cfg.score)||0;
+    var eq=function(r){return base+(r.score||0)-((r.cfg&&r.cfg.score)||0);};
     var same=runs.filter(function(r){return cfgKey(r.cfg)===key;});
     if(!same.length)same=[last];
-    var sc=same.map(function(r){return r.score||0;});
+    var sc=same.map(eq);
     var best=Math.max.apply(null,sc);
     var l5=sc.slice(-5);
-    var rank=1+sc.filter(function(s){return s>(last.score||0);}).length;
+    var rank=1+sc.filter(function(s){return s>eq(last);}).length;
     var day=new Date(last.ts||0).toDateString();
-    var tsc=same.filter(function(r){return new Date(r.ts||0).toDateString()===day;})
-                .map(function(r){return r.score||0;});
+    var tsc=same.filter(function(r){return new Date(r.ts||0).toDateString()===day;}).map(eq);
     var top=null;
     if(same.length>=8){
-      var srt=same.slice().sort(function(a,b){return(b.score||0)-(a.score||0);});
+      var srt=same.slice().sort(function(a,b){return eq(b)-eq(a);});
       var tq=srt.slice(0,Math.max(3,Math.ceil(same.length*.25))).map(analyze);
       top={d1:mean(tq.map(function(a){return a.d1;}))/1000,
            cad:mean(tq.map(function(a){return a.cad;})),
            gap:mean(tq.map(function(a){return a.maxGap;}))/1000};
     }
-    return{n:same.length,same:same,best:best,avg:Math.round(mean(sc)),l5:Math.round(mean(l5)),
+    var sameEq=same.map(function(r){return{ts:r.ts,score:eq(r)};});
+    return{n:same.length,same:same,sameEq:sameEq,best:best,avg:Math.round(mean(sc)),l5:Math.round(mean(l5)),
       rank:rank,isPB:rank===1&&same.length>1,todayN:tsc.length,todayAvg:Math.round(mean(tsc)),
       todayScores:tsc,top:top};
   }
@@ -650,11 +653,11 @@
       tile(cmp.todayN,"Corridas hoy",cmp.todayN?"prom "+cmp.todayAvg:"")
     ].join(""):'<p class="kcrep-note">Primera corrida de este preset &mdash; juega otra para ver comparativas.</p>';
     $("kcrep-stats").innerHTML='<p class="kcrep-h">Esta corrida</p><div class="kcrep-stats">'+s1+'</div>'
-      +'<p class="kcrep-h">Historial del preset ('+cmp.n+' corridas)</p>'
+      +'<p class="kcrep-h">Historial comparable ('+cmp.n+' corridas &middot; escala del preset actual)</p>'
       +(cmp.n>1?'<div class="kcrep-stats">'+s2+'</div>':s2);
     var vs=verdicts(a,cmp);
     $("kcrep-verdicts").innerHTML=vs.slice(0,5).map(function(v){var cls=v[0]>=3?"sev3":v[0]===2?"sev2":v[0]<=0?"good":"sev1";return '<div class="kcrep-v '+cls+'">'+v[1]+'</div>';}).join("");
-    cadence(a);histHeights(a);dropsChart(a);trendChart(cmp.same,last);
+    cadence(a);histHeights(a);dropsChart(a);trendChart(cmp.sameEq,{ts:last.ts});
     $("kcrep").classList.remove("hidden");
   };
 })();

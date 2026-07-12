@@ -346,6 +346,7 @@
 <div id="kcrep" class="hidden">
   <div class="kcrep-box">
     <button id="kcrep-close" title="Cerrar">&#10005;</button>
+    <button id="kcrep-again2" title="Jugar otra corrida">&#8635; Otra corrida</button>
     <p class="kcfg-eyebrow">Reporte de entrenamiento</p>
     <h2 class="kcfg-title" id="kcrep-title">Última corrida</h2>
     <div id="kcrep-stats"></div>
@@ -395,6 +396,10 @@
   .kcrep-box{position:relative;max-width:680px;width:100%;background:rgba(12,33,45,.95);border:1px solid rgba(234,242,233,.15);
     border-radius:16px;padding:1.5rem 1.5rem 1.3rem;box-shadow:0 24px 70px rgba(0,0,0,.55)}
   #kcrep-close{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(234,242,233,.6);font-size:1.1rem;cursor:pointer}
+  #kcrep-again2{position:absolute;top:10px;right:44px;background:#E4002B;color:#fff;border:none;border-radius:8px;
+    padding:.45rem .75rem;font-size:.72rem;font-weight:800;letter-spacing:.03em;cursor:pointer;font-family:inherit;
+    box-shadow:0 4px 14px rgba(228,0,43,.35);transition:.12s}
+  #kcrep-again2:hover{transform:translateY(-1px)}
   .kcrep-stats{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0 1rem}
   .kcrep-stat{flex:1 1 90px;background:rgba(234,242,233,.05);border:1px solid rgba(234,242,233,.1);border-radius:9px;padding:.55rem .6rem}
   .kcrep-stat b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:1.25rem;font-weight:800;color:#FFDF9E;line-height:1}
@@ -461,6 +466,7 @@
   window.__kiaAgain=function(){location.reload();};
   $("kcfg-reopen").addEventListener("click",function(){window.__kiaAgain();});
   $("kcrep-again").addEventListener("click",function(){window.__kiaAgain();});
+  $("kcrep-again2").addEventListener("click",function(){window.__kiaAgain();});
   $("kcrep-close").addEventListener("click",function(){$("kcrep").classList.add("hidden");});
   $("kcfg-report").addEventListener("click",function(){window.__kiaShowReport();});var _cb=$("kcfg-coach");function _updCoach(){_cb.classList.toggle("coachon",!!window.__kiaCoach);}window.__kiaCoach=(localStorage.getItem("kia_coach")!=="0");_updCoach();_cb.addEventListener("click",function(){window.__kiaCoach=!window.__kiaCoach;localStorage.setItem("kia_coach",window.__kiaCoach?"1":"0");_updCoach();});function kcfb(text,cb){var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");}catch(e){}ta.remove();cb&&cb();}$("kcrep-dl").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var blob=new Blob([data],{type:"application/json"});var url=URL.createObjectURL(blob);var d=new Date(),p=function(n){return(n<10?"0":"")+n;};var name="kia-telemetria-"+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+"-"+p(d.getHours())+p(d.getMinutes())+".json";var a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1000);var b=$("kcrep-dl");b.textContent="↓ "+name;setTimeout(function(){b.innerHTML="⬇ Descargar datos";},2500);});$("kcrep-cp").addEventListener("click",function(){var data=localStorage.getItem("kia_runs")||"[]";var b=$("kcrep-cp");var done=function(){b.textContent="¡Copiado!";setTimeout(function(){b.innerHTML="⥉ Copiar";},1500);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(data).then(done,function(){kcfb(data,done);});}else kcfb(data,done);});
 
@@ -470,12 +476,19 @@
   function kt(k){return typeof k==="number"?[k,0,0,0]:k;}
   function analyze(run){
     var kicks=(run.kicks||[]).map(kt),drops=run.drops||[];
-    var n=kicks.length,dur=run.dur||1;
-    var ts=kicks.map(function(k){return k[0];});
-    var ys=kicks.map(function(k){return k[2];}).filter(function(y){return y>0;});
+    var dur=run.dur||1,start=((run.cfg&&run.cfg.score)||0);
+    // los kicks bajo la línea de 200 pts son fase fácil y NO cuentan para métricas;
+    // los gráficos de la corrida sí muestran el juego completo
+    var skip=Math.max(0,200-start);
+    var ke=kicks.slice(skip);
+    var t200=skip>0?(kicks[skip-1]?kicks[skip-1][0]:dur):0;
+    var n=ke.length;
+    var ts=ke.map(function(k){return k[0];});
+    var ys=ke.map(function(k){return k[2];}).filter(function(y){return y>0;});
     var meanY=ys.length?Math.round(mean(ys)):0;
-    var clicks=run.clicks||n;
-    var missPct=clicks?(clicks-n)/clicks:0;
+    var nAll=kicks.length;
+    var clicks=run.clicks||nAll;
+    var missPct=clicks?(clicks-nAll)/clicks:0;
     var secs=Math.max(1,Math.ceil(dur/1000));
     var your=new Array(secs).fill(0),reqS=new Array(secs).fill(0),reqN=new Array(secs).fill(0);
     kicks.forEach(function(k){var s=Math.floor(k[0]/1000);if(s>=0&&s<secs){your[s]++;if(k[3]>0){reqS[s]+=5*k[3]/2320;reqN[s]++;}}});
@@ -484,7 +497,7 @@
     var peak3=0;
     for(var i=0,j=0;i<n;i++){while(ts[i]-ts[j]>3000)j++;if(i-j+1>peak3)peak3=i-j+1;}
     peak3=peak3/3;
-    var cad=n/(dur/1000);
+    var cad=n/Math.max(0.001,(dur-t200)/1000);
     var maxGap=0;for(var g=1;g<n;g++)if(ts[g]-ts[g-1]>maxGap)maxGap=ts[g]-ts[g-1];
     var d1=drops.length?drops[0][0]:dur;
     var kicksB4=0;for(var q=0;q<n;q++)if(ts[q]<d1)kicksB4++;
@@ -496,11 +509,11 @@
       if(c>=20)restab++;
     }
     var L=0,C=0,R=0;drops.forEach(function(d){if(d[1]<240)L++;else if(d[1]>480)R++;else C++;});
-    return{n:n,runKicks:run.score-((run.cfg&&run.cfg.score)||0),meanY:meanY,
+    return{n:n,runKicks:run.score-start,meanY:meanY,
       missPct:missPct,clicks:clicks,your:your,req:req,peak:peak,peak3:peak3,cad:cad,
       maxGap:maxGap,d1:d1,kicksB4:kicksB4,cascade:cascade,restab:restab,
       L:L,C:C,R:R,dur:dur,score:run.score,gEnd:run.gEnd||0,drops:drops.length,
-      dropsT:drops.map(function(d){return d[0];}),ys:ys};
+      dropsT:drops.map(function(d){return d[0];}),ys:ys,skip:skip};
   }
   // presets con misma física (round/gravBonus/rampa/vidas) se comparan juntos,
   // por PUNTAJE TOTAL FINAL tal como quedó en pantalla (da lo mismo si partió de 150 o 200).
@@ -652,7 +665,7 @@
       tile(cmp.l5,"Prom &uacute;lt. 5",cmp.l5>=cmp.avg?"&#9650; sobre tu prom":"&#9660; bajo tu prom",cmp.l5>=cmp.avg?"up":"dn"),
       tile(cmp.todayN,"Corridas hoy",cmp.todayN?"prom "+cmp.todayAvg:"")
     ].join(""):'<p class="kcrep-note">Primera corrida de este preset &mdash; juega otra para ver comparativas.</p>';
-    $("kcrep-stats").innerHTML='<p class="kcrep-h">Esta corrida</p><div class="kcrep-stats">'+s1+'</div>'
+    $("kcrep-stats").innerHTML='<p class="kcrep-h">Esta corrida <span>(m&eacute;tricas de kicks: desde el puntaje 200)</span></p><div class="kcrep-stats">'+s1+'</div>'
       +'<p class="kcrep-h">Historial ('+cmp.n+' corridas &middot; puntaje final)</p>'
       +(cmp.n>1?'<div class="kcrep-stats">'+s2+'</div>':s2);
     var vs=verdicts(a,cmp);

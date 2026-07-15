@@ -214,7 +214,7 @@ def compute():
     top = sorted(
         [(r['name'], int(r['rank']), int(r['score']))
          for r in rows if r['date'] == latest],
-        key=lambda x: x[1])[:10]
+        key=lambda x: x[1])[:25]
 
     # ranking completo de ayer (para detectar entradas al top 10 y movimientos)
     yranks = {}
@@ -356,6 +356,8 @@ def gen_day_summary(d):
     # 3. Rendimientos fuera de lo normal / récords / lotes
     hot = []
     for p in rivals:
+        if p['rk'] > 12:  # el resumen narra la pelea de arriba; la tabla ya muestra 25
+            continue
         ks = kicks_series(p)
         k = ks[li]
         if k is None:
@@ -392,13 +394,14 @@ def gen_day_summary(d):
     # 4. Movimientos en el top 10 y entradas nuevas
     for p in players:
         prev_rk = yr.get(p['name'])
-        if prev_rk is None and yr:
+        if prev_rk is None and yr and p['rk'] <= 10:
             items.append(('🆕', '<b>%s</b> entr&oacute; al top 10 (no estaba en el ranking ayer)' % p['name'],
                           '%s entró al top 10 (nuevo)' % p['name']))
         elif prev_rk is not None and prev_rk > 10 and p['rk'] <= 10:
             items.append(('🆕', '<b>%s</b> entr&oacute; al top 10 (era #%d ayer)' % (p['name'], prev_rk),
                           '%s entró al top 10 (era #%d)' % (p['name'], prev_rk)))
-        elif prev_rk is not None and abs(prev_rk - p['rk']) >= 2 and not p['me']:
+        elif prev_rk is not None and abs(prev_rk - p['rk']) >= 2 and not p['me'] \
+                and min(p['rk'], prev_rk) <= 10:
             arrow = '&#9650;' if p['rk'] < prev_rk else '&#9660;'
             items.append(('↕️', '%s %s #%d &rarr; #%d' % (p['name'], arrow, prev_rk, p['rk']),
                           '%s: #%d → #%d' % (p['name'], prev_rk, p['rk'])))

@@ -41,6 +41,16 @@ FLAGS_AD = ['2026-06-14']
 SKIP_AD = ['2026-06-15', '2026-06-16', '2026-06-17']
 ME_EST_AD = ['2026-06-30', '2026-07-01']  # días del split (estimados 50/50)
 
+# Días de actividad ANULADOS por la organización (sanción, detectada 20 jul):
+# el snapshot siguiente llegó en 0 y los puntos nunca se devolvieron.
+# El 0 es real — NO se estima ni se redistribuye con el día siguiente.
+SANCTION_AD = {
+    'E. Torres':   ['2026-07-14'],
+    'A. Madrid':   ['2026-07-14'],
+    'F. madrid':   ['2026-07-14'],
+    'P. Sanhueza': ['2026-07-15'],
+}
+
 
 def activity_date(rd):
     return (datetime.strptime(rd, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -51,12 +61,13 @@ def mult_for(ad):
     return WEEK_MULTS[min(max(week, 0), len(WEEK_MULTS) - 1)]
 
 
-def redistribute(scores, mults):
+def redistribute(scores, mults, sanc=()):
     """Redistribuye bloques anómalos (días sin data / gain<=0 + día de
     aterrizaje del lote) manteniendo intactos los días con data real.
 
     scores: lista de score acumulado (int) o None si el jugador no aparece
-    ese día. Devuelve (gains, cums, est_idx).
+    ese día. sanc: índices anulados por sanción — su 0 es real y se
+    preserva tal cual. Devuelve (gains, cums, est_idx).
     """
     n = len(scores)
 
@@ -77,7 +88,7 @@ def redistribute(scores, mults):
     #    que acumula todo el arranque del concurso).
     anom = [False] * n
     for i in range(lead + 1, n):
-        if gain[i] is None or gain[i] <= 0:
+        if (gain[i] is None or gain[i] <= 0) and i not in sanc:
             anom[i] = True
 
     # 2. Cada corrida anómala absorbe el siguiente día positivo (ahí aterrizó
@@ -88,7 +99,7 @@ def redistribute(scores, mults):
             j = i
             while j < n and anom[j]:
                 j += 1
-            if j < n:
+            if j < n and j not in sanc:
                 anom[j] = True
             i = j + 1
         else:
@@ -268,11 +279,14 @@ def compute():
                     cc.append(None)
             est = [adates.index(a) for a in ME_EST_AD if a in adates]
             p = dict(name=name, rk=rk, tot=tot, me=True,
-                     gain=gain, cum=cum, gainCorr=gc, cumCorr=cc, est=est)
+                     gain=gain, cum=cum, gainCorr=gc, cumCorr=cc, est=est,
+                     sanc=[])
         else:
-            gain, cum, est = redistribute(sc, mults)
+            sanc = [adates.index(a) for a in SANCTION_AD.get(name, ())
+                    if a in adates]
+            gain, cum, est = redistribute(sc, mults, sanc)
             p = dict(name=name, rk=rk, tot=tot, me=False,
-                     gain=gain, cum=cum, est=est)
+                     gain=gain, cum=cum, est=est, sanc=sanc)
 
         players.append(p)
 
@@ -367,7 +381,10 @@ def gen_day_summary(d):
         best_prev = max((round(x) for i, x in enumerate(ks[:li])
                          if x is not None and i not in p['est'] and i not in d['skip']),
                         default=0)
-        if li in p['est']:
+        if li in p.get('sanc', ()):
+            items.append(('⚖️', '%s: d&iacute;a <b>anulado por la organizaci&oacute;n</b> (sanci&oacute;n)' % p['name'],
+                          '%s: día ANULADO por la organización (sanción)' % p['name']))
+        elif li in p['est']:
             items.append(('📦', '%s recibi&oacute; <b>lote</b>: ~%d kicks/d&iacute;a estimados' % (p['name'], k),
                           '%s recibió lote: ~%d kicks/día estimados' % (p['name'], k)))
         elif k == 0:
@@ -455,7 +472,7 @@ def gen_js(d):
         if p['me']:
             lines.append('   cumCorr:%s,' % jsa(p['cumCorr']))
             lines.append('   gainCorr:%s,' % jsa(p['gainCorr']))
-        lines.append('   est:%s}%s' % (jsa(p['est']), comma))
+        lines.append('   est:%s, sanc:%s}%s' % (jsa(p['est']), jsa(p.get('sanc', [])), comma))
     lines.append('];')
     lines.append('')
     lines.append('var MAX_CUM = %d;' % d['max_cum'])
